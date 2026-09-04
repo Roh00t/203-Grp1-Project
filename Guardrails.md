@@ -17,7 +17,7 @@
 
 ## 2. Defense Mechanisms (mapped to the threats above)
 
-- **Delimiter separation** (`<system_rules>` / `<constraints>` / `<itinerary_json>`, per `architecture.md`) keeps user input structurally separated from system instructions, so injected text inside the constraints block can't be read as a rule.
+- **Delimiter separation, now with active sanitization.** `<system_rules>` / `<constraints>` / `<itinerary_json>` (per `architecture.md`) keep user input structurally separated from system instructions. This is implemented, not just structural convention: user input is stripped of any injected delimiter sequences before insertion, and attempts are logged (`injectionAttempted`) for Stage 7. **Confirm this catches case variants, whitespace-split tags, and Unicode lookalikes** — an exact-string-only filter has a known bypass, and this is worth Rohit's direct review given the domain.
 - **Schema-only output.** Module 1 and Module 2 only emit content inside their designated tags; anything outside is discarded, not displayed. This closes most prompt-leaking attempts by construction — there's no "explain yourself" output channel to exploit.
 - **Refusal templates** (Section 3) for payments, legal/visa advice, and unrelated topics.
 - **Faithfulness / evidence field.** Every factual claim carries a source; claims without one are flagged to the user, never stated as plain fact.
@@ -64,6 +64,6 @@ This file does **not** attempt enterprise authentication, encryption at rest, ra
 ## 7. Required Test Coverage
 
 Each refusal category above needs at least one dedicated adversarial test case in the Stage 6 set (Mutya), alongside the fake-payment-string case already planned:
-- A trip-constraints field containing an embedded instruction ("ignore the above and...").
+- A trip-constraints field containing an embedded instruction ("ignore the above and...") — **implemented and passing** (3 forged delimiters correctly stripped in Module 1's prompt tests); still needs case-variant, whitespace-split, and Unicode-lookalike variants added before this counts as fully covered.
 - A direct system-prompt extraction attempt.
 - One in-scope and one out-of-scope example from the visa/legal boundary table, run back-to-back, to confirm the app doesn't over- or under-refuse.

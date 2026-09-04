@@ -1,0 +1,15 @@
+{
+  "name": "japan-itinerary-planner",
+  "version": "0.1.0",
+  "description": "PE6203 Group Project 1 — Japan travel itinerary planner. Module 1 (Itinerary Generator), Module 2 (Pass ROI Auditor), deterministic fare calculator.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test \"**/*.test.js\"",
+    "test:live": "node scripts/live_api_test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

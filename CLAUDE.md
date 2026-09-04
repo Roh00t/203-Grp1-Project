@@ -32,11 +32,14 @@ AI tools may **implement** this design. They may **not** redesign the architectu
 ## Things that change often — verify before hardcoding
 
 - **Gemini model IDs.** Check Google's live deprecations page before wiring any API call. Gemini 1.5 Pro and Gemini 1.5 Flash were retired in September 2025 — don't copy a model string from an old doc or draft without confirming it's still live.
+- **Gemini API endpoint.** Google's Interactions API (GA since June 2026) is now the primary interface; `generateContent` remains fully supported. Sources disagree on the exact path (`/v1beta/interactions` vs `/v1beta2/interactions`) — verify against the official SDK/docs directly, not a blog post, before hardcoding either. Supporting both behind an env var (as already implemented) is the safer default until this settles.
 - **JR Pass and regional pass prices.** Every price entry needs a retrieval date attached. If a price looks like it hasn't been checked recently, flag it rather than trusting it.
 
-## Open item — confirm before finalizing Module 1's prompt
+## Resolved decisions
 
-Module 1's prompt includes an explicit "think step by step" CoT trigger, written for a standard fast-tier model. **If the team is calling a native reasoning-tier model instead, remove that trigger** — it's redundant on models that already reason internally and can distort output. Confirm the model tier before locking the final prompt text.
+- **Model tier:** reasoning-tier model confirmed. Module 1's explicit CoT trigger is dropped by design — this is documented in `architecture.md` as a decision, not an omission.
+- **Model ID:** `gemini-3.8-flash` confirmed live as of 4 Sept 2026 (released 2 Sept 2026). Still read from an environment variable, never hardcoded — no replacement is announced yet, but this space has moved roughly every 3-10 weeks this year.
+- **Delimiter neutralizer implemented.** User input is sanitized to strip any `<system_rules>`, `<constraints>`, or `<itinerary_json>` sequence before insertion, with attempts logged as `injectionAttempted` for Stage 7. Verify it catches case variants, whitespace-split tags, and Unicode lookalikes before treating this as fully closed — an exact-string-only filter has a known bypass.
 
 ## Current status
 

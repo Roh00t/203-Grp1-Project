@@ -63,27 +63,27 @@ Validator        (Program-of-Thoughts: calculator + LLM explainer)
 - **Purpose:** turn free-text trip constraints into a structured, machine-checkable itinerary. Feasibility and cost are deliberately out of scope for this module.
 - **Input:** trip dates, cities/regions of interest, dietary constraints, pace preference, arrival/departure airports.
 - **Reasoning step (Zero-Shot CoT):** before emitting JSON, the model writes a short internal reasoning pass — "first group requested destinations into geographic clusters by ward/city, then sequence clusters into days, then assign time windows." This reasoning is logged for failure-analysis but not shown to the user or passed to Module 2 — only the final JSON block is parsed downstream.
-  - **Model-tier note (confirm before building):** the explicit "let's think step by step" trigger below is written for a standard fast-tier model (e.g., a Flash-class model). If the team ends up calling a native reasoning-tier model instead, drop the explicit trigger — the course material notes it's redundant and can distort output on models that already reason internally.
+  - **Model-tier decision (resolved):** the team is using a reasoning-tier model, so the explicit "let's think step by step" trigger is deliberately dropped from the prompt below — the course material notes it's redundant and can distort output on models that already reason internally. Report this as a decision, not an omission: "reasoning-tier model, trigger dropped by design."
 - **Output format (strict, nothing else emitted):**
   - `days`: list of days → each day has `stops`: list of `{name, ward_or_city, start_time, end_time}`
   - `transit_segments`: list of `{from_station, to_station, mode, day, order}`
   - `missing_info`: list of any fields the model couldn't fill from the input — never guess a field, list it here instead
-- **Prompt anatomy (System Brief / Delimiters / Variable Slot / Assistant Marker):**
+- **Prompt anatomy (System Brief / Delimiters / Variable Slot / Assistant Marker):** the output schema above lives *inside* `<system_rules>`, not just described in this document — the model has no field spec to follow otherwise. User-supplied text is sanitized before insertion: any `<system_rules>`, `<constraints>`, or `<itinerary_json>` sequence a user tries to inject is stripped, and the attempt is logged (`injectionAttempted`) for Stage 7 failure analysis. This is what turns the injection-resistance claim in `guardrails.md` §2 into an actual mechanism instead of a structural convention. **Verify the neutralizer catches case variants, whitespace-split tags, and Unicode lookalikes, not just the exact literal string** — an exact-match-only filter is a filter with a known bypass.
   ```xml
   <system_rules>
   You are a Japan itinerary structuring assistant. Never invent a station name.
   Never guess a value you cannot support from the user's input — put it in
-  missing_info instead. First reason step by step about geographic clustering,
-  then output ONLY valid JSON inside <itinerary_json> tags. Nothing outside
-  that tag is read by downstream systems.
+  missing_info instead. Output ONLY valid JSON, matching this schema, inside
+  <itinerary_json> tags. Nothing outside that tag is read by downstream systems.
+
+  Schema: { days: [...], transit_segments: [...], missing_info: [...] }
   </system_rules>
   <constraints>
-  {{user_trip_constraints}}
+  {{user_trip_constraints, sanitized}}
   </constraints>
   <itinerary_json>
   ```
 - **Decoding parameters:** temperature = 0. This isn't a style choice — Stage 6 requires a *controlled* comparison across Variants A/B/C, and temperature noise would make that comparison unfair.
-- **Why these instructions matter:** the delimiter structure (`<system_rules>` vs `<constraints>`) is what prevents user-supplied trip preferences from being misread as system instructions — the actual mechanism behind the injection-resistance claim, not a decorative one.
 
 ### Module 2 — Pass ROI Auditor (Program-of-Thoughts pattern)
 
@@ -99,7 +99,7 @@ Validator        (Program-of-Thoughts: calculator + LLM explainer)
 
 ## Stage 4 — RAG / In-Context Learning
 
-- **Fare data:** a structured table (CSV/JSON) — station-pair → yen amount, dated, sourced from official JR fare pages. Looked up directly by the calculator, not retrieved via embeddings.
+- **Fare data:** a structured table (CSV/JSON) — station-pair → yen amount, dated, sourced from official JR fare pages. Looked up directly by the calculator, not retrieved via embeddings. **Required fields per row, confirmed during implementation:** `service_type` (Nozomi/Hikari/Kodama/Sakura — needed for the pass-supplement rule), `supplement_yen` (Nozomi/Mizuho rows only — the fee varies by distance, so this can't be a single constant), `source_id`, `source_date`. A missing `supplement_yen` on a Nozomi/Mizuho row is a hard error (`MissingSupplementDataError`), not a silent guess — the calculator refuses to produce a verdict on incomplete data rather than invent a number. This is the correct behavior; do not change it to a fallback default.
 - **Prose RAG (15–20 documents):** Visit Japan Web / entry procedures, regional pass terms, dietary venue lists.
 - **Retrieval method: rule-based keyword matching, not a vector database.** This is a reasoned choice, not just a time-saver: the course material frames lexical/TF-IDF-style retrieval as the correct tool specifically for "exact-string matching for unique identifiers... and specialized jargon" — station names, pass names, and terms like "Visit Japan Web" are exactly that category of exact-match jargon. A dense/embedding retriever would add latency and infrastructure risk to solve a matching problem lexical search already solves well at this corpus size (15–20 docs).
 - **Every document carries a retrieval date.** Numeric claims from a stale document trigger a "verify before travel" flag rather than being stated as current fact — e.g., the JR Pass price hike applies to overseas-agency purchases only, not the official online site; that caveat lives in the snippet, not lost in generation.

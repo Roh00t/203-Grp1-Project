@@ -1,0 +1,64 @@
+{
+  "__WARNING__": "TEST FIXTURE ONLY — NOT AUTHORITATIVE FARE DATA. Numbers here exist to exercise calculator.js structure. Ulfa's curated table in rag_corpus/ is the single source of truth once it lands. Do not copy these figures into production data, slides, or the report.",
+  "__sourced__": "Base fares sourced Sept 2026 per the Stage 3 task brief; supplement figures are invented placeholders, see __PLACEHOLDER_SUPPLEMENTS__ below.",
+
+  "fares_as_briefed": [
+    { "from": "Tokyo", "to": "Kyoto", "service_type": "Hikari", "price_yen": 13970 },
+    { "from": "Kyoto", "to": "Tokyo", "service_type": "Hikari", "price_yen": 13970 },
+    { "from": "Tokyo", "to": "Hiroshima", "service_type": "Nozomi", "price_yen": 18380 },
+    { "from": "Hiroshima", "to": "Tokyo", "service_type": "Nozomi", "price_yen": 18380 }
+  ],
+
+  "__PLACEHOLDER_SUPPLEMENTS__": "9999 is a deliberately impossible-looking number so it can never be mistaken for a real supplement. The real Nozomi/Mizuho supplement varies by distance and is still TBD (Ulfa to source). calculator.js throws MissingSupplementDataError against fares_as_briefed above, which has no supplement_yen at all — that is the production-path behaviour.",
+
+  "fares_with_placeholder_supplements": [
+    { "from": "Tokyo", "to": "Kyoto", "service_type": "Hikari", "price_yen": 13970,
+      "source_id": "PLACEHOLDER-jr-fare-tokyo-kyoto", "source_date": "2026-09-01" },
+    { "from": "Kyoto", "to": "Tokyo", "service_type": "Hikari", "price_yen": 13970,
+      "source_id": "PLACEHOLDER-jr-fare-kyoto-tokyo", "source_date": "2026-09-01" },
+    { "from": "Tokyo", "to": "Hiroshima", "service_type": "Nozomi", "price_yen": 18380,
+      "supplement_yen": 9999,
+      "source_id": "PLACEHOLDER-jr-fare-tokyo-hiroshima", "source_date": "2026-09-01",
+      "supplement_source_id": "PLACEHOLDER-nozomi-supplement-schedule",
+      "supplement_source_date": "2026-09-01" },
+    { "from": "Hiroshima", "to": "Tokyo", "service_type": "Nozomi", "price_yen": 18380,
+      "supplement_yen": 9999,
+      "source_id": "PLACEHOLDER-jr-fare-hiroshima-tokyo", "source_date": "2026-09-01",
+      "supplement_source_id": "PLACEHOLDER-nozomi-supplement-schedule",
+      "supplement_source_date": "2026-09-01" }
+  ],
+
+  "passes": [
+    {
+      "name": "JR Pass 7-day Ordinary",
+      "price_yen": 50000,
+      "covers_nozomi": false,
+      "nozomi_supplement_note": "requires an additional supplement per Nozomi/Mizuho segment — exact supplement schedule TBD, Ulfa to source before this is used for real verdicts"
+    }
+  ],
+
+  "__SYNTHETIC_PASS__": "Not a real product. Priced so that ignoring Nozomi supplements would flip the verdict from DO NOT BUY to BUY — this is the regression guard for the Architecture.md Stage 3 correctness requirement.",
+  "synthetic_cheap_pass": {
+    "name": "SYNTHETIC Test Pass (not a real product)",
+    "price_yen": 34000,
+    "covers_nozomi": false
+  },
+
+  "__COVERING_PASS__": "Synthetic pass that does cover Nozomi, to prove supplements are skipped when covers_nozomi is true.",
+  "synthetic_covering_pass": {
+    "name": "SYNTHETIC Nozomi-inclusive Pass (not a real product)",
+    "price_yen": 34000,
+    "covers_nozomi": true
+  },
+
+  "itineraries": {
+    "tokyo_kyoto_round_trip": [
+      { "from_station": "Tokyo", "to_station": "Kyoto", "mode": "shinkansen", "day": 1, "order": 1 },
+      { "from_station": "Kyoto", "to_station": "Tokyo", "mode": "shinkansen", "day": 4, "order": 1 }
+    ],
+    "tokyo_hiroshima_round_trip_nozomi": [
+      { "from_station": "Tokyo", "to_station": "Hiroshima", "mode": "shinkansen", "day": 1, "order": 1 },
+      { "from_station": "Hiroshima", "to_station": "Tokyo", "mode": "shinkansen", "day": 5, "order": 1 }
+    ]
+  }
+}
