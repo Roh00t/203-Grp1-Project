@@ -1,5 +1,3 @@
-# 203-Grp1-Project
-For GenerativeAI Module: PE6203
 # Japan Travel Itinerary Planner
 
 **PE6203 (Generative AI and Agentic AI) — Group Project 1**
@@ -46,7 +44,7 @@ rag_corpus/            — 15-20 dated source documents (Ulfa)
 test_cases.json        — 20 evaluation cases across A/B/C variants (Mutya)
 ```
 
-`fare_table.json` and `rag_corpus/` need to be manually pasted/uploaded into the Canvas build session — Canvas does not pull live from this repo.
+`fare_table.json` and `rag_corpus/` need to be manually pasted/uploaded into the Canvas build session — Canvas does not pull live from this repo. **This repo is the single source of truth.** Only Ulfa edits these two files directly; everyone else pulls the latest copy before pasting into Canvas rather than hand-editing a local version.
 
 ## Team
 

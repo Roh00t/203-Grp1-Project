@@ -13,6 +13,7 @@ AI tools may **implement** this design. They may **not** redesign the architectu
 ## Locked decisions — do not change without asking Rohit
 
 - **Two-module split.** Module 1 (Itinerary Generator) produces structured JSON only, after a short internal Zero-Shot CoT reasoning pass. Module 2 (Pass ROI Auditor) is Program-of-Thoughts: LLM parses to a structured computation request, a deterministic function does the arithmetic, the LLM only narrates the result.
+- **The calculator must add the Nozomi/Mizuho supplement fee for any segment using those services when computing the "if you buy the pass" cost.** A flat pass price alone overstates the pass's value and will produce wrong BUY/DO NOT BUY verdicts on faster-train itineraries — this was caught during implementation planning, not in the original design, so don't assume the fare table already handles it without checking.
 - **Constraint Validator is non-LLM.** Dietary and geographic checks are lookups against curated tables, not model judgment calls — this is what makes the 100% / 90% success-criteria claims defensible under direct questioning.
 - **Every factual/numeric claim carries an `evidence` field** (source id + date). This is the Faithfulness mechanism — don't drop it to save tokens.
 - **LLM-as-Judge is used in exactly one place:** checking whether quoted evidence semantically supports a claim, for the Faithfulness score. It does not score Financial Accuracy, Constraint Adherence, or Geographic Plausibility — those stay deterministic. Don't expand its scope without asking.
@@ -21,6 +22,7 @@ AI tools may **implement** this design. They may **not** redesign the architectu
 - **Fare data lives in a structured table** (CSV/JSON), separate from the prose RAG corpus. Don't fold fares into embeddings-retrieved documents — exact numeric lookup, not semantic search.
 - **No vector database.** Retrieval over the 15–20 curated documents is rule-based keyword matching — deliberately chosen because the corpus is exact-match jargon (station names, pass names, regulation terms), not because of time pressure alone.
 - **Build in a no-code / AI-assisted app builder**, not a hand-rolled LangChain orchestrator.
+- **Only Ulfa edits `fare_table.json` and `rag_corpus/` directly in the shared GitHub repo.** Anyone building in Canvas pulls the latest copy at the start of each session and pastes it in fresh — never hand-edit these files inside Canvas and push changes back yourself. The repo is the single source of truth; Canvas holds a snapshot that goes stale the moment the repo updates.
 
 ## Explicitly rejected — do not add these mid-build even if they seem like an improvement
 
