@@ -74,10 +74,17 @@ test('Module 1: CoT trigger is absent (reasoning-tier model, per Stage 3 model-t
 
 test('Module 1: names every field of the Stage 3 output format', () => {
   for (const field of ['days', 'stops', 'ward_or_city', 'start_time', 'end_time',
-                       'transit_segments', 'from_station', 'to_station', 'mode',
-                       'day', 'order', 'missing_info']) {
+                       'is_dining', 'transit_segments', 'from_station', 'to_station',
+                       'mode', 'day', 'order', 'missing_info']) {
     assert.ok(MODULE1_PROMPT_TEMPLATE.includes(field), `prompt does not mention "${field}"`);
   }
+});
+
+test('Module 1: instructs the model to set is_dining on every stop', () => {
+  // Drives the Constraint Validator's dietary hard-filter; a stop without it
+  // resolves to "unverified" rather than being assumed non-dining.
+  assert.match(flat(MODULE1_PROMPT_TEMPLATE), /Set is_dining on every stop/);
+  assert.match(flat(MODULE1_PROMPT_TEMPLATE), /Never omit it\./);
 });
 
 test('Module 1: leaves feasibility and cost to the other modules', () => {
@@ -154,7 +161,13 @@ const VALID_ITINERARY = {
     {
       day: 1,
       stops: [
-        { name: 'Senso-ji', ward_or_city: 'Taito, Tokyo', start_time: '09:00', end_time: '11:00' }
+        {
+          name: 'Senso-ji',
+          ward_or_city: 'Taito, Tokyo',
+          start_time: '09:00',
+          end_time: '11:00',
+          is_dining: false
+        }
       ]
     }
   ],
@@ -210,6 +223,66 @@ test('schema: rejects a malformed time', () => {
   const { valid, errors } = validate(bad, schema);
   assert.equal(valid, false);
   assert.match(errors.join(' '), /start_time/);
+});
+
+test('schema: accepts stops carrying is_dining', () => {
+  const withFlag = structuredClone(VALID_ITINERARY);
+  withFlag.days[0].stops[0].is_dining = true;
+  const { valid, errors } = validate(withFlag, schema);
+  assert.ok(valid, errors.join('; '));
+});
+
+test('schema: REJECTS a stop missing is_dining, naming the field', () => {
+  // CLAUDE.md locked: a missing value is a schema error, not a silently
+  // unverified dietary check downstream.
+  const bad = structuredClone(VALID_ITINERARY);
+  delete bad.days[0].stops[0].is_dining;
+
+  const { valid, errors } = validate(bad, schema);
+  assert.equal(valid, false);
+  assert.equal(errors.length, 1);
+  assert.match(errors[0], /is_dining/, 'the error must name the missing field');
+  assert.match(errors[0], /missing required property/);
+  assert.match(errors[0], /days\[0\]\/stops\[0\]/, 'the error must locate the offending stop');
+});
+
+test('schema: rejects a stop missing is_dining even when every other field is present', () => {
+  const bad = {
+    days: [
+      {
+        day: 1,
+        stops: [
+          { name: 'A', ward_or_city: 'Asakusa', start_time: '09:00', end_time: '10:00' },
+          { name: 'B', ward_or_city: 'Shibuya', start_time: '11:00', end_time: '12:00', is_dining: true }
+        ]
+      }
+    ],
+    transit_segments: [],
+    missing_info: []
+  };
+  const { valid, errors } = validate(bad, schema);
+  assert.equal(valid, false);
+  assert.equal(errors.length, 1, 'only the first stop is at fault');
+  assert.match(errors[0], /stops\[0\]/);
+});
+
+test('schema: rejects a non-boolean is_dining', () => {
+  const bad = structuredClone(VALID_ITINERARY);
+  bad.days[0].stops[0].is_dining = 'yes';
+  const { valid, errors } = validate(bad, schema);
+  assert.equal(valid, false);
+  assert.match(errors.join(' '), /is_dining/);
+});
+
+test('schema: is_dining is required, so pre-change itineraries no longer validate', () => {
+  // Deliberate breaking change. Stage 6 output generated before is_dining was
+  // added must be regenerated rather than silently scored — tell Mutya.
+  const preChange = structuredClone(VALID_ITINERARY);
+  delete preChange.days[0].stops[0].is_dining;
+  assert.equal(validate(preChange, schema).valid, false);
+
+  // ...and a fully-formed itinerary still validates.
+  assert.ok(validate(VALID_ITINERARY, schema).valid);
 });
 
 test('schema: rejects an invented extra field', () => {
