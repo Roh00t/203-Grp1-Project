@@ -1,0 +1,20 @@
+{
+  "__WARNING__": "TEST FIXTURE ONLY — NOT AUTHORITATIVE DIETARY DATA. Structure-testing seed for validator.js. Ulfa's curated table is the single source of truth once it lands. Do not cite these venues or tags in the report or slides.",
+  "__SCHEMA__": "Rows match the locked Architecture.md Constraint Validator schema: {venue_name, ward, tags, source_id, source_date}. Note the key is `ward`, NOT `ward_or_city` — Module 1 stops carry `ward_or_city` and validator.js translates at lookup time. Decision confirmed with Rohit 2026-09-04.",
+  "dietary": [
+    {
+      "venue_name": "Sushi Zanmai Asakusa",
+      "ward": "Asakusa",
+      "tags": ["halal"],
+      "source_id": "test-fixture",
+      "source_date": "2026-09-04"
+    },
+    {
+      "venue_name": "T's TanTan Tokyo Station",
+      "ward": "Tokyo Station",
+      "tags": ["vegan"],
+      "source_id": "test-fixture",
+      "source_date": "2026-09-04"
+    }
+  ]
+}

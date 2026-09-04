@@ -1,0 +1,13 @@
+{
+  "dietary": [
+    {"venue_name": "Asakusa Sushi-Ken", "ward": "Asakusa", "tags": ["halal"], "note": "First halal-certified sushi restaurant in Tokyo; lunch sets ¥1,200-2,200", "source_id": "migaku-halal-tokyo-2026", "source_date": "2026-09-04"},
+    {"venue_name": "Naritaya", "ward": "Asakusa", "tags": ["halal"], "note": "Halal-certified ramen", "source_id": "tokyo-tour-halal-2026", "source_date": "2026-09-04"},
+    {"venue_name": "Gyumon", "ward": "Shibuya", "tags": ["halal"], "note": "Halal-certified wagyu yakiniku, 5 min from Shibuya Station Hachiko Exit; set course ¥6,000-8,000", "source_id": "tokyo-tour-halal-2026", "source_date": "2026-09-04"},
+    {"venue_name": "Cinta Jawa Cafe", "ward": "Shibuya", "tags": ["halal"], "note": "Halal-certified Indonesian, Udagawacho, Shibuya-ku", "source_id": "cotoacademy-halal-tokyo", "source_date": "2026-09-04"},
+    {"venue_name": "Halal Wagyu Ramen SHINJUKU-TEI", "ward": "Shibuya", "tags": ["halal"], "note": "100% halal-certified wagyu ramen, ~¥3,500 — source places it both near Shibuya Station and under a Shinjuku-referencing name; confirm exact ward before relying on this row", "source_id": "migaku-halal-tokyo-2026", "source_date": "2026-09-04"},
+    {"venue_name": "T's TanTan Tokyo Station", "ward": "Tokyo Station", "tags": ["vegan"], "note": "Vegan tantanmen, Keiyo Street branch inside Tokyo Station", "source_id": "yelp-vegan-shinjuku-2026", "source_date": "2026-09-04"},
+    {"venue_name": "Nagi Shokudo", "ward": "Shibuya", "tags": ["vegan"], "note": "Appears in both Shibuya and Shinjuku-area vegan listings — confirm exact branch/address before publishing", "source_id": "yelp-vegan-shibuya-2026", "source_date": "2026-09-04"},
+    {"venue_name": "AIN SOPH. Ripple", "ward": "Shinjuku", "tags": ["vegan"], "note": "Vegan cafe chain, Shinjuku branch", "source_id": "yelp-vegan-shinjuku-2026", "source_date": "2026-09-04"},
+    {"venue_name": "Falafel Brothers", "ward": "Shibuya", "tags": ["vegan"], "note": "Shibuya PARCO branch", "source_id": "yelp-vegan-shibuya-2026", "source_date": "2026-09-04"}
+  ]
+}

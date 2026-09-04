@@ -1,0 +1,14 @@
+{
+  "__WARNING__": "TEST FIXTURE ONLY — NOT AUTHORITATIVE TRAVEL TIMES. Structure-testing seed for validator.js. Ulfa's curated table is the single source of truth once it lands.",
+  "__SCHEMA__": "Rows match the locked Architecture.md Constraint Validator schema: {ward_a, ward_b, estimated_transit_minutes, mode, source_id, source_date}. Keys are `ward_a`/`ward_b`, NOT `ward_or_city_a`/`ward_or_city_b`. Rows are SYMMETRIC by design — one row covers both directions, per Architecture.md. Decision confirmed with Rohit 2026-09-04.",
+  "travel_times": [
+    {
+      "ward_a": "Asakusa",
+      "ward_b": "Shibuya",
+      "estimated_transit_minutes": 33,
+      "mode": "subway",
+      "source_id": "test-fixture",
+      "source_date": "2026-09-04"
+    }
+  ]
+}

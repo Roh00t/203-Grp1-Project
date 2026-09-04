@@ -1,0 +1,15 @@
+{
+  "travel_times": [
+    {"ward_a": "Asakusa", "ward_b": "Shibuya", "estimated_transit_minutes": 33, "mode": "subway", "source_id": "google-maps-transit-estimate", "source_date": "2026-09-04"},
+    {"ward_a": "Shibuya", "ward_b": "Shinjuku", "estimated_transit_minutes": 7, "mode": "JR Yamanote Line", "source_id": "general-transit-knowledge", "source_date": "2026-09-04", "note": "Standard, stable one-stop JR line time — not tied to a single dated web source"},
+    {"ward_a": "Asakusa", "ward_b": "Tokyo Station", "estimated_transit_minutes": 15, "mode": "subway", "source_id": "general-transit-knowledge", "source_date": "2026-09-04"},
+    {"ward_a": "Shibuya", "ward_b": "Tokyo Station", "estimated_transit_minutes": 15, "mode": "JR Yamanote Line", "source_id": "general-transit-knowledge", "source_date": "2026-09-04"},
+    {"ward_a": "Shinjuku", "ward_b": "Tokyo Station", "estimated_transit_minutes": 15, "mode": "JR Chuo Line", "source_id": "general-transit-knowledge", "source_date": "2026-09-04"},
+    {"ward_a": "Shinjuku", "ward_b": "Asakusa", "estimated_transit_minutes": 30, "mode": "subway", "source_id": "general-transit-knowledge", "source_date": "2026-09-04"},
+
+    {"ward_a": "Asakusa", "ward_b": "Asakusa", "estimated_transit_minutes": 10, "mode": "walking", "source_id": "assumed-default", "source_date": "2026-09-04", "note": "Same-area walking default, not independently sourced — reasonable estimate, not a researched fact"},
+    {"ward_a": "Shibuya", "ward_b": "Shibuya", "estimated_transit_minutes": 10, "mode": "walking", "source_id": "assumed-default", "source_date": "2026-09-04"},
+    {"ward_a": "Shinjuku", "ward_b": "Shinjuku", "estimated_transit_minutes": 10, "mode": "walking", "source_id": "assumed-default", "source_date": "2026-09-04"},
+    {"ward_a": "Tokyo Station", "ward_b": "Tokyo Station", "estimated_transit_minutes": 10, "mode": "walking", "source_id": "assumed-default", "source_date": "2026-09-04"}
+  ]
+}
