@@ -1,0 +1,159 @@
+# Japan Travel Itinerary Planner — System Architecture
+### PE6203 (Generative AI and Agentic AI) — Group Project 1
+
+**Status:** Locked. Implement this design — do not redesign it mid-build. If a test case exposes a real flaw, bring it back for a decision rather than quietly changing the architecture.
+
+This document is structured to match the assignment brief's own stage numbering (Stages 1–7), so grading evidence is easy to locate.
+
+---
+
+## Stage 1 — Problem & Success Criteria
+
+**Problem statement:** International travelers can get a plausible-sounding Japan itinerary from any general-purpose chatbot in seconds. What they can't get from that chat is a *verified* answer to the question that actually costs or saves them money and time: is a transit pass worth it for *this specific route*, and is this schedule actually walkable/rideable as laid out? Generic chat answers both with fluent, confident guesses built on stale training data — not on this week's fares or real geography.
+
+**Target user:** First-time and returning international travelers planning a multi-city Japan trip, with dietary constraints, deciding between regional transit passes and point-to-point tickets.
+
+**Success criteria — the 4 fixed evaluation criteria (applied identically to Variants A, B, and C in Stage 6):**
+
+| # | Criterion | Target | Why this target, not a different one |
+|---|---|---|---|
+| 1 | Financial accuracy | Pass/ticket verdict matches manually-verified real fares on ≥90% of test itineraries | Arithmetic, not judgment — 90% leaves room for fare-table coverage gaps, not for a calculator being "roughly right" |
+| 2 | Constraint adherence (dietary) | 100% of recommended venues pass the dietary hard-filter | Honest 100% because it's a lookup against a curated list, not an LLM asked to remember dietary rules |
+| 3 | Geographic plausibility | ≥90% of stop-to-stop transitions pass the feasibility check; failures are flagged to the user, never silently shown as fine | We claim high accuracy plus honest flagging — defensible under direct questioning, unlike a zero-failure claim |
+| 4 | Faithfulness (grounding) | ≥90% of factual/numeric claims carry a verifiable evidence pointer to a dated source | See Stage 6 — this is the course's own Faithfulness metric, not an invented one |
+
+**Why this beats "just ask ChatGPT":** A chat session can suggest a trip and *estimate* whether a pass is worth it. It has no mechanism to guarantee that estimate reflects this week's real fares — it's pattern-matching on training data. This system's flagship claim, and the line to open the demo with: **"ChatGPT can suggest a trip. It can't audit it — and it can't show you which of its claims are actually backed by a source."** Both halves of that claim (verified math, verified sourcing) come from mechanisms below, not from a bigger model.
+
+---
+
+## Stage 2 — System Architecture
+
+```
+User intake form
+      │
+      ▼
+Module 1 — Itinerary Generator (LLM, PoT-adjacent reasoning)
+      │
+      ├──────────────┐
+      ▼              ▼
+Constraint       Module 2 — Pass ROI Auditor
+Validator        (Program-of-Thoughts: calculator + LLM explainer)
+(non-LLM)             │
+      │                │
+      └───────┬────────┘
+              ▼
+        Output UI
+  (itinerary + verdicts + flags + evidence + sources)
+```
+
+**Module boundaries:**
+- **Module 1 (LLM):** translates free-text constraints into a structured itinerary. Never judges feasibility or cost.
+- **Constraint Validator (non-LLM):** deterministic dietary and geographic/time checks against curated lookup tables.
+- **Module 2 (LLM + deterministic calculator, Program-of-Thoughts pattern):** computes and explains the pass-vs-tickets verdict. The LLM never performs the arithmetic itself.
+- **Output UI:** renders itinerary, verdicts, flags, and evidence citations together — nothing is shown without its supporting source or calculation visible.
+
+**Technique-selection rationale (ties to the course's 5-step order of implementation):** this system deliberately stays within Steps 1–4 of that framework — clear instruction, few-shot examples, light reasoning guidance (CoT), and decomposition/tools (PoT, RAG). It explicitly does **not** reach for Step 5 (sampling/search techniques like Self-Consistency or Tree of Thoughts) — see the rejected-techniques note in Stage 7. That's a cost/benefit call, documented on purpose, not an oversight.
+
+---
+
+## Stage 3 — AI Modules & Prompts
+
+### Module 1 — Itinerary Generator (LLM)
+
+- **Purpose:** turn free-text trip constraints into a structured, machine-checkable itinerary. Feasibility and cost are deliberately out of scope for this module.
+- **Input:** trip dates, cities/regions of interest, dietary constraints, pace preference, arrival/departure airports.
+- **Reasoning step (Zero-Shot CoT):** before emitting JSON, the model writes a short internal reasoning pass — "first group requested destinations into geographic clusters by ward/city, then sequence clusters into days, then assign time windows." This reasoning is logged for failure-analysis but not shown to the user or passed to Module 2 — only the final JSON block is parsed downstream.
+  - **Model-tier note (confirm before building):** the explicit "let's think step by step" trigger below is written for a standard fast-tier model (e.g., a Flash-class model). If the team ends up calling a native reasoning-tier model instead, drop the explicit trigger — the course material notes it's redundant and can distort output on models that already reason internally.
+- **Output format (strict, nothing else emitted):**
+  - `days`: list of days → each day has `stops`: list of `{name, ward_or_city, start_time, end_time}`
+  - `transit_segments`: list of `{from_station, to_station, mode, day, order}`
+  - `missing_info`: list of any fields the model couldn't fill from the input — never guess a field, list it here instead
+- **Prompt anatomy (System Brief / Delimiters / Variable Slot / Assistant Marker):**
+  ```xml
+  <system_rules>
+  You are a Japan itinerary structuring assistant. Never invent a station name.
+  Never guess a value you cannot support from the user's input — put it in
+  missing_info instead. First reason step by step about geographic clustering,
+  then output ONLY valid JSON inside <itinerary_json> tags. Nothing outside
+  that tag is read by downstream systems.
+  </system_rules>
+  <constraints>
+  {{user_trip_constraints}}
+  </constraints>
+  <itinerary_json>
+  ```
+- **Decoding parameters:** temperature = 0. This isn't a style choice — Stage 6 requires a *controlled* comparison across Variants A/B/C, and temperature noise would make that comparison unfair.
+- **Why these instructions matter:** the delimiter structure (`<system_rules>` vs `<constraints>`) is what prevents user-supplied trip preferences from being misread as system instructions — the actual mechanism behind the injection-resistance claim, not a decorative one.
+
+### Module 2 — Pass ROI Auditor (Program-of-Thoughts pattern)
+
+- **Purpose:** answer the one question a generic chatbot can't verify — is the JR Pass (or a relevant regional pass) worth it for *this* itinerary, at *this week's* prices.
+- **Input:** the `transit_segments` list from Module 1.
+- **Why this is Program-of-Thoughts, not just "an LLM call":** the LLM's role is limited to translating the segment list into a structured computation request (which fares to look up, which pass(es) to compare). A deterministic function executes the actual sum and comparison. The LLM only touches numbers again to *narrate* a result it did not compute — this is the course material's own stated remedy for arithmetic slips, applied to the highest-stakes claim in the app.
+- **Output format:** `{recommendation: "BUY"|"DO NOT BUY", pass_price, ticket_total, difference, per_segment_breakdown, evidence: [{claim, source_id, source_date}]}`
+- **Prompt anatomy:** same System Brief / Delimiters / Variable Slot structure as Module 1, with the calculator's output injected into the Variable Slot and the LLM instructed only to explain, never recompute.
+- **Decoding parameters:** temperature = 0, for the same controlled-comparison reason as Module 1.
+
+---
+
+## Stage 4 — RAG / In-Context Learning
+
+- **Fare data:** a structured table (CSV/JSON) — station-pair → yen amount, dated, sourced from official JR fare pages. Looked up directly by the calculator, not retrieved via embeddings.
+- **Prose RAG (15–20 documents):** Visit Japan Web / entry procedures, regional pass terms, dietary venue lists.
+- **Retrieval method: rule-based keyword matching, not a vector database.** This is a reasoned choice, not just a time-saver: the course material frames lexical/TF-IDF-style retrieval as the correct tool specifically for "exact-string matching for unique identifiers... and specialized jargon" — station names, pass names, and terms like "Visit Japan Web" are exactly that category of exact-match jargon. A dense/embedding retriever would add latency and infrastructure risk to solve a matching problem lexical search already solves well at this corpus size (15–20 docs).
+- **Every document carries a retrieval date.** Numeric claims from a stale document trigger a "verify before travel" flag rather than being stated as current fact — e.g., the JR Pass price hike applies to overseas-agency purchases only, not the official online site; that caveat lives in the snippet, not lost in generation.
+
+---
+
+## Stage 5 — Build Tooling
+
+- Prototype in a no-code / AI-assisted app builder (e.g., Gemini Canvas), per the brief's own Stage 5 guidance. Do not hand-roll a custom orchestrator in LangChain this week — no rubric credit over a no-code equivalent, and it costs days the team doesn't have.
+- Fare table and dietary list ship as plain structured files the builder can read directly, kept outside the LLM's prompt context where possible, so a price update doesn't require re-tuning a prompt.
+- **Verify the exact Gemini model ID against Google's live deprecations page before wiring any API call.** Gemini 1.5 Pro and Gemini 1.5 Flash were already retired (Sept 2025) — don't copy a model string from an old draft without checking it's still live.
+
+---
+
+## Stage 6 — Evaluation
+
+**20 test cases**, covering: normal (golden-route itineraries), ambiguous ("snow and beaches in 4 days"), missing-information (no departure airport), conflicting-constraint (vegan diet + a request for authentic Kobe beef), adversarial (a request to process an actual payment or a fake credit-card string).
+
+**3 variants, same 20 cases, same 4 criteria — never a different evaluation lens per variant:**
+- **A** — bare LLM: no system prompt, no RAG, no validator.
+- **B** — structured prompts only: no RAG, no validator.
+- **C** — full system as specified in this document.
+
+**Faithfulness — formalized:**
+```
+Faithfulness = |generated claims with a verifiable evidence pointer| / |total generated factual claims|
+```
+Every numeric/factual claim from Module 2 (and any RAG-grounded narrative text) carries an `evidence` field pointing to a specific source document and date. A bounded LLM-as-Judge pass checks whether the quoted evidence *actually semantically supports* the claim — not just that a pointer exists. This is a deliberately narrow use of LLM-as-Judge, appropriate because claim-evidence entailment is genuinely a judgment call. Financial Accuracy, Constraint Adherence, and Geographic Plausibility stay fully deterministic — they don't need a judge, and using one there would just add noise.
+
+---
+
+## Stage 7 — Failure Analysis
+
+For every failing test case, log: **input → expected → actual → cause → fix → retest.** Prioritize by rubric weight: Financial Accuracy and Constraint Adherence failures first (these carry the 90–100% claims), then Geographic Plausibility and Faithfulness failures. Note explicitly whether each fix came from a better prompt, a better few-shot example, better RAG curation, or a workflow change — the brief asks for this breakdown directly.
+
+### Techniques considered and explicitly not used
+
+- **Tree of Thoughts.** Theoretically the better fit for itinerary planning — a bad Day-1 geographic cluster cascades through the whole week, which is exactly ToT's use case (a single early mistake ruins the outcome). Full ToT branching, scoring, and backtracking is out of scope for a 6-day build; a single Zero-Shot CoT pass in Module 1 is the substitute. Documenting this trade-off in the report demonstrates informed judgment rather than an oversight.
+- **Full Self-RAG / Corrective RAG loop.** The Faithfulness evidence-field-plus-LLM-Judge check above is a lightweight, manual analog of Self-RAG's `[IsSup]` reflection token, without the overhead of a full agentic reflection/retry loop. Chosen for build-time reasons, not because the technique was unknown.
+
+---
+
+## Optional Stretch Feature (build only if the core system is stable early — do not let this compete for time)
+
+**VLM menu-photo dietary check:** upload a photo of a Japanese restaurant menu; a vision-language model flags dishes matching the user's dietary restrictions. Being honest about this: a general-purpose chatbot can already do a version of this today, so it is a UX nicety, **not** a differentiator. It must never take priority over the Pass ROI Auditor or the 20-test-case evaluation — those are what the rubric and the "why not ChatGPT" argument actually rest on.
+
+---
+
+## Team Ownership (mapped to this architecture)
+
+| Member | Owns |
+|---|---|
+| Rohit Panda | Module 1 + Module 2 prompts, calculator logic |
+| Ulfa Herdyani | Fare table + RAG corpus curation — every entry dated and sourced |
+| Mutya Sai Surya S. K. | 20 test cases; 4-criteria scoring across Variants A/B/C |
+| Shi Shuyi | Constraint Validator logic; failure-analysis logging |
+| Chan Hio Weng | Builder UI; wiring the modules together |
+| Chanchai Chan | Report + slides, mapped to the 6/2/2-minute presentation structure; owns the cover page (team names, emails, per-member contribution breakdown — required, doesn't count toward the 10-page limit) |
