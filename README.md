@@ -30,7 +30,7 @@ Rules for any AI tool building against this repo: [`CLAUDE.md`](./CLAUDE.md)
 - **App builder:** Gemini Canvas (no-code/AI-assisted) — implements the UI and wiring; does not decide architecture, prompts, or evaluation, per the assignment's core rule.
 - **LLM:** current Gemini flash-tier model, temperature = 0. Verify the live model ID before building — see `CLAUDE.md`; Gemini 1.5 Pro/Flash are already retired.
 - **Retrieval:** rule-based keyword matching over ~15–20 curated documents. No vector database.
-- **Data:** `data/fare_table.json`, `data/dietary_table.json`, `data/travel_time_table.json` (all dated, sourced) and `data/rag_corpus/` (entry rules, pass terms, dietary notes) — plain structured files, not a database.
+- **Data:** `data/fare_table.json`, `data/dietary_table.json`, `data/travel_time_table.json` (all dated, sourced) and `rag_corpus/` (entry rules, pass terms, dietary notes) — plain structured files, not a database.
 - **Calculator/validator logic:** deterministic functions inside the app — never delegated to the LLM.
 
 ## Repo contents
