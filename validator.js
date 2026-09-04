@@ -245,8 +245,16 @@ export function checkDietaryCompliance(stops, dietaryTable, userDietaryConstrain
  * gap that exactly equals the required travel time PASSES — it is achievable,
  * if tight, and flagging it would understate criterion 3 with a false positive.
  *
- * Pairs are taken within a day only. The gap between the last stop of one day
- * and the first of the next is an overnight, not a transit window.
+ * SAME-DAY ONLY (Architecture.md, locked). A pair is compared only when both
+ * stops carry the same `day`. Subtracting a Day-2 clock time from a Day-1 one
+ * is meaningless — Day 1 ending 18:00 and Day 2 starting 09:00 would compute a
+ * -540 minute "gap" and flag a perfectly ordinary overnight as infeasible.
+ *
+ * A cross-day pair is SKIPPED, not reported: it is not compliant, and it is not
+ * unverified either. "unverified" means the tables could not confirm something
+ * they should cover; a day boundary is simply not a transit window, so no
+ * result is emitted at all. This keeps overnights out of the Geographic
+ * Plausibility denominator instead of quietly depressing the score.
  *
  * `transitSegments` is consulted solely to report the itinerary's declared
  * `mode` alongside the table row's `mode`. It cannot drive the verdict: the
@@ -282,6 +290,15 @@ export function checkGeographicFeasibility(days, transitSegments, travelTimeTabl
     for (let i = 0; i + 1 < stops.length; i += 1) {
       const from = stops[i];
       const to = stops[i + 1];
+
+      // Iterating per day entry already keeps pairs within a day, but a stop
+      // may carry its own `day` (validateItinerary attaches one, and a caller
+      // can pass stops directly). Compare the effective day values so a day
+      // boundary is skipped even when it sits inside a single stops array.
+      const fromDay = from?.day ?? dayEntry?.day ?? null;
+      const toDay = to?.day ?? dayEntry?.day ?? null;
+      if (fromDay !== toDay) continue; // not applicable — emit no result
+
       const itineraryMode = modeByPosition.get(`${dayEntry?.day}${KEY_SEP}${i + 1}`) ?? null;
 
       const key = wardPairKey(from?.ward_or_city, to?.ward_or_city);

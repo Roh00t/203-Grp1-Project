@@ -327,6 +327,99 @@ test('geographic: pairs are taken within a day, never across an overnight', () =
   assert.equal(checkGeographicFeasibility(days, [], TRAVEL).length, 0);
 });
 
+test('SAME-DAY RULE: a Day-1-to-Day-2 pair inside one stops array is skipped', () => {
+  // The case the loop structure alone does not catch: both stops sit in the
+  // same `stops` array but carry different `day` values.
+  const days = [
+    {
+      day: 1,
+      stops: [
+        { name: 'Senso-ji', ward_or_city: 'Asakusa', day: 1,
+          start_time: '16:00', end_time: '18:00' },
+        { name: 'Shibuya Crossing', ward_or_city: 'Shibuya', day: 2,
+          start_time: '09:00', end_time: '10:00' }
+      ]
+    }
+  ];
+
+  const results = checkGeographicFeasibility(days, [], TRAVEL);
+
+  // Skipped entirely: not compliant, not unverified, no result at all.
+  assert.equal(results.length, 0, 'a cross-day pair must emit no result');
+});
+
+test('SAME-DAY RULE: the overnight gap is never computed as a negative number', () => {
+  // Without the rule this pair computes 09:00 - 18:00 = -540 minutes and is
+  // flagged non_compliant, penalising an ordinary overnight.
+  const days = [
+    {
+      day: 1,
+      stops: [
+        { name: 'A', ward_or_city: 'Asakusa', day: 1, start_time: '16:00', end_time: '18:00' },
+        { name: 'B', ward_or_city: 'Shibuya', day: 2, start_time: '09:00', end_time: '10:00' }
+      ]
+    }
+  ];
+  const results = checkGeographicFeasibility(days, [], TRAVEL);
+  assert.equal(results.length, 0);
+  assert.equal(
+    results.find((r) => r.scheduled_gap_minutes < 0),
+    undefined,
+    'no negative gap may be produced across a day boundary'
+  );
+});
+
+test('SAME-DAY RULE: same-day pairs are still compared normally', () => {
+  // The rule must not suppress legitimate within-day pairs.
+  const days = [
+    {
+      day: 1,
+      stops: [
+        { name: 'A', ward_or_city: 'Asakusa', day: 1, start_time: '10:00', end_time: '11:00' },
+        { name: 'B', ward_or_city: 'Shibuya', day: 1, start_time: '11:33', end_time: '12:00' }
+      ]
+    }
+  ];
+  const results = checkGeographicFeasibility(days, [], TRAVEL);
+  assert.equal(results.length, 1);
+  assert.equal(results[0].status, COMPLIANT);
+  assert.equal(results[0].scheduled_gap_minutes, 33);
+});
+
+test('SAME-DAY RULE: stops inheriting the day from their day entry still pair', () => {
+  // No explicit `day` on the stops — both inherit day 1, so they compare.
+  const days = [
+    {
+      day: 1,
+      stops: [
+        { name: 'A', ward_or_city: 'Asakusa', start_time: '10:00', end_time: '11:00' },
+        { name: 'B', ward_or_city: 'Shibuya', start_time: '11:33', end_time: '12:00' }
+      ]
+    }
+  ];
+  assert.equal(checkGeographicFeasibility(days, [], TRAVEL).length, 1);
+});
+
+test('SAME-DAY RULE: cross-day pairs stay out of the geographic denominator', () => {
+  const itinerary = {
+    days: [
+      {
+        day: 1,
+        stops: [
+          { name: 'A', ward_or_city: 'Asakusa', day: 1, start_time: '10:00', end_time: '11:00' },
+          { name: 'B', ward_or_city: 'Shibuya', day: 1, start_time: '11:33', end_time: '12:00' },
+          { name: 'C', ward_or_city: 'Asakusa', day: 2, start_time: '09:00', end_time: '10:00' }
+        ]
+      }
+    ],
+    transit_segments: []
+  };
+  const result = validateItinerary(itinerary, DIETARY, TRAVEL, []);
+  const geo = result.geographic_summary;
+  assert.equal(geo.compliant + geo.non_compliant + geo.unverified, 1, 'only the same-day pair counts');
+  assert.equal(geo.compliant, 1);
+});
+
 test('geographic: a single-stop day produces no pairs', () => {
   const days = [{ day: 1, stops: [{ name: 'A', ward_or_city: 'Asakusa', start_time: '10:00', end_time: '11:00' }] }];
   assert.equal(checkGeographicFeasibility(days, [], TRAVEL).length, 0);
