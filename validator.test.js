@@ -56,6 +56,89 @@ test('normalizeKey: treats punctuation as a separator, never joins across it', (
   assert.equal(normalizeKey('Shin Osaka'), 'shin osaka');
 });
 
+test('normalizeKey: macron and non-macron romanizations converge', () => {
+  // Architecture.md locked: every place name here is a romanized Japanese
+  // term, so macron variance is the expected case, not an edge case.
+  const pairs = [
+    ['T\u014dky\u014d', 'Tokyo'],
+    ['\u014csaka', 'Osaka'],
+    ['Ky\u014dto', 'Kyoto'],
+    ['Ry\u014dgoku', 'Ryogoku'],
+    ['K\u014denji', 'Koenji']
+  ];
+  for (const [withMacron, without] of pairs) {
+    assert.equal(
+      normalizeKey(withMacron),
+      normalizeKey(without),
+      `${withMacron} should normalize the same as ${without}`
+    );
+  }
+  assert.equal(normalizeKey('T\u014dky\u014d'), 'tokyo');
+});
+
+test('normalizeKey: applies NFKC, so full-width and half-width converge', () => {
+  assert.equal(normalizeKey('\uff34\uff4f\uff4b\uff59\uff4f'), normalizeKey('Tokyo'));
+});
+
+test('normalizeKey: strips only Latin diacritics, never kana voiced-sound marks', () => {
+  // The trap: under NFD, \u304c (ga) decomposes to \u304b + \u3099. A blanket
+  // strip of all combining marks would rewrite it to \u304b (ka) and silently
+  // change the word. U+3099/U+309A sit outside the Latin block we strip.
+  for (const [voiced, plain] of [['\u304c', '\u304b'], ['\u3071', '\u306f'], ['\u3058', '\u3057']]) {
+    assert.notEqual(
+      normalizeKey(voiced),
+      normalizeKey(plain),
+      `${voiced} must not fold into ${plain}`
+    );
+  }
+  assert.equal(normalizeKey('\u304c\u3063\u3053\u3046'), '\u304c\u3063\u3053\u3046');
+});
+
+test('normalizeKey: a macron variant now MATCHES where it once resolved to unverified', () => {
+  // End-to-end proof of the change, through a real lookup rather than the
+  // normalizer alone. "Ky\u014dto" is not a literal string in the table.
+  const table = [
+    { venue_name: 'Nishiki Market', ward: 'Kyoto', tags: ['vegan'], source_id: 't', source_date: '2026-09-04' }
+  ];
+  const [result] = checkDietaryCompliance(
+    [{ name: 'Nishiki Market', ward_or_city: 'Ky\u014dto', is_dining: true }],
+    table,
+    ['vegan']
+  );
+  assert.equal(result.status, COMPLIANT);
+  assert.notEqual(result.status, UNVERIFIED, 'macron variance must no longer force unverified');
+});
+
+test('normalizeKey: macron folding works on the geographic side too', () => {
+  const table = [
+    { ward_a: 'Tokyo', ward_b: 'Osaka', estimated_transit_minutes: 150, mode: 'shinkansen',
+      source_id: 't', source_date: '2026-09-04' }
+  ];
+  const days = [
+    {
+      day: 1,
+      stops: [
+        { name: 'A', ward_or_city: 'T\u014dky\u014d', start_time: '09:00', end_time: '10:00' },
+        { name: 'B', ward_or_city: '\u014csaka', start_time: '12:30', end_time: '13:00' }
+      ]
+    }
+  ];
+  const [result] = checkGeographicFeasibility(days, [], table);
+  assert.equal(result.status, COMPLIANT);
+  assert.equal(result.required_minutes, 150);
+});
+
+test('normalizeKey: folding a macron does NOT make matching fuzzy', () => {
+  // A genuinely different name is still unverified — this is a deterministic
+  // character fold, not a similarity score.
+  const [result] = checkDietaryCompliance(
+    [dining('Sushi Zanmai Asakus\u014d', 'Asakusa')],
+    DIETARY,
+    ['halal']
+  );
+  assert.equal(result.status, UNVERIFIED);
+});
+
 test('normalizeKey: preserves Japanese characters', () => {
   assert.equal(normalizeKey('浅草寺'), '浅草寺');
   assert.equal(normalizeKey('  浅草寺 '), '浅草寺');

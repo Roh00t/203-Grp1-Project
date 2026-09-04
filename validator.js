@@ -49,22 +49,48 @@ const KEY_SEP = '|';
 const readableKey = (key) => key.split(KEY_SEP).join(' | ');
 
 /**
- * Normalize a lookup key: lowercase, strip punctuation, collapse whitespace, trim.
- * Applied to BOTH sides of every lookup, no exceptions (Architecture.md).
+ * Combining marks to strip: the Combining Diacritical Marks block only.
+ *
+ * THIS RANGE IS DELIBERATELY NARROW AND MUST STAY THAT WAY. Stripping every
+ * combining mark would also remove Japanese kana voiced-sound marks, which are
+ * NOT accents — they change the letter. Under NFD, が (ga) decomposes to
+ * か + U+3099, so a blanket strip silently rewrites it to か (ka), and
+ * "がっこう" would match "かっこう". U+3099 and U+309A sit outside this range,
+ * so kana survive intact while Latin macrons do not.
+ */
+const LATIN_DIACRITICS = /[\u0300-\u036f]/g;
+
+/**
+ * Normalize a lookup key. Applied to BOTH sides of every lookup, no exceptions
+ * (Architecture.md, locked matching rule). In order:
+ *
+ *   1. NFKC        — folds compatibility forms, so full-width Ｔｏｋｙｏ and
+ *                    half-width Tokyo converge.
+ *   2. NFD + strip — separates Latin base letters from their accents and drops
+ *                    the accents, so "Tōkyō" and "Tokyo" match. Every place
+ *                    name in this system is a romanized Japanese term, so
+ *                    macron variance is the expected case, not an edge case.
+ *   3. lowercase
+ *   4. punctuation -> space, collapse whitespace, trim
  *
  * Punctuation becomes a space rather than being deleted, so "Shin-Osaka"
  * normalizes to "shin osaka" rather than "shinosaka" — deleting a separator
  * would invent a token that appears in neither string. Both sides get identical
  * treatment either way, so this changes no match that would otherwise succeed.
  *
- * \p{L} covers Japanese, so a name written in kanji survives normalization.
+ * \p{L} covers Japanese, so a name written in kanji or kana survives.
  *
- * This is exact match after normalization. It is deliberately NOT fuzzy: no
- * Levenshtein, no substring, no token-overlap scoring. A near-miss resolves to
- * "unverified", which is the honest answer — see the locked rule above.
+ * This is still exact match after normalization. It is deliberately NOT fuzzy:
+ * no Levenshtein, no substring, no token-overlap scoring. Removing a macron is
+ * a deterministic character-level fold, not a similarity score — a genuine
+ * near-miss still resolves to "unverified", per the locked rule above.
  */
 export function normalizeKey(text) {
   return String(text ?? '')
+    .normalize('NFKC')
+    .normalize('NFD')
+    .replace(LATIN_DIACRITICS, '')
+    .normalize('NFC')
     .toLowerCase()
     .replace(/[^\p{L}\p{N}\s]/gu, ' ')
     .replace(/\s+/g, ' ')
