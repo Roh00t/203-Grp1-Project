@@ -5,7 +5,7 @@ Presentation: 10 Sept 2026 · Report due: 18 Sept 2026
 
 ## What this is
 
-A Japan travel planning tool built around one verifiable claim a general-purpose chatbot can't make: whether a transit pass is worth it for *your specific route*, calculated against real fares — not a guess. Full design and rationale: [`architecture.md`](./architecture.md).
+A Japan travel planning tool built around one verifiable claim a general-purpose chatbot can't make: whether a transit pass is worth it for *your specific route*, calculated against real fares — not a guess. Full design and rationale: [`Architecture.md`](./Architecture.md).
 
 ## Why this isn't just an AI wrapper
 
@@ -22,7 +22,7 @@ ChatGPT can suggest a Japan itinerary in one message. It has no mechanism to gua
 | Constraint Validator | Non-LLM | Dietary and geographic/time feasibility checks against curated lookup tables |
 | **Pass ROI Auditor** (flagship) | LLM + calculator | Sums real per-segment fares and verdicts on transit passes, math shown |
 
-Full specs, prompts, and design rationale: [`architecture.md`](./architecture.md)
+Full specs, prompts, and design rationale: [`Architecture.md`](./Architecture.md)
 Rules for any AI tool building against this repo: [`CLAUDE.md`](./CLAUDE.md)
 
 ## Tech stack
@@ -59,7 +59,18 @@ Everything in `data/` needs to be manually pasted/uploaded into the Canvas build
 
 ## Status
 
-Architecture locked (see `architecture.md`). Build in progress.
+Architecture locked (see `Architecture.md`). Build in progress.
+
+## Run locally
+
+1. Copy `.env.example` to `.env` and add `GEMINI_API_KEY`.
+2. Confirm `GEMINI_MODEL_ID` is set to the currently verified model.
+3. Run `npm start` and open `http://localhost:3000`.
+
+The browser never receives the API key. Use the prototype's demo mode to review
+the interface without making a Gemini request; live mode runs Module 1,
+deterministic validation and fare calculation, then Module 2 narration through
+the local server.
 
 **Live app link:** *add here once deployed — the brief requires the link to work on submission, so test it externally (not just from a logged-in Canvas session) before the report goes in.*
 

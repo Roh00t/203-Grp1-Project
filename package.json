@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "test": "node --test \"**/*.test.js\"",
-    "test:live": "node scripts/live_api_test.js"
+    "test:live": "node scripts/live_api_test.js",
+    "start": "node server.mjs",
+    "dev": "node server.mjs"
   },
   "engines": {
     "node": ">=20"
