@@ -1,5 +1,4 @@
 {
-  #check if the push successful
 "fares": [
     {"from": "Tokyo", "to": "Kyoto", "service_type": "Hikari", "price_yen": 13970, "source_id": "jrailpass-tokyo-kyoto", "source_date": "2026-09-04"},
     {"from": "Kyoto", "to": "Tokyo", "service_type": "Hikari", "price_yen": 13970, "source_id": "jrailpass-tokyo-kyoto", "source_date": "2026-09-04"},
