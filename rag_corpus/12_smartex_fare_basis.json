@@ -1,0 +1,15 @@
+{
+  "document_id": "smartex-fare-basis",
+  "title": "SmartEX fare basis and seasonal variation",
+  "keywords": [
+    "SmartEX",
+    "fare",
+    "reserved seat",
+    "regular season",
+    "peak",
+    "Shinkansen"
+  ],
+  "content": "The curated calculator uses official regular-season adult one-way Ordinary Car reserved-seat values as its fixed evaluation basis. Real date-specific reserved-seat prices can vary by season.",
+  "source_id": "smartex-service",
+  "source_date": "2026-09-06"
+}

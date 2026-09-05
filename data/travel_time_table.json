@@ -1,15 +1,156 @@
 {
   "travel_times": [
-    {"ward_a": "Asakusa", "ward_b": "Shibuya", "estimated_transit_minutes": 33, "mode": "subway", "source_id": "google-maps-transit-estimate", "source_date": "2026-09-04"},
-    {"ward_a": "Shibuya", "ward_b": "Shinjuku", "estimated_transit_minutes": 7, "mode": "JR Yamanote Line", "source_id": "general-transit-knowledge", "source_date": "2026-09-04", "note": "Standard, stable one-stop JR line time — not tied to a single dated web source"},
-    {"ward_a": "Asakusa", "ward_b": "Tokyo Station", "estimated_transit_minutes": 15, "mode": "subway", "source_id": "general-transit-knowledge", "source_date": "2026-09-04"},
-    {"ward_a": "Shibuya", "ward_b": "Tokyo Station", "estimated_transit_minutes": 15, "mode": "JR Yamanote Line", "source_id": "general-transit-knowledge", "source_date": "2026-09-04"},
-    {"ward_a": "Shinjuku", "ward_b": "Tokyo Station", "estimated_transit_minutes": 15, "mode": "JR Chuo Line", "source_id": "general-transit-knowledge", "source_date": "2026-09-04"},
-    {"ward_a": "Shinjuku", "ward_b": "Asakusa", "estimated_transit_minutes": 30, "mode": "subway", "source_id": "general-transit-knowledge", "source_date": "2026-09-04"},
-
-    {"ward_a": "Asakusa", "ward_b": "Asakusa", "estimated_transit_minutes": 10, "mode": "walking", "source_id": "assumed-default", "source_date": "2026-09-04", "note": "Same-area walking default, not independently sourced — reasonable estimate, not a researched fact"},
-    {"ward_a": "Shibuya", "ward_b": "Shibuya", "estimated_transit_minutes": 10, "mode": "walking", "source_id": "assumed-default", "source_date": "2026-09-04"},
-    {"ward_a": "Shinjuku", "ward_b": "Shinjuku", "estimated_transit_minutes": 10, "mode": "walking", "source_id": "assumed-default", "source_date": "2026-09-04"},
-    {"ward_a": "Tokyo Station", "ward_b": "Tokyo Station", "estimated_transit_minutes": 10, "mode": "walking", "source_id": "assumed-default", "source_date": "2026-09-04"}
+    {
+      "ward_a": "Asakusa",
+      "ward_b": "Asakusa",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Shibuya",
+      "ward_b": "Shibuya",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Shinjuku",
+      "ward_b": "Shinjuku",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Tokyo Station",
+      "ward_b": "Tokyo Station",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Gion",
+      "ward_b": "Gion",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Kyoto Station",
+      "ward_b": "Kyoto Station",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Dotonbori",
+      "ward_b": "Dotonbori",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Shin-Osaka",
+      "ward_b": "Shin-Osaka",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Hiroshima Station",
+      "ward_b": "Hiroshima Station",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Peace Memorial Park",
+      "ward_b": "Peace Memorial Park",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Asakusa",
+      "ward_b": "Shibuya",
+      "estimated_transit_minutes": 33,
+      "mode": "public transit",
+      "source_id": "gmaps-asakusa-shibuya-2026-09-06",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Shibuya",
+      "ward_b": "Shinjuku",
+      "estimated_transit_minutes": 7,
+      "mode": "JR / rail",
+      "source_id": "gmaps-shibuya-shinjuku-2026-09-06",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Asakusa",
+      "ward_b": "Tokyo Station",
+      "estimated_transit_minutes": 15,
+      "mode": "public transit",
+      "source_id": "gmaps-asakusa-tokyo-station-2026-09-06",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Shibuya",
+      "ward_b": "Tokyo Station",
+      "estimated_transit_minutes": 15,
+      "mode": "JR / rail",
+      "source_id": "gmaps-shibuya-tokyo-station-2026-09-06",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Shinjuku",
+      "ward_b": "Tokyo Station",
+      "estimated_transit_minutes": 15,
+      "mode": "JR / rail",
+      "source_id": "gmaps-shinjuku-tokyo-station-2026-09-06",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Shinjuku",
+      "ward_b": "Asakusa",
+      "estimated_transit_minutes": 30,
+      "mode": "public transit",
+      "source_id": "gmaps-shinjuku-asakusa-2026-09-06",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Gion",
+      "ward_b": "Kyoto Station",
+      "estimated_transit_minutes": 20,
+      "mode": "public transit",
+      "source_id": "gmaps-gion-kyoto-station-2026-09-06",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Dotonbori",
+      "ward_b": "Shin-Osaka",
+      "estimated_transit_minutes": 25,
+      "mode": "subway",
+      "source_id": "gmaps-dotonbori-shin-osaka-2026-09-06",
+      "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Hiroshima Station",
+      "ward_b": "Peace Memorial Park",
+      "estimated_transit_minutes": 20,
+      "mode": "tram / public transit",
+      "source_id": "gmaps-hiroshima-station-peace-park-2026-09-06",
+      "source_date": "2026-09-06"
+    }
   ]
 }

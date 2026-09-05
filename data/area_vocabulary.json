@@ -1,0 +1,29 @@
+{
+  "purpose": "Canonical `ward` values for validator tables; tourist-area labels, not administrative wards.",
+  "cities": {
+    "Tokyo": [
+      "Asakusa",
+      "Shibuya",
+      "Shinjuku",
+      "Tokyo Station"
+    ],
+    "Kyoto": [
+      "Gion",
+      "Kyoto Station"
+    ],
+    "Osaka": [
+      "Dotonbori",
+      "Shin-Osaka"
+    ],
+    "Hiroshima": [
+      "Hiroshima Station",
+      "Peace Memorial Park"
+    ]
+  },
+  "rules": [
+    "Use exact strings across dietary and travel-time tables.",
+    "Do not substitute Taito, Chuo, Higashiyama, Naniwa, etc.",
+    "Add a same-area row whenever a new area may contain multiple itinerary stops.",
+    "If Module 1 emits a new area, map it or curate it before trusting validator output."
+  ]
+}

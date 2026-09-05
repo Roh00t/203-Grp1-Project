@@ -1,0 +1,15 @@
+{
+  "document_id": "smartex-ic-card-boarding",
+  "title": "Boarding SmartEX reservations with an IC card",
+  "keywords": [
+    "SmartEX",
+    "IC card",
+    "Suica",
+    "ICOCA",
+    "Shinkansen",
+    "ticketless"
+  ],
+  "content": "A supported transportation IC card can be registered for SmartEX gate entry. The reservation is paid using the payment method used for booking rather than being deducted as an ordinary stored-value IC-card ride.",
+  "source_id": "smartex-boarding-ic",
+  "source_date": "2026-09-06"
+}

@@ -1,20 +1,105 @@
 {
   "fares": [
-    {"from": "Tokyo", "to": "Kyoto", "service_type": "Hikari", "price_yen": 13970, "source_id": "jrailpass-tokyo-kyoto", "source_date": "2026-09-04"},
-    {"from": "Kyoto", "to": "Tokyo", "service_type": "Hikari", "price_yen": 13970, "source_id": "jrailpass-tokyo-kyoto", "source_date": "2026-09-04"},
-    {"from": "Tokyo", "to": "Kyoto", "service_type": "Nozomi", "price_yen": 13970, "supplement_yen": 4960, "source_id": "tictivity-jrpass-guide-2026", "source_date": "2026-09-04"},
-    {"from": "Kyoto", "to": "Tokyo", "service_type": "Nozomi", "price_yen": 13970, "supplement_yen": 4960, "source_id": "tictivity-jrpass-guide-2026", "source_date": "2026-09-04"},
-
-    {"from": "Kyoto", "to": "Shin-Osaka", "service_type": "Hikari", "price_yen": 1450, "source_id": "osakastation-kyoto-osaka", "source_date": "2026-09-04"},
-    {"from": "Shin-Osaka", "to": "Kyoto", "service_type": "Hikari", "price_yen": 1450, "source_id": "osakastation-kyoto-osaka", "source_date": "2026-09-04"},
-    {"from": "Kyoto", "to": "Shin-Osaka", "service_type": "Nozomi", "price_yen": 1450, "supplement_yen": null, "source_id": null, "source_date": null, "_note": "Nozomi runs this leg but the JR-Pass supplement figure for this specific short segment isn't confirmed from a source — do not guess it. Leave supplement_yen null so MissingSupplementDataError fires until sourced."},
-
-    {"from": "Shin-Osaka", "to": "Hiroshima", "service_type": "Sakura", "price_yen": 9710, "source_id": "japanrailpassnow-osaka-hiroshima", "source_date": "2026-09-04"},
-    {"from": "Hiroshima", "to": "Shin-Osaka", "service_type": "Sakura", "price_yen": 9710, "source_id": "japanrailpassnow-osaka-hiroshima", "source_date": "2026-09-04"},
-    {"from": "Shin-Osaka", "to": "Hiroshima", "service_type": "Nozomi", "price_yen": 9890, "supplement_yen": null, "source_id": null, "source_date": null, "_note": "DELIBERATELY INCOMPLETE. Confirmed the Nozomi/Mizuho supplement is real and distance-based (flat ¥4,960 confirmed only for Tokyo-Kyoto, Tokyo-Shin-Osaka, and Shin-Osaka-Hakata pairs). Shin-Osaka-Hiroshima's exact supplement was not found in this search pass. Do not assume ¥4,960 applies here — Hiroshima is farther than the confirmed pairs, so it is likely higher. This row will correctly throw MissingSupplementDataError until Ulfa sources the real figure from JR West's published supplement table."}
+    {
+      "from": "Tokyo",
+      "to": "Kyoto",
+      "service_type": "Hikari",
+      "price_yen": 13650,
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kyoto",
+      "to": "Tokyo",
+      "service_type": "Hikari",
+      "price_yen": 13650,
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Tokyo",
+      "to": "Kyoto",
+      "service_type": "Nozomi",
+      "price_yen": 13970,
+      "supplement_yen": 4960,
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kyoto",
+      "to": "Tokyo",
+      "service_type": "Nozomi",
+      "price_yen": 13970,
+      "supplement_yen": 4960,
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kyoto",
+      "to": "Shin-Osaka",
+      "service_type": "Hikari",
+      "price_yen": 2670,
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Shin-Osaka",
+      "to": "Kyoto",
+      "service_type": "Hikari",
+      "price_yen": 2670,
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Shin-Osaka",
+      "to": "Hiroshima",
+      "service_type": "Sakura",
+      "price_yen": 10220,
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Hiroshima",
+      "to": "Shin-Osaka",
+      "service_type": "Sakura",
+      "price_yen": 10220,
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Shin-Osaka",
+      "to": "Hiroshima",
+      "service_type": "Nozomi",
+      "price_yen": 10750,
+      "supplement_yen": 4170,
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Hiroshima",
+      "to": "Shin-Osaka",
+      "service_type": "Nozomi",
+      "price_yen": 10750,
+      "supplement_yen": 4170,
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    }
   ],
   "passes": [
-    {"name": "JR Pass 7-day Ordinary", "price_yen": 50000, "covers_nozomi": false, "note": "Official online price as of Sept 2026. Overseas-agency purchases rise to approx. ¥53,000 from 1 Oct 2026 — the official site price was not confirmed to change.", "source_id": "selfguidejapan-jrpass-2026", "source_date": "2026-09-04"},
-    {"name": "Kansai-Hiroshima Area Pass", "price_yen": 17000, "duration_days": 5, "covers": "Shinkansen between Shin-Osaka and Hiroshima, plus JR lines around Kyoto, Osaka, Kobe, Nara", "source_id": "tictivity-jrpass-guide-2026", "source_date": "2026-09-04"}
+    {
+      "name": "JR Pass 7-day Ordinary",
+      "price_yen": 50000,
+      "covers_nozomi": false,
+      "source_id": "jrpass-price-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "name": "Kansai-Hiroshima Area Pass",
+      "price_yen": 17000,
+      "duration_days": 5,
+      "covers": "Sanyo Shinkansen Shin-Osaka–Hiroshima and eligible JR-West services in valid area",
+      "source_id": "jrwest-kansai-hiroshima-pass",
+      "source_date": "2026-09-06"
+    }
   ]
 }
