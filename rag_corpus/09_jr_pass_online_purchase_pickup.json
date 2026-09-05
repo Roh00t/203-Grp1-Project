@@ -6,10 +6,9 @@
     "online purchase",
     "pickup",
     "passport",
-    "Temporary Visitor",
     "reservation"
   ],
-  "content": "A JAPAN RAIL PASS bought on the official site can be picked up at designated JR locations. The purchaser must provide the required purchase information and passport, and eligibility is checked at pickup. Online purchasers can also reserve eligible Shinkansen and limited-express seats through the official reservation site.",
+  "content": "A JAPAN RAIL PASS bought online is collected at designated JR locations and eligibility is checked. Official-online purchasers can also reserve eligible seats through the supported reservation service.",
   "source_id": "jrpass-online-purchase",
-  "source_date": "2026-09-05"
+  "source_date": "2026-09-06"
 }

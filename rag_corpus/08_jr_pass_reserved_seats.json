@@ -5,10 +5,9 @@
     "JR Pass",
     "reserved seat",
     "seat reservation",
-    "Midori no Madoguchi",
     "ticket machine"
   ],
-  "content": "JAPAN RAIL PASS holders can make eligible seat reservations without an additional seat-reservation charge. Official-online purchasers can reserve on the dedicated website; after pass pickup/exchange, reservations can also be issued at designated machines or ticket offices.",
+  "content": "Eligible JAPAN RAIL PASS seat reservations can be made through the supported official channels. Use the official reservation guidance rather than treating all trains or seat types as identical.",
   "source_id": "jrpass-reserved-seat",
-  "source_date": "2026-09-05"
+  "source_date": "2026-09-06"
 }

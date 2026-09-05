@@ -1,15 +1,14 @@
 {
   "document_id": "kyoto-halal-categories",
-  "title": "Kyoto official Muslim-friendly dining categories",
+  "title": "Kyoto official halal-related dining categories",
   "keywords": [
     "Kyoto",
     "halal",
     "Muslim Friendly",
     "Muslim Welcome",
-    "pork-free",
-    "restaurant"
+    "pork-free"
   ],
-  "content": "Kyoto's official Muslim guide distinguishes 'Halal', 'Muslim Friendly', 'Muslim Welcome', and 'Pork-Free' rather than treating them as equivalent. 'Halal' means all food is halal; the other categories have progressively different conditions, so the itinerary validator should not collapse them into a single guaranteed-halal label.",
+  "content": "Kyoto's official Muslim guide distinguishes Halal, Muslim Friendly, Muslim Welcome and Pork-Free. These labels are not interchangeable and should not be collapsed into a single guaranteed-halal claim.",
   "source_id": "kyoto-halal-food",
-  "source_date": "2026-09-05"
+  "source_date": "2026-09-06"
 }

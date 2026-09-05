@@ -5,11 +5,9 @@
     "customs",
     "declaration",
     "Visit Japan Web",
-    "2D code",
-    "QR code",
     "arrival airport"
   ],
-  "content": "Japan Customs requires passengers entering Japan to submit a declaration for accompanied and unaccompanied articles. Electronic declaration through Visit Japan Web is recommended; a paper declaration can still be used.",
+  "content": "Japan Customs requires passengers entering Japan to submit a declaration for accompanied and unaccompanied articles. Electronic declaration through Visit Japan Web is recommended; paper declaration remains available.",
   "source_id": "japan-customs-declaration",
-  "source_date": "2026-09-05"
+  "source_date": "2026-09-06"
 }

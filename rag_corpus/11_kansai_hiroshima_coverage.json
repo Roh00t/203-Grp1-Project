@@ -6,11 +6,9 @@
     "Shin-Osaka",
     "Hiroshima",
     "Sanyo Shinkansen",
-    "Miyajima Ferry",
-    "Kyoto",
-    "Osaka"
+    "Miyajima"
   ],
-  "content": "The pass covers reserved seats on the Sanyo Shinkansen between Shin-Osaka and Hiroshima, eligible JR-West conventional services in the valid area, and the JR West Miyajima Ferry. It does not cover the Tokaido Shinkansen between Shin-Osaka and Tokyo, the Sanyo Shinkansen Hiroshima↔Hakata, or the Kyushu Shinkansen Hakata↔Kagoshima-Chuo.",
+  "content": "The pass covers eligible JR-West services including reserved seats on the Sanyo Shinkansen between Shin-Osaka and Hiroshima. It does not cover the Tokaido Shinkansen between Shin-Osaka and Tokyo.",
   "source_id": "jrwest-kansai-hiroshima-pass",
-  "source_date": "2026-09-05"
+  "source_date": "2026-09-06"
 }
