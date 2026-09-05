@@ -1,0 +1,15 @@
+{
+  "document_id": "smartex-ic-card-boarding",
+  "title": "Boarding SmartEX reservations with an IC card",
+  "keywords": [
+    "SmartEX",
+    "IC card",
+    "Suica",
+    "ICOCA",
+    "Shinkansen",
+    "ticketless"
+  ],
+  "content": "For SmartEX, travelers can register a supported transportation IC card and touch it at the Shinkansen gate. The Shinkansen reservation fare is charged to the registered payment card when booking; it is not deducted from the stored balance of the transportation IC card.",
+  "source_id": "smartex-boarding-ic",
+  "source_date": "2026-09-05"
+}

@@ -1,0 +1,15 @@
+{
+  "document_id": "nozomi-supplement-golden-route",
+  "title": "Nozomi supplement amounts used by the golden-route calculator",
+  "keywords": [
+    "Nozomi",
+    "supplement",
+    "Tokyo Kyoto",
+    "Shin-Osaka Hiroshima",
+    "4960",
+    "4170"
+  ],
+  "content": "For adult JAPAN RAIL PASS holders, the official special-ticket table lists ¥4,960 for Tokyo↔Kyoto and ¥4,170 for Shin-Osaka↔Hiroshima. The matrix shows no sale value for Kyoto↔Shin-Osaka, so the current calculator must not invent a supplement for that short pair.",
+  "source_id": "jrpass-nozomi-mizuho-special-ticket",
+  "source_date": "2026-09-05"
+}

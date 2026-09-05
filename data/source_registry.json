@@ -1,0 +1,145 @@
+{
+  "retrieved_date": "2026-09-05",
+  "sources": [
+    {
+      "source_id": "smartex-reserved-fares-2025",
+      "title": "\"smartEX Service\" Prices (Reserved Seat in Ordinary Cars)",
+      "publisher": "Central Japan Railway Company / SmartEX",
+      "url": "https://smart-ex.jp/en/product/plan/service/pdf/service_fares_reserved.pdf",
+      "source_effective_date": "2025-04-01",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official",
+      "notes": "Regular-season one-way adult reserved-seat matrix. Seasonal adjustments apply."
+    },
+    {
+      "source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "title": "Available sections, types, prices — JAPAN RAIL PASS NOZOMI/MIZUHO special ticket",
+      "publisher": "JAPAN RAIL PASS / JR Group",
+      "url": "https://japanrailpass.net/assets/pdf/special-ticket/en/price_for_all_sections_new.pdf",
+      "source_effective_date": "2025-04",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "jrpass-price-2026",
+      "title": "Types and prices",
+      "publisher": "JAPAN RAIL PASS / JR Group",
+      "url": "https://japanrailpass.net/en/purchase/price/",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official",
+      "notes": "Official online price remains ¥50,000 for 7-day Ordinary; overseas exchange-order price becomes ¥53,000 for purchases on/after 2026-10-01."
+    },
+    {
+      "source_id": "jrpass-special-ticket-guide",
+      "title": "Use of NOZOMI/MIZUHO trains",
+      "publisher": "JAPAN RAIL PASS / JR Group",
+      "url": "https://japanrailpass.net/en/use/special-ticket/",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "jrpass-eligibility",
+      "title": "Eligibility for use",
+      "publisher": "JAPAN RAIL PASS / JR Group",
+      "url": "https://japanrailpass.net/en/about_jrp/riyou/",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "jrpass-reserved-seat",
+      "title": "How to book a reserved seat",
+      "publisher": "JAPAN RAIL PASS / JR Group",
+      "url": "https://japanrailpass.net/en/use/reserved-seat-reservation/index.html",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "jrpass-online-purchase",
+      "title": "Purchase online",
+      "publisher": "JAPAN RAIL PASS / JR Group",
+      "url": "https://japanrailpass.net/en/purchase/online/",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "jrwest-kansai-hiroshima-pass",
+      "title": "Kansai-Hiroshima Area Pass",
+      "publisher": "West Japan Railway Company",
+      "url": "https://www.westjr.co.jp/travel-information/en/tickets-passes/jrwest-rail-pass/kansai_hiroshima/",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "smartex-service",
+      "title": "smartEX Service",
+      "publisher": "Central Japan Railway Company / SmartEX",
+      "url": "https://smart-ex.jp/en/product/plan/service/",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "smartex-boarding-ic",
+      "title": "Boarding with an IC card",
+      "publisher": "Central Japan Railway Company / SmartEX",
+      "url": "https://smart-ex.jp/en/entraining/iccard/",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "smartex-boarding-qr",
+      "title": "Boarding with QR-Ticket",
+      "publisher": "Central Japan Railway Company / SmartEX",
+      "url": "https://smart-ex.jp/en/entraining/qr/",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "digitalagency-visit-japan-web",
+      "title": "Visit Japan Web",
+      "publisher": "Digital Agency, Government of Japan",
+      "url": "https://www.digital.go.jp/en/policies/visit_japan_web",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "japan-customs-declaration",
+      "title": "Declaration of Accompanied Articles and Unaccompanied Articles",
+      "publisher": "Japan Customs",
+      "url": "https://www.customs.go.jp/english/passenger/declaration/declaration_app.html",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "japan-customs-fake-vjw-warning",
+      "title": "Beware of Fake Websites Related to Customs Declaration Procedures",
+      "publisher": "Japan Customs",
+      "url": "https://www.customs.go.jp/english/news/20260528e.html",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "jnto-muslim-travelers",
+      "title": "Muslim Travelers in Japan",
+      "publisher": "Japan National Tourism Organization",
+      "url": "https://www.japan.travel/en/guide/muslim-travelers/",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "tokyo-muslim-guide-2026",
+      "title": "TOKYO MUSLIM Travelers’ Guide 2026-2027",
+      "publisher": "Tokyo Convention & Visitors Bureau",
+      "url": "https://www.gotokyo.org/book/en/list/1664/",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    },
+    {
+      "source_id": "kyoto-halal-food",
+      "title": "Finding Halal Food",
+      "publisher": "Kyoto City Official Travel Guide",
+      "url": "https://kyoto.travel/en/muslim/finding-halal-food/",
+      "retrieved_date": "2026-09-05",
+      "source_type": "official"
+    }
+  ]
+}
