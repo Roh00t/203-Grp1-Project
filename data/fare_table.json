@@ -1,5 +1,6 @@
 {
-  "fares": [
+  #check if the push successful
+"fares": [
     {"from": "Tokyo", "to": "Kyoto", "service_type": "Hikari", "price_yen": 13970, "source_id": "jrailpass-tokyo-kyoto", "source_date": "2026-09-04"},
     {"from": "Kyoto", "to": "Tokyo", "service_type": "Hikari", "price_yen": 13970, "source_id": "jrailpass-tokyo-kyoto", "source_date": "2026-09-04"},
     {"from": "Tokyo", "to": "Kyoto", "service_type": "Nozomi", "price_yen": 13970, "supplement_yen": 4960, "source_id": "tictivity-jrpass-guide-2026", "source_date": "2026-09-04"},
