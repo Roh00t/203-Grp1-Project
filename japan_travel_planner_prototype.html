@@ -127,6 +127,13 @@
       gap:14px;
     }
 
+    .full-width { grid-column:1 / -1; }
+    .field-hint {
+      color:var(--muted);
+      font-size:12px;
+      margin:6px 0 0;
+    }
+
     label {
       display:block;
       color:var(--muted);
@@ -478,19 +485,43 @@
       </section>
 
       <section class="intake" aria-labelledby="intake-title">
-        <div>
+        <div class="full-width">
           <h2 id="intake-title">Start with your trip</h2>
-          <p class="section-intro">Tell us enough to sketch the route. You can refine the free-text brief as much as you like.</p>
+          <p class="section-intro">Enter your travel details. Add optional cities and preferences if you already know what you want, or leave them blank for a recommended route.</p>
 
           <div class="fields">
             <div>
-              <label for="start-date">Start date</label>
-              <input id="start-date" type="date" value="2026-10-01">
+              <label for="start-date">Arrival date</label>
+              <input id="start-date" name="arrival_date" type="date" value="2026-10-01" required>
             </div>
 
             <div>
-              <label for="end-date">End date</label>
-              <input id="end-date" type="date" value="2026-10-07">
+              <label for="end-date">Departure date</label>
+              <input id="end-date" name="departure_date" type="date" value="2026-10-07" required>
+            </div>
+
+            <div>
+              <label for="arrival-time">Arrival time</label>
+              <input id="arrival-time" name="arrival_time" type="time" value="10:00" required>
+            </div>
+
+            <div>
+              <label for="departure-time">Departure time</label>
+              <input id="departure-time" name="departure_time" type="time" value="18:00" required>
+            </div>
+
+            <div>
+              <label for="arrival-airport">Arrival airport</label>
+              <select id="arrival-airport">
+                <option value="">Loading Japanese airports...</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="departure-airport">Departure airport</label>
+              <select id="departure-airport">
+                <option value="">Loading Japanese airports...</option>
+              </select>
             </div>
 
             <div>
@@ -510,22 +541,11 @@
                 <option value="fast-paced">Fast-paced</option>
               </select>
             </div>
-          </div>
-        </div>
 
-        <div>
-          <label for="preferences">Cities and preferences</label>
-          <textarea id="preferences">Tokyo (Asakusa and Shibuya), Kyoto (Kyoto Station and Gion), Osaka (Dotonbori), and Hiroshima. I need halal food and prefer Hikari and Sakura trains.</textarea>
-
-          <div class="fields" style="margin-top:14px">
-            <div>
-              <label for="arrival-airport">Arrival airport</label>
-              <input id="arrival-airport" value="NRT (Narita)">
-            </div>
-
-            <div>
-              <label for="departure-airport">Departure airport</label>
-              <input id="departure-airport" value="KIX (Kansai)">
+            <div class="full-width">
+              <label for="preferences">Cities and preferences (optional)</label>
+              <textarea id="preferences" placeholder="For example: Visit Tokyo and Kyoto, focus on historical areas, avoid nightlife, and travel mainly by train."></textarea>
+              <p class="field-hint">Leave this blank if you want the planner to recommend the cities and complete route.</p>
             </div>
           </div>
 
@@ -567,11 +587,39 @@
 
     const statusClass = (status) => status || 'unverified';
 
+    async function populateAirportFields() {
+      const arrival = $('arrival-airport');
+      const departure = $('departure-airport');
+      const response = await fetch('/data/japan_airports.json');
+
+      if (!response.ok) {
+        throw new Error('The Japanese airport list could not be loaded.');
+      }
+
+      const airports = await response.json();
+      airports.sort((a, b) => a.iata.localeCompare(b.iata));
+
+      const placeholder = '<option value="">Select an airport</option>';
+      arrival.innerHTML = placeholder;
+      departure.innerHTML = placeholder;
+
+      airports.forEach((airport) => {
+        const label = `${airport.iata} — ${airport.name}, ${airport.prefecture}`;
+        arrival.add(new Option(label, airport.iata));
+        departure.add(new Option(label, airport.iata));
+      });
+
+      arrival.value = 'NRT';
+      departure.value = 'KIX';
+    }
+
     function inputData(mode) {
       return {
         mode,
         start:$('start-date').value,
         end:$('end-date').value,
+        arrival_time:$('arrival-time').value,
+        departure_time:$('departure-time').value,
         dietary:$('dietary').value,
         pace:$('pace').value,
         arrival_airport:$('arrival-airport').value,
@@ -720,9 +768,13 @@
               </span>
               <span>
                 ${yen(segment.ticket_price_yen)}
-                ${segment.pass_supplement_yen
-                  ? `<br><small>+ ${yen(segment.pass_supplement_yen)} supplement</small>`
-                  : ''}
+                ${segment.pass_extra_yen
+                  ? `<br><small>+ ${yen(segment.pass_extra_yen)} ${
+                      segment.pass_extra_reason === 'supplement'
+                        ? 'pass supplement'
+                        : 'not covered by pass'
+                    }</small>`
+                  : '<br><small>Covered by pass</small>'}
               </span>
             </div>`
           ).join('')
@@ -813,8 +865,10 @@
         </div>
 
         <div class="fare-note">
-          Fare comparison uses the project's dated regular-season adult
-          Ordinary Car reserved-seat basis. Actual date-specific fares may vary.
+          Fare comparison uses curated airport and long-distance rail fares.
+          Local subways, buses, trams, walking segments, and ordinary urban
+          transfers are excluded unless a curated fare is available. Actual
+          date-specific fares may vary.
         </div>
 
         ${missingInfo.length
@@ -891,8 +945,20 @@
       const start = $('start-date').value;
       const end = $('end-date').value;
 
+      if (
+        !start ||
+        !end ||
+        !$('arrival-time').value ||
+        !$('departure-time').value ||
+        !$('arrival-airport').value ||
+        !$('departure-airport').value
+      ) {
+        showMessage('Please complete the arrival and departure dates, times, and airports.');
+        return;
+      }
+
       if (start && end && start > end) {
-        showMessage('End date must be the same as or later than the start date.');
+        showMessage('Departure date must be the same as or later than the arrival date.');
         return;
       }
 
@@ -937,6 +1003,13 @@
 
     $('generate').addEventListener('click', () => request('live'));
     $('demo').addEventListener('click', () => request('demo'));
+
+    populateAirportFields().catch((error) => {
+      showMessage(error.message);
+      $('generate').disabled = true;
+      $('demo').disabled = true;
+    });
   </script>
 </body>
 </html>
+
