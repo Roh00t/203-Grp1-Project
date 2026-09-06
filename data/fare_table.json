@@ -5,6 +5,7 @@
       "to": "Kyoto",
       "service_type": "Hikari",
       "price_yen": 13650,
+      "jr_pass_coverage": "covered",
       "source_id": "smartex-reserved-fares-2025",
       "source_date": "2026-09-06"
     },
@@ -13,6 +14,7 @@
       "to": "Tokyo",
       "service_type": "Hikari",
       "price_yen": 13650,
+      "jr_pass_coverage": "covered",
       "source_id": "smartex-reserved-fares-2025",
       "source_date": "2026-09-06"
     },
@@ -21,24 +23,205 @@
       "to": "Kyoto",
       "service_type": "Nozomi",
       "price_yen": 13970,
-      "supplement_yen": 4960,
+      "jr_pass_coverage": "supplement_required",
       "source_id": "smartex-reserved-fares-2025",
-      "source_date": "2026-09-06"
+      "source_date": "2026-09-06",
+      "supplement_yen": 4960,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
     },
     {
       "from": "Kyoto",
       "to": "Tokyo",
       "service_type": "Nozomi",
       "price_yen": 13970,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
       "supplement_yen": 4960,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Shinagawa",
+      "to": "Kyoto",
+      "service_type": "Hikari",
+      "price_yen": 13650,
+      "jr_pass_coverage": "covered",
       "source_id": "smartex-reserved-fares-2025",
       "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kyoto",
+      "to": "Shinagawa",
+      "service_type": "Hikari",
+      "price_yen": 13650,
+      "jr_pass_coverage": "covered",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Shinagawa",
+      "to": "Kyoto",
+      "service_type": "Nozomi",
+      "price_yen": 13970,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 4960,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Kyoto",
+      "to": "Shinagawa",
+      "service_type": "Nozomi",
+      "price_yen": 13970,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 4960,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Tokyo",
+      "to": "Shin-Osaka",
+      "service_type": "Hikari",
+      "price_yen": 14200,
+      "jr_pass_coverage": "covered",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Shin-Osaka",
+      "to": "Tokyo",
+      "service_type": "Hikari",
+      "price_yen": 14200,
+      "jr_pass_coverage": "covered",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Tokyo",
+      "to": "Shin-Osaka",
+      "service_type": "Nozomi",
+      "price_yen": 14520,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 4960,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Shin-Osaka",
+      "to": "Tokyo",
+      "service_type": "Nozomi",
+      "price_yen": 14520,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 4960,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Shinagawa",
+      "to": "Shin-Osaka",
+      "service_type": "Hikari",
+      "price_yen": 14200,
+      "jr_pass_coverage": "covered",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Shin-Osaka",
+      "to": "Shinagawa",
+      "service_type": "Hikari",
+      "price_yen": 14200,
+      "jr_pass_coverage": "covered",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Shinagawa",
+      "to": "Shin-Osaka",
+      "service_type": "Nozomi",
+      "price_yen": 14520,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 4960,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Shin-Osaka",
+      "to": "Shinagawa",
+      "service_type": "Nozomi",
+      "price_yen": 14520,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 4960,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Tokyo",
+      "to": "Hiroshima",
+      "service_type": "Nozomi",
+      "price_yen": 19560,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 6500,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Hiroshima",
+      "to": "Tokyo",
+      "service_type": "Nozomi",
+      "price_yen": 19560,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 6500,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Shinagawa",
+      "to": "Hiroshima",
+      "service_type": "Nozomi",
+      "price_yen": 19560,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 6500,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Hiroshima",
+      "to": "Shinagawa",
+      "service_type": "Nozomi",
+      "price_yen": 19560,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 6500,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
     },
     {
       "from": "Kyoto",
       "to": "Shin-Osaka",
       "service_type": "Hikari",
       "price_yen": 2670,
+      "jr_pass_coverage": "covered",
       "source_id": "smartex-reserved-fares-2025",
       "source_date": "2026-09-06"
     },
@@ -47,14 +230,58 @@
       "to": "Kyoto",
       "service_type": "Hikari",
       "price_yen": 2670,
+      "jr_pass_coverage": "covered",
       "source_id": "smartex-reserved-fares-2025",
       "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kyoto",
+      "to": "Hiroshima",
+      "service_type": "Hikari",
+      "price_yen": 11100,
+      "jr_pass_coverage": "covered",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Hiroshima",
+      "to": "Kyoto",
+      "service_type": "Hikari",
+      "price_yen": 11100,
+      "jr_pass_coverage": "covered",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kyoto",
+      "to": "Hiroshima",
+      "service_type": "Nozomi",
+      "price_yen": 11740,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 4170,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Hiroshima",
+      "to": "Kyoto",
+      "service_type": "Nozomi",
+      "price_yen": 11740,
+      "jr_pass_coverage": "supplement_required",
+      "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 4170,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
     },
     {
       "from": "Shin-Osaka",
       "to": "Hiroshima",
       "service_type": "Sakura",
       "price_yen": 10220,
+      "jr_pass_coverage": "covered",
       "source_id": "smartex-reserved-fares-2025",
       "source_date": "2026-09-06"
     },
@@ -63,6 +290,7 @@
       "to": "Shin-Osaka",
       "service_type": "Sakura",
       "price_yen": 10220,
+      "jr_pass_coverage": "covered",
       "source_id": "smartex-reserved-fares-2025",
       "source_date": "2026-09-06"
     },
@@ -71,17 +299,329 @@
       "to": "Hiroshima",
       "service_type": "Nozomi",
       "price_yen": 10750,
-      "supplement_yen": 4170,
+      "jr_pass_coverage": "supplement_required",
       "source_id": "smartex-reserved-fares-2025",
-      "source_date": "2026-09-06"
+      "source_date": "2026-09-06",
+      "supplement_yen": 4170,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
     },
     {
       "from": "Hiroshima",
       "to": "Shin-Osaka",
       "service_type": "Nozomi",
       "price_yen": 10750,
-      "supplement_yen": 4170,
+      "jr_pass_coverage": "supplement_required",
       "source_id": "smartex-reserved-fares-2025",
+      "source_date": "2026-09-06",
+      "supplement_yen": 4170,
+      "supplement_source_id": "jrpass-nozomi-mizuho-special-ticket",
+      "supplement_source_date": "2026-09-06"
+    },
+    {
+      "from": "Narita Airport Terminal 1",
+      "to": "Tokyo",
+      "service_type": "Narita Express",
+      "price_yen": 3140,
+      "jr_pass_coverage": "covered",
+      "source_id": "jr-east-narita-express-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Tokyo",
+      "to": "Narita Airport Terminal 1",
+      "service_type": "Narita Express",
+      "price_yen": 3140,
+      "jr_pass_coverage": "covered",
+      "source_id": "jr-east-narita-express-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Narita Airport Terminal 1",
+      "to": "Shinagawa",
+      "service_type": "Narita Express",
+      "price_yen": 3330,
+      "jr_pass_coverage": "covered",
+      "source_id": "jr-east-narita-express-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Shinagawa",
+      "to": "Narita Airport Terminal 1",
+      "service_type": "Narita Express",
+      "price_yen": 3330,
+      "jr_pass_coverage": "covered",
+      "source_id": "jr-east-narita-express-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Narita Airport Terminal 1",
+      "to": "Keisei-Ueno",
+      "service_type": "Keisei Skyliner",
+      "price_yen": 2580,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "keisei-skyliner-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Keisei-Ueno",
+      "to": "Narita Airport Terminal 1",
+      "service_type": "Keisei Skyliner",
+      "price_yen": 2580,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "keisei-skyliner-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Narita Airport Terminal 1",
+      "to": "Nippori",
+      "service_type": "Keisei Skyliner",
+      "price_yen": 2580,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "keisei-skyliner-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Nippori",
+      "to": "Narita Airport Terminal 1",
+      "service_type": "Keisei Skyliner",
+      "price_yen": 2580,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "keisei-skyliner-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Narita Airport Terminal 2-3",
+      "to": "Tokyo",
+      "service_type": "Narita Express",
+      "price_yen": 3140,
+      "jr_pass_coverage": "covered",
+      "source_id": "jr-east-narita-express-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Tokyo",
+      "to": "Narita Airport Terminal 2-3",
+      "service_type": "Narita Express",
+      "price_yen": 3140,
+      "jr_pass_coverage": "covered",
+      "source_id": "jr-east-narita-express-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Narita Airport Terminal 2-3",
+      "to": "Shinagawa",
+      "service_type": "Narita Express",
+      "price_yen": 3330,
+      "jr_pass_coverage": "covered",
+      "source_id": "jr-east-narita-express-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Shinagawa",
+      "to": "Narita Airport Terminal 2-3",
+      "service_type": "Narita Express",
+      "price_yen": 3330,
+      "jr_pass_coverage": "covered",
+      "source_id": "jr-east-narita-express-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Narita Airport Terminal 2-3",
+      "to": "Keisei-Ueno",
+      "service_type": "Keisei Skyliner",
+      "price_yen": 2580,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "keisei-skyliner-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Keisei-Ueno",
+      "to": "Narita Airport Terminal 2-3",
+      "service_type": "Keisei Skyliner",
+      "price_yen": 2580,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "keisei-skyliner-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Narita Airport Terminal 2-3",
+      "to": "Nippori",
+      "service_type": "Keisei Skyliner",
+      "price_yen": 2580,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "keisei-skyliner-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Nippori",
+      "to": "Narita Airport Terminal 2-3",
+      "service_type": "Keisei Skyliner",
+      "price_yen": 2580,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "keisei-skyliner-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Haneda Airport Terminal 1",
+      "to": "Hamamatsucho",
+      "service_type": "Tokyo Monorail",
+      "price_yen": 520,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "tokyo-monorail-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Hamamatsucho",
+      "to": "Haneda Airport Terminal 1",
+      "service_type": "Tokyo Monorail",
+      "price_yen": 520,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "tokyo-monorail-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Haneda Airport Terminal 2",
+      "to": "Hamamatsucho",
+      "service_type": "Tokyo Monorail",
+      "price_yen": 520,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "tokyo-monorail-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Hamamatsucho",
+      "to": "Haneda Airport Terminal 2",
+      "service_type": "Tokyo Monorail",
+      "price_yen": 520,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "tokyo-monorail-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Haneda Airport Terminal 3",
+      "to": "Hamamatsucho",
+      "service_type": "Tokyo Monorail",
+      "price_yen": 520,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "tokyo-monorail-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Hamamatsucho",
+      "to": "Haneda Airport Terminal 3",
+      "service_type": "Tokyo Monorail",
+      "price_yen": 520,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "tokyo-monorail-fares-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kansai Airport",
+      "to": "Tennoji",
+      "service_type": "HARUKA (WEST QR one-way)",
+      "price_yen": 1300,
+      "jr_pass_coverage": "covered",
+      "source_id": "jrwest-haruka-westqr-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Tennoji",
+      "to": "Kansai Airport",
+      "service_type": "HARUKA (WEST QR one-way)",
+      "price_yen": 1300,
+      "jr_pass_coverage": "covered",
+      "source_id": "jrwest-haruka-westqr-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kansai Airport",
+      "to": "Osaka",
+      "service_type": "HARUKA (WEST QR one-way)",
+      "price_yen": 1800,
+      "jr_pass_coverage": "covered",
+      "source_id": "jrwest-haruka-westqr-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Osaka",
+      "to": "Kansai Airport",
+      "service_type": "HARUKA (WEST QR one-way)",
+      "price_yen": 1800,
+      "jr_pass_coverage": "covered",
+      "source_id": "jrwest-haruka-westqr-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kansai Airport",
+      "to": "Shin-Osaka",
+      "service_type": "HARUKA (WEST QR one-way)",
+      "price_yen": 1800,
+      "jr_pass_coverage": "covered",
+      "source_id": "jrwest-haruka-westqr-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Shin-Osaka",
+      "to": "Kansai Airport",
+      "service_type": "HARUKA (WEST QR one-way)",
+      "price_yen": 1800,
+      "jr_pass_coverage": "covered",
+      "source_id": "jrwest-haruka-westqr-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kansai Airport",
+      "to": "Kyoto",
+      "service_type": "HARUKA (WEST QR one-way)",
+      "price_yen": 2200,
+      "jr_pass_coverage": "covered",
+      "source_id": "jrwest-haruka-westqr-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kyoto",
+      "to": "Kansai Airport",
+      "service_type": "HARUKA (WEST QR one-way)",
+      "price_yen": 2200,
+      "jr_pass_coverage": "covered",
+      "source_id": "jrwest-haruka-westqr-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Kansai Airport",
+      "to": "Namba",
+      "service_type": "Nankai Rapi:t Digital Ticket",
+      "price_yen": 1410,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "nankai-rapit-digital-ticket-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Namba",
+      "to": "Kansai Airport",
+      "service_type": "Nankai Rapi:t Digital Ticket",
+      "price_yen": 1410,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "nankai-rapit-digital-ticket-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Hiroshima Airport",
+      "to": "Hiroshima Station",
+      "service_type": "Airport Limousine Bus",
+      "price_yen": 1500,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "hiroshima-airport-limousine-2026",
+      "source_date": "2026-09-06"
+    },
+    {
+      "from": "Hiroshima Station",
+      "to": "Hiroshima Airport",
+      "service_type": "Airport Limousine Bus",
+      "price_yen": 1500,
+      "jr_pass_coverage": "not_covered",
+      "source_id": "hiroshima-airport-limousine-2026",
       "source_date": "2026-09-06"
     }
   ],
