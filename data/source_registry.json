@@ -284,6 +284,58 @@
       "url": "https://kyoto.travel/en/muslim/finding-halal-food/",
       "retrieved_date": "2026-09-06",
       "source_type": "official"
+    },
+    {
+      "source_id": "jr-east-narita-express-fares-2026",
+      "title": "N'EX (Narita Express) Tickets — Fares and Charges",
+      "publisher": "East Japan Railway Company",
+      "url": "https://www.jreast.co.jp/en/multi/nex/tickets/",
+      "retrieved_date": "2026-09-06",
+      "source_type": "official"
+    },
+    {
+      "source_id": "tokyo-monorail-fares-2026",
+      "title": "Tokyo Monorail — Regular Ticket Fare Table",
+      "publisher": "Tokyo Monorail Co., Ltd.",
+      "url": "https://www.tokyo-monorail.co.jp/english/guidance/train_info.html",
+      "retrieved_date": "2026-09-06",
+      "source_type": "official"
+    },
+    {
+      "source_id": "keisei-skyliner-fares-2026",
+      "title": "Keisei Skyliner FAQ — one-way fare",
+      "publisher": "Keisei Electric Railway",
+      "url": "https://www.keisei.co.jp/keisei/tetudou/skyliner/us/faq/index.php",
+      "retrieved_date": "2026-09-06",
+      "source_type": "official",
+      "note": "Adult one-way total of base fare plus Skyliner reserved-seat ticket between Narita Airport Terminal 1 or Terminal 2・3 and Keisei-Ueno or Nippori."
+    },
+    {
+      "source_id": "jrwest-haruka-westqr-2026",
+      "title": "WEST QR HARUKA One-way Ticket — prices",
+      "publisher": "West Japan Railway Company",
+      "url": "https://www.westjr.co.jp/global/en/ticket/westqr/haruka/",
+      "retrieved_date": "2026-09-06",
+      "source_type": "official",
+      "note": "Discounted one-way product for eligible temporary visitors; not the unrestricted regular walk-up fare."
+    },
+    {
+      "source_id": "nankai-rapit-digital-ticket-2026",
+      "title": "Rapi:t Digital Ticket — regular seat price",
+      "publisher": "Nankai Electric Railway",
+      "url": "https://www.nankai.co.jp/en_railway/ticket/rapit",
+      "retrieved_date": "2026-09-06",
+      "source_type": "official",
+      "note": "Adult one-way digital-ticket price between Kansai Airport and Namba."
+    },
+    {
+      "source_id": "hiroshima-airport-limousine-2026",
+      "title": "Hiroshima Station Shinkansen Gate ⇔ Hiroshima Airport",
+      "publisher": "Hiroshima Airport",
+      "url": "https://www.hij.airport.jp/en/access/timetable/2.html",
+      "retrieved_date": "2026-09-06",
+      "source_type": "official",
+      "note": "Adult one-way airport limousine bus fare."
     }
   ]
 }
