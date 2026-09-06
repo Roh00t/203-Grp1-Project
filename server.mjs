@@ -63,21 +63,102 @@ const DEMO_ITINERARY = {
     {
       day: 1,
       stops: [
-        { name: 'Asakusa Sushi-Ken', ward_or_city: 'Asakusa', start_time: '12:00', end_time: '13:00', is_dining: true },
-        { name: 'Senso-ji Temple', ward_or_city: 'Asakusa', start_time: '13:20', end_time: '15:00', is_dining: false },
-        { name: 'Shibuya Crossing', ward_or_city: 'Shibuya', start_time: '16:00', end_time: '18:00', is_dining: false }
+        {
+          name: 'Sankyu Halal Japanese Food Asakusa',
+          ward_or_city: 'Asakusa',
+          start_time: '12:00',
+          end_time: '13:00',
+          is_dining: true
+        },
+        {
+          name: 'Senso-ji Temple',
+          ward_or_city: 'Asakusa',
+          start_time: '13:20',
+          end_time: '15:00',
+          is_dining: false
+        },
+        {
+          name: 'Shibuya Crossing',
+          ward_or_city: 'Shibuya',
+          start_time: '16:00',
+          end_time: '18:00',
+          is_dining: false
+        }
       ]
     },
     {
       day: 2,
       stops: [
-        { name: 'Naritaya', ward_or_city: 'Asakusa', start_time: '09:30', end_time: '10:30', is_dining: true },
-        { name: 'Fushimi Inari Shrine', ward_or_city: 'Kyoto', start_time: '14:00', end_time: '16:00', is_dining: false }
+        {
+          name: 'Café Restaurant Le Temps, Hotel Granvia Kyoto',
+          ward_or_city: 'Kyoto Station',
+          start_time: '11:30',
+          end_time: '12:30',
+          is_dining: true
+        },
+        {
+          name: 'Gion',
+          ward_or_city: 'Gion',
+          start_time: '13:00',
+          end_time: '15:00',
+          is_dining: false
+        }
+      ]
+    },
+    {
+      day: 3,
+      stops: [
+        {
+          name: 'PHO ME HALAL RESTAURANT',
+          ward_or_city: 'Dotonbori',
+          start_time: '11:00',
+          end_time: '12:00',
+          is_dining: true
+        },
+        {
+          name: 'Shin-Osaka Station',
+          ward_or_city: 'Shin-Osaka',
+          start_time: '12:45',
+          end_time: '13:15',
+          is_dining: false
+        }
+      ]
+    },
+    {
+      day: 4,
+      stops: [
+        {
+          name: 'OKOSTA',
+          ward_or_city: 'Hiroshima Station',
+          start_time: '11:30',
+          end_time: '12:30',
+          is_dining: true
+        },
+        {
+          name: 'Peace Memorial Park',
+          ward_or_city: 'Peace Memorial Park',
+          start_time: '13:00',
+          end_time: '15:00',
+          is_dining: false
+        }
       ]
     }
   ],
   transit_segments: [
-    { from_station: 'Shin-Osaka', to_station: 'Hiroshima', mode: 'shinkansen', day: 2, order: 1 }
+    {
+      from_station: 'Tokyo',
+      to_station: 'Kyoto',
+      mode: 'shinkansen',
+      day: 2,
+      order: 1
+    },
+    {
+      from_station: 'Shin-Osaka',
+      to_station: 'Hiroshima',
+      mode: 'shinkansen',
+      day: 3,
+      order: 1
+    }
   ],
   missing_info: []
 };
