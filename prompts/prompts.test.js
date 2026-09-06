@@ -1,5 +1,5 @@
 /**
- * prompts/prompts.test.js — offline unit tests for the Module 1 and Module 2
+ * prompts/prompts.test.js Ã¢â‚¬â€ offline unit tests for the Module 1 and Module 2
  * prompt templates. No network, no API key required.
  */
 import test from 'node:test';
@@ -35,13 +35,13 @@ const schema = JSON.parse(
 
 /**
  * Prompt text is hard-wrapped for readability, so a sentence can straddle a
- * newline. Assertions about wording collapse whitespace first — we care that
+ * newline. Assertions about wording collapse whitespace first Ã¢â‚¬â€ we care that
  * the instruction is present, not where the line happens to break.
  */
 const flat = (s) => s.replace(/\s+/g, ' ');
 
 // ---------------------------------------------------------------------------
-// Module 1 — prompt anatomy
+// Module 1 Ã¢â‚¬â€ prompt anatomy
 // ---------------------------------------------------------------------------
 
 test('Module 1: temperature is 0 and the config is frozen', () => {
@@ -61,7 +61,7 @@ test('Module 1: is structurally system_rules -> constraints -> itinerary_json', 
 test('Module 1: keeps the verbatim system-brief rules from Architecture.md', () => {
   assert.match(MODULE1_PROMPT_TEMPLATE, /You are a Japan itinerary structuring assistant\./);
   assert.match(MODULE1_PROMPT_TEMPLATE, /Never invent a station name\./);
-  assert.match(flat(MODULE1_PROMPT_TEMPLATE), /Never guess a value you cannot support from the user's input — put it in missing_info instead\./);
+  assert.match(flat(MODULE1_PROMPT_TEMPLATE), /Never guess a value you cannot support from the user's input Ã¢â‚¬â€ put it in missing_info instead\./);
   assert.match(flat(MODULE1_PROMPT_TEMPLATE), /Nothing outside that tag is read by downstream systems\./);
 });
 
@@ -91,6 +91,22 @@ test('Module 1: leaves feasibility and cost to the other modules', () => {
   assert.match(MODULE1_PROMPT_TEMPLATE, /not your job/i);
 });
 
+test('Module 1: classifies local transit and forbids model fares', () => {
+  const prompt = flat(MODULE1_PROMPT_TEMPLATE);
+  assert.match(prompt, /Local subway/);
+  assert.match(prompt, /Local train/);
+  assert.match(prompt, /Local bus/);
+  assert.match(prompt, /Local tram/);
+  assert.match(prompt, /Do not provide or estimate fares/);
+});
+
+test('Module 1: recommends route details when the user leaves them open', () => {
+  const prompt = flat(MODULE1_PROMPT_TEMPLATE);
+  assert.match(prompt, /not required to choose cities, attractions, restaurants, stations/);
+  assert.match(prompt, /recommend a sensible route/);
+  assert.match(prompt, /do not add it to missing_info merely because the user did not name it/);
+});
+
 test('Module 1: fills the variable slot and leaves no placeholder behind', () => {
   const { prompt } = buildModule1Prompt('5 days in Tokyo and Kyoto, vegetarian, relaxed pace');
   assert.ok(prompt.includes('5 days in Tokyo and Kyoto, vegetarian, relaxed pace'));
@@ -106,7 +122,7 @@ test('Module 1: user text lands inside <constraints>, not in the system brief', 
 });
 
 // ---------------------------------------------------------------------------
-// Module 1 — injection resistance (Guardrails.md S1/S2, S7 test coverage)
+// Module 1 Ã¢â‚¬â€ injection resistance (Guardrails.md S1/S2, S7 test coverage)
 // ---------------------------------------------------------------------------
 
 test('Module 1: a user cannot close the constraints block and open their own rules', () => {
@@ -153,7 +169,7 @@ test('Module 1: empty and null constraints do not crash the builder', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Module 1 — response parsing (schema-only output)
+// Module 1 Ã¢â‚¬â€ response parsing (schema-only output)
 // ---------------------------------------------------------------------------
 
 const VALID_ITINERARY = {
@@ -276,7 +292,7 @@ test('schema: rejects a non-boolean is_dining', () => {
 
 test('schema: is_dining is required, so pre-change itineraries no longer validate', () => {
   // Deliberate breaking change. Stage 6 output generated before is_dining was
-  // added must be regenerated rather than silently scored — tell Mutya.
+  // added must be regenerated rather than silently scored Ã¢â‚¬â€ tell Mutya.
   const preChange = structuredClone(VALID_ITINERARY);
   delete preChange.days[0].stops[0].is_dining;
   assert.equal(validate(preChange, schema).valid, false);
@@ -307,7 +323,7 @@ test('schema: reports every error, not just the first', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Module 2 — Program-of-Thoughts boundary
+// Module 2 Ã¢â‚¬â€ Program-of-Thoughts boundary
 // ---------------------------------------------------------------------------
 
 const AUDIT = auditPassDecision(
@@ -383,4 +399,66 @@ test('Module 2: flags a narration with no evidence at all', () => {
   const { ok, problems } = verifyNarrationMatchesCalculator(unsourced, AUDIT);
   assert.equal(ok, false);
   assert.match(problems.join(' '), /no evidence/);
+});
+
+test('Module 1: splits journeys at transfer stations', () => {
+  const prompt = flat(MODULE1_PROMPT_TEMPLATE);
+  assert.match(prompt, /Split every journey into one transit segment/);
+  assert.match(prompt, /Haneda Airport Terminal 3 -> Hamamatsucho/);
+  assert.match(prompt, /Osaka -> Shin-Osaka/);
+  assert.match(prompt, /Shin-Osaka -> Shinagawa/);
+  assert.match(prompt, /Never create composite segments/);
+});
+
+test('Module 1: requires named Shinkansen services', () => {
+  const prompt = flat(MODULE1_PROMPT_TEMPLATE);
+  assert.match(prompt, /Hikari Shinkansen/);
+  assert.match(prompt, /Sakura Shinkansen/);
+  assert.match(prompt, /Never use only "Shinkansen"/);
+  assert.match(prompt, /Osaka is not a Shinkansen station/);
+});
+
+test('calculator: adds a non-JR airport fare to the pass side', () => {
+  const audit = auditPassDecision(
+    [{
+      from_station: 'Haneda Airport Terminal 3',
+      to_station: 'Hamamatsucho',
+      mode: 'Tokyo Monorail',
+      day: 1,
+      order: 1
+    }],
+    [{
+      from: 'Haneda Airport Terminal 3',
+      to: 'Hamamatsucho',
+      service_type: 'Tokyo Monorail',
+      price_yen: 520,
+      jr_pass_coverage: 'not_covered'
+    }],
+    [{ name: 'JR Pass 7-day Ordinary', price_yen: 50000, covers_nozomi: false }]
+  );
+
+  assert.equal(audit.ticket_total, 520);
+  assert.equal(audit.pass_price, 50520);
+  assert.equal(audit.per_segment_breakdown[0].pass_extra_yen, 520);
+  assert.equal(audit.per_segment_breakdown[0].pass_extra_reason, 'not_covered');
+});
+
+test('calculator: distinguishes covered and supplement-required services', () => {
+  const audit = auditPassDecision(
+    [
+      { from_station: 'Tokyo', to_station: 'Kyoto', mode: 'Hikari Shinkansen' },
+      { from_station: 'Kyoto', to_station: 'Hiroshima', mode: 'Nozomi Shinkansen' }
+    ],
+    [
+      { from: 'Tokyo', to: 'Kyoto', service_type: 'Hikari', price_yen: 13650, jr_pass_coverage: 'covered' },
+      { from: 'Kyoto', to: 'Hiroshima', service_type: 'Nozomi', price_yen: 11740, supplement_yen: 4170, jr_pass_coverage: 'supplement_required' }
+    ],
+    [{ name: 'JR Pass 7-day Ordinary', price_yen: 50000, covers_nozomi: false }]
+  );
+
+  assert.equal(audit.ticket_total, 25390);
+  assert.equal(audit.pass_price, 54170);
+  assert.equal(audit.per_segment_breakdown[0].pass_extra_yen, 0);
+  assert.equal(audit.per_segment_breakdown[1].pass_extra_yen, 4170);
+  assert.equal(audit.per_segment_breakdown[1].pass_extra_reason, 'supplement');
 });
