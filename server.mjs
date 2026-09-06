@@ -90,7 +90,7 @@ const DEMO_ITINERARY = {
       day: 2,
       stops: [
         {
-          name: 'Café Restaurant Le Temps, Hotel Granvia Kyoto',
+          name: 'CafÃƒÆ’Ã‚Â© Restaurant Le Temps, Hotel Granvia Kyoto',
           ward_or_city: 'Kyoto Station',
           start_time: '11:30',
           end_time: '12:30',
@@ -204,12 +204,27 @@ async function callGemini(prompt, generationConfig) {
 
 function buildConstraints(input) {
   return [
-    `Dates: ${input.start || 'not specified'} to ${input.end || 'not specified'}`,
-    `Dietary: ${input.dietary || 'None'}`,
-    `Pace: ${input.pace || 'moderate'}`,
-    `Airports: ${input.arrival_airport || 'not specified'} to ${input.departure_airport || 'not specified'}`,
-    `Preferences: ${input.preferences || ''}`
+    `Arrival date: ${input.start || 'not specified'}`,
+    `Arrival time: ${input.arrival_time || 'not specified'}`,
+    `Arrival airport: ${input.arrival_airport || 'not specified'}`,
+    `Departure date: ${input.end || 'not specified'}`,
+    `Departure time: ${input.departure_time || 'not specified'}`,
+    `Departure airport: ${input.departure_airport || 'not specified'}`,
+    `Dietary requirement: ${input.dietary || 'None'}`,
+    `Trip pace: ${input.pace || 'moderate'}`,
+    `Optional cities and preferences: ${String(input.preferences || '').trim() || 'No additional preferences; recommend a suitable route.'}`
   ].join('\n');
+}
+
+function isExcludedLocalSegment(segment) {
+  const mode = String(segment?.mode || '').trim();
+
+  return /^(walking|walk)$/i.test(mode) ||
+    /^local (subway|train|bus|tram)\b/i.test(mode) ||
+    /^subway\b/i.test(mode) ||
+    /^metro\b/i.test(mode) ||
+    /^tram\b/i.test(mode) ||
+    /^streetcar\b/i.test(mode);
 }
 
 function runPipeline(itinerary, input, metadata = {}) {
@@ -221,7 +236,7 @@ function runPipeline(itinerary, input, metadata = {}) {
   const validation = validateItinerary(itinerary, data.dietary, data.travelTimes, input.dietary ? [input.dietary] : []);
   const failures = collectFailureLog(validation);
   const segments = itinerary.transit_segments
-    .filter((segment) => !/walk|local|subway|bus/i.test(segment.mode))
+    .filter((segment) => !isExcludedLocalSegment(segment))
     .map((segment) => {
       if (!metadata.demo || segment.service_type) return segment;
       const match = data.fares.find((fare) => fare.from === segment.from_station && fare.to === segment.to_station);
@@ -231,12 +246,39 @@ function runPipeline(itinerary, input, metadata = {}) {
   let calculatorError = null;
 
   try {
-    if (segments.length === 0) throw new MissingFareError('No fare-bearing transit segments were generated for this itinerary.');
-    audit = auditPassDecision(segments, data.fares, data.passes);
-  } catch (error) {
-    if (error instanceof MissingFareError || error instanceof AmbiguousFareError || error instanceof MissingSupplementDataError) {
-      calculatorError = { name: error.name, message: error.message };
-    } else throw error;
+  if (segments.length === 0) {
+    throw new MissingFareError(
+      'No fare-bearing transit segments were generated for this itinerary.'
+    );
+  }
+
+  const eligiblePasses = data.passes.filter(
+    (pass) => pass.name === 'JR Pass 7-day Ordinary'
+  );
+
+  if (eligiblePasses.length === 0) {
+    throw new Error('JR Pass 7-day Ordinary is missing from the pass table.');
+  }
+
+  audit = auditPassDecision(
+    segments,
+    data.fares,
+    eligiblePasses
+  );
+  } 
+  catch (error) {
+  if (
+    error instanceof MissingFareError ||
+    error instanceof AmbiguousFareError ||
+    error instanceof MissingSupplementDataError
+  ) {
+    calculatorError = {
+      name: error.name,
+      message: error.message
+    };
+  } else {
+    throw error;
+  }
   }
 
   let explanation = null;
