@@ -64,7 +64,7 @@ Everything in `data/` needs to be manually pasted/uploaded into the Canvas build
 | Stage | Owner | Status | Last Updated |
 |-------|-------|--------|--------------|
 | **Stage 5 (UI)** | Ulfa | ✅ Complete | 7 Sept |
-| **Stage 6 (Testing)** | Mutya | ✅ Complete — 60/60 runs | 7 Sept |
+| **Stage 6 (Testing)** | Ulfa/Rohit | ✅ Complete — 60/60 runs | 7 Sept |
 | **Stage 7 (Analysis)** | Karthik | 🟡 Ready to Start — results available | 7 Sept |
 | **Report + Slides** | Leo/Kyle/Harry | ❌ Not Started | — |
 
