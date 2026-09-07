@@ -64,9 +64,44 @@ Everything in `data/` needs to be manually pasted/uploaded into the Canvas build
 | Stage | Owner | Status | Last Updated |
 |-------|-------|--------|--------------|
 | **Stage 5 (UI)** | Ulfa | ✅ Complete | 7 Sept |
-| **Stage 6 (Testing)** | Mutya | ⏳ Ready to Execute | 7 Sept |
-| **Stage 7 (Analysis)** | Karthik | ⏳ Blocked (awaits Stage 6) | — |
+| **Stage 6 (Testing)** | Mutya | ✅ Complete — 60/60 runs | 7 Sept |
+| **Stage 7 (Analysis)** | Karthik | 🟡 Ready to Start — results available | 7 Sept |
 | **Report + Slides** | Leo/Kyle/Harry | ❌ Not Started | — |
+
+### Stage 6 results
+
+**Executed:** 7 Sept 2026 · **Model:** `gemini-3.8-flash` · **60/60 runs, 0 errors, 0 judge failures**
+
+Artefacts: `results/stage6_evaluation_matrix.csv`, `results/stage6_evaluation_summary.json`,
+`results/variant_{a,b,c}/TC01-TC20.json`
+
+**Variant C against the Stage 1 targets:**
+
+| Criterion | Target | Actual | Met? | Scoring lens |
+|---|---|---|---|---|
+| Financial accuracy | >=90% | 57.1% (8/14 scored) | No | deterministic-calculator |
+| Dietary adherence | 100% | 95.0% (19/20) | No | deterministic-validator |
+| Geographic plausibility | >=90% | 95.0% (19/20) | **Yes** | deterministic-validator |
+| Faithfulness | >=90% | 15.8% of cases (65.6% of claims) | No | llm-judge |
+
+**Headline A/B/C result — Faithfulness (claims carrying a verifiable evidence pointer):**
+
+| Variant | Factual claims | Supported | Ratio |
+|---|---|---|---|
+| A (minimal LLM) | 525 | 0 | 0.0% |
+| B (prompt only) | 641 | 0 | 0.0% |
+| C (full system) | 625 | 410 | **65.6%** |
+
+**Four findings handed to Stage 7** (see `STAGE7_FAILURE_ANALYSIS.md` when written):
+1. All 6 financial FAILs are "DO NOT BUY but expected BUY" — the ground-truth `BUY`
+   expectations are wrong, not the calculator (e.g. TC04: tickets 17,640 yen vs pass 53,990 yen).
+2. TC15's dietary FAIL is a harness bug — `"Halal AND Vegan"` is passed as one
+   unmatched constraint (`server.mjs:259`). Fixing it takes dietary to 20/20 = 100%.
+3. TC16's geographic FAIL is genuine — Module 1 scheduled back-to-back stops with a
+   0-minute gap where 10 minutes of walking is required.
+4. TC05/TC08/TC10/TC12 produced no audit and log `calculatorError: [object Object]` —
+   the error is not serialised, so the cause is unreadable. TC12 is a Nozomi supplement
+   test, so that flagship check remains unexercised.
 
 **Latest:** See [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) for team action items.
 

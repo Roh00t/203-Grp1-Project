@@ -48,6 +48,8 @@ AI tools may **implement** this design. They may **not** redesign the architectu
 ## Current status
 
 - Presentation: **10 September 2026.** Report due: **18 September 2026.**
+- **Stage 6 is complete.** Executed 7 Sept 2026 on `gemini-3.8-flash`: 60/60 runs (20 cases x 3 variants), 0 errors, 0 judge failures. Results in `results/`. Variant C met the Geographic Plausibility target (95%); Financial Accuracy (57.1%), Dietary Adherence (95%) and Faithfulness (15.8% of cases / 65.6% of claims) missed theirs, each with a documented cause carried into Stage 7. Headline A/B/C result: A and B carry **zero** evidence pointers across 1,166 factual claims; C backs 410 of 625.
+- **Stage 7 is unblocked** and owned by Karthik — analysis only, no retests (API credits reserved for the demo).
 - Architecture is decided as of this file (see `architecture.md`). Building starts now.
 - Report needs a cover page (team names, emails, per-member contribution) — doesn't count toward the 10-page limit, but don't forget it late.
 
