@@ -336,6 +336,158 @@
       "retrieved_date": "2026-09-06",
       "source_type": "official",
       "note": "Adult one-way airport limousine bus fare."
+    },
+    {
+      "source_id": "jr-tokyo-kyoto-hikari-2026-09-07",
+      "title": "Tokyo to Kyoto Hikari Timetable (JR Tokaido Shinkansen)",
+      "publisher": "NAVITIME Japan Travel",
+      "url": "https://japantravel.navitime.com/en/area/jp/depArrTimeList/00006668/00001756/00000110?direction=down&trainType=Hikari",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "tobu-asakusa-skytree-2026-09-07",
+      "title": "Access Information - Asakusa / TOKYO SKYTREE TOWN",
+      "publisher": "Tobu Railway",
+      "url": "https://www.tobu.co.jp/en/access/skytree/",
+      "retrieved_date": "2026-09-07",
+      "source_type": "official"
+    },
+    {
+      "source_id": "jr-kyoto-inari-2026-09-07",
+      "title": "Traveling from Kyoto Station to Inari",
+      "publisher": "Kyoto Station Guide",
+      "url": "https://www.kyotostation.com/traveling-from-kyoto-station-to-inari/",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "osaka-dotonbori-namba-2026-09-07",
+      "title": "Dotonbori to Namba Station - travel options",
+      "publisher": "Rome2Rio",
+      "url": "https://www.rome2rio.com/s/D%C5%8Dtonbori/Namba-Station",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "happycow-mumokuteki-2026-09-07",
+      "title": "Mumokuteki Vegan Cafe - Kyoto",
+      "publisher": "HappyCow",
+      "url": "https://www.happycow.net/reviews/mumokuteki-vegan-cafe-kyoto-15812",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "happycow-shigetsu-2026-09-07",
+      "title": "Tenryuji Temple Shigetsu - Kyoto",
+      "publisher": "HappyCow",
+      "url": "https://www.happycow.net/reviews/tenryuji-shigetsu-kyoto-11170",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "insideosaka-paprika-2026-09-07",
+      "title": "Paprika Shokudo Vegan (Minami)",
+      "publisher": "Inside Osaka",
+      "url": "https://insideosaka.com/paprika-shokudo-vegan-minami/",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "itravelforveganfood-oko-2026-09-07",
+      "title": "OKO Okonomiyaki - Vegan food in Osaka",
+      "publisher": "I Travel For Vegan Food",
+      "url": "https://www.itravelforveganfood.com/restaurants/oko-okonomiyaki",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "rome2rio-shibuya-skytree-2026-09-07",
+      "title": "Shibuya to Tokyo Skytree - travel options",
+      "publisher": "Rome2Rio",
+      "url": "https://www.rome2rio.com/s/Shibuya/Tokyo-Skytree",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "rome2rio-shinjuku-skytree-2026-09-07",
+      "title": "Shinjuku to Tokyo Skytree Station - travel options",
+      "publisher": "Rome2Rio",
+      "url": "https://www.rome2rio.com/s/Tokyo-Skytree-Station/Shibuya",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "rome2rio-tokyo-station-skytree-2026-09-07",
+      "title": "Tokyo Station to Tokyo Skytree - travel options",
+      "publisher": "Rome2Rio",
+      "url": "https://www.rome2rio.com/s/T%C5%8Dky%C5%8D-Station/Tokyo-Skytree",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "rome2rio-gion-fushimi-2026-09-07",
+      "title": "Gion-Shijo Station to Fushimi Inari-taisha",
+      "publisher": "Rome2Rio",
+      "url": "https://www.rome2rio.com/s/Gion-Shijo-Station/Fushimi-Inari-taisha",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "rome2rio-gion-arashiyama-2026-09-07",
+      "title": "Gion to Arashiyama - travel options (also covers Kyoto-kawaramachi to Arashiyama via Hankyu)",
+      "publisher": "Rome2Rio",
+      "url": "https://www.rome2rio.com/s/Gion/Arashiyama",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "kyotostation-sagano-line-2026-09-07",
+      "title": "JR Sagano Line for Nijo, Uzumasa, Saga-Arashiyama",
+      "publisher": "Kyoto Station Guide",
+      "url": "https://www.kyotostation.com/jr-sagano-line-for-nijo-uzumasa-saga-arashiyama/",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "rome2rio-kyoto-station-kawaramachi-2026-09-07",
+      "title": "Kyoto Station to Kyoto-kawaramachi - travel options",
+      "publisher": "Rome2Rio",
+      "url": "https://www.rome2rio.com/s/Ky%C5%8Dto-Station-Japan/Kyoto-kawaramachi",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "onedayaway-fushimi-arashiyama-2026-09-07",
+      "title": "How to Get from Fushimi Inari to Arashiyama by Train",
+      "publisher": "One Day Away",
+      "url": "https://onedayawaytravel.com/fushimi-inari-to-arashiyama/",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "navitime-shinosaka-namba-2026-09-07",
+      "title": "Shin-osaka to Namba Timetable (Osaka Metro Midosuji Line)",
+      "publisher": "NAVITIME Japan Travel",
+      "url": "https://japantravel.navitime.com/en/area/jp/depArrTimeList/00004305/00000096/00000744?direction=up",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
+    },
+    {
+      "source_id": "derived-via-hub-methodology",
+      "title": "Derived transit time: sum of sourced legs via a hub area, rounded up to 5 minutes. NOT a direct lookup - flagged for Ulfa to replace with a sourced figure.",
+      "publisher": "Wayfinder Japan project methodology",
+      "url": "",
+      "retrieved_date": "2026-09-07",
+      "source_type": "methodology"
+    },
+    {
+      "source_id": "zirael-vegan-gion-2026-09-07",
+      "title": "ZIRAEL Vegan Restaurant - Kyoto (313-7 Gionmachi Kitagawa, Higashiyama-ku)",
+      "publisher": "HappyCow",
+      "url": "https://www.happycow.net/reviews/zirael-vegan-restaurant-kyoto-312273",
+      "retrieved_date": "2026-09-07",
+      "source_type": "third-party"
     }
   ]
 }

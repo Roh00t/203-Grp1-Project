@@ -9,7 +9,14 @@
     "test": "node --test \"**/*.test.js\"",
     "test:live": "node scripts/live_api_test.js",
     "start": "node server.mjs",
-    "dev": "node server.mjs"
+    "dev": "node server.mjs",
+    "evaluate:stage6": "node scripts/evaluate-stage6.mjs",
+    "evaluate:stage6:variant-a": "node scripts/evaluate-stage6.mjs A",
+    "evaluate:stage6:variant-b": "node scripts/evaluate-stage6.mjs B",
+    "evaluate:stage6:variant-c": "node scripts/evaluate-stage6.mjs C",
+    "evaluate:stage6:single": "node scripts/evaluate-stage6.mjs",
+    "evaluate:stage6:workflow": "bash scripts/run-stage6-workflow.sh",
+    "test:module1-retry": "node scripts/test-module1-retry.mjs"
   },
   "engines": {
     "node": ">=20"

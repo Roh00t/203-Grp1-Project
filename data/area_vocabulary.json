@@ -5,15 +5,21 @@
       "Asakusa",
       "Shibuya",
       "Shinjuku",
-      "Tokyo Station"
+      "Tokyo Station",
+      "Sumida"
     ],
     "Kyoto": [
       "Gion",
-      "Kyoto Station"
+      "Kyoto Station",
+      "Fushimi",
+      "Arashiyama",
+      "Kawaramachi"
     ],
     "Osaka": [
       "Dotonbori",
-      "Shin-Osaka"
+      "Shin-Osaka",
+      "Namba",
+      "Shinmachi"
     ],
     "Hiroshima": [
       "Hiroshima Station",

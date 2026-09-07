@@ -59,7 +59,36 @@ Everything in `data/` needs to be manually pasted/uploaded into the Canvas build
 
 ## Status
 
-Architecture locked (see `Architecture.md`). Build in progress.
+**Presentation:** 10 Sept 2026 · **Report due:** 18 Sept 2026
+
+| Stage | Owner | Status | Last Updated |
+|-------|-------|--------|--------------|
+| **Stage 5 (UI)** | Ulfa | ✅ Complete | 7 Sept |
+| **Stage 6 (Testing)** | Mutya | ⏳ Ready to Execute | 7 Sept |
+| **Stage 7 (Analysis)** | Karthik | ⏳ Blocked (awaits Stage 6) | — |
+| **Report + Slides** | Leo/Kyle/Harry | ❌ Not Started | — |
+
+**Latest:** See [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) for team action items.
+
+## Stage 6 Evaluation
+
+Complete automated pipeline for testing all 20 cases across 3 variants (60 total runs):
+
+```bash
+# Start evaluation (loads .env, starts server, runs tests, scores with LLM Judge)
+npm run evaluate:stage6:workflow
+
+# Or run specific variant
+npm run evaluate:stage6:variant-c    # Full pipeline only
+npm run evaluate:stage6:variant-a    # Minimal LLM only
+```
+
+**Documentation:**
+- [EVALUATION_PIPELINE.md](./EVALUATION_PIPELINE.md) — Full guide (20 test cases, scoring criteria, integration)
+- [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) — Quick commands & status
+- [STAGE_COMPLETION_CHECKLIST.md](./STAGE_COMPLETION_CHECKLIST.md) — Team checklist & blockers
+
+**Output:** `results/` folder with raw proof (60 JSON files) + CSV summary ready for report integration.
 
 ## Run locally
 

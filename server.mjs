@@ -10,8 +10,9 @@ import itinerarySchema from './schema/itinerary_schema.json' with { type: 'json'
 import { validateItinerary, collectFailureLog } from './validator.js';
 import {
   buildModule1Prompt,
-  parseItineraryResponse,
-  MODULE1_GENERATION_CONFIG
+  parseItineraryResponseDetailed,
+  MODULE1_GENERATION_CONFIG,
+  MODULE1_RESPONSE_SCHEMA
 } from './prompts/module1_itinerary.js';
 import {
   buildModule2Prompt,
@@ -51,12 +52,34 @@ function requireEnvFile() {
 
 loadEnv();
 
-const [{ fares, passes }, dietaryData, travelTimeData] = await Promise.all([
+const [{ fares, passes }, dietaryData, travelTimeData, areaVocabulary] = await Promise.all([
   readFile(join(ROOT, 'data/fare_table.json'), 'utf8').then(JSON.parse),
   readFile(join(ROOT, 'data/dietary_table.json'), 'utf8').then(JSON.parse),
-  readFile(join(ROOT, 'data/travel_time_table.json'), 'utf8').then(JSON.parse)
+  readFile(join(ROOT, 'data/travel_time_table.json'), 'utf8').then(JSON.parse),
+  readFile(join(ROOT, 'data/area_vocabulary.json'), 'utf8').then(JSON.parse)
 ]);
 const data = { fares, passes, dietary: dietaryData.dietary, travelTimes: travelTimeData.travel_times };
+
+/**
+ * Prompt-injected lists, derived from the live tables at startup.
+ *
+ * Deriving them here rather than hardcoding them in the template is what keeps
+ * Module 1's vocabulary and the Constraint Validator's lookup keys in sync: add
+ * a venue or an area to the data files and the prompt picks it up on restart,
+ * with no second place to edit.
+ */
+const CANONICAL_AREAS = Object.values(areaVocabulary.cities ?? {}).flat();
+const APPROVED_DINING_VENUES = data.dietary.map(
+  (row) => `${row.venue_name} (${row.ward}) - ${(row.tags ?? []).join(', ')}`
+);
+
+/**
+ * Bounded at 1 by design. A second Module 1 call is the entire cost exposure of
+ * the repair path, so it is capped rather than looped: a model that fails twice
+ * on a temperature-0 prompt will not succeed on a third try, and an unbounded
+ * loop against a metered API is how a class project burns its quota.
+ */
+const MAX_RETRIES = 1;
 
 const DEMO_ITINERARY = {
   days: [
@@ -192,7 +215,7 @@ async function callGemini(prompt, generationConfig) {
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: { ...generationConfig, responseMimeType: 'text/plain' }
+      generationConfig: { responseMimeType: 'text/plain', ...generationConfig }
     })
   });
   const payload = await response.json();
@@ -317,13 +340,86 @@ function runPipeline(itinerary, input, metadata = {}) {
   };
 }
 
+/**
+ * Generation config for Module 1: temperature 0 plus API-level JSON mode.
+ *
+ * responseMimeType puts the model in JSON mode so it cannot emit a markdown
+ * fence or conversational preamble; responseSchema additionally pins the object
+ * shape, so is_dining and the transit fields cannot go missing. Together these
+ * are what fixed the 9-of-20 "Module 1 returned invalid or untagged JSON"
+ * failures - the old call hardcoded responseMimeType: 'text/plain'.
+ */
+const MODULE1_JSON_CONFIG = {
+  ...MODULE1_GENERATION_CONFIG,
+  responseMimeType: 'application/json',
+  responseSchema: MODULE1_RESPONSE_SCHEMA
+};
+
+/**
+ * Call Module 1, repairing at most one bad response.
+ *
+ * Two failure kinds are treated the same way, matching the two exception types
+ * a typed client would raise: the response is not parseable JSON at all, or it
+ * parses but violates schema/itinerary_schema.json (which enforces the HH:MM
+ * patterns that Gemini's responseSchema cannot express).
+ *
+ * On the single permitted retry the original prompt is resent with the concrete
+ * failure appended, so the model is correcting a named defect rather than
+ * guessing. After that the caller gets a null itinerary and the pipeline stops -
+ * there is no third call.
+ *
+ * @returns {{itinerary: object|null, attempts: number, error: string|null}}
+ */
+async function runModule1WithRetry(builtPrompt) {
+  let prompt = builtPrompt.prompt;
+  let lastError = null;
+
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt += 1) {
+    const raw = await callGemini(prompt, MODULE1_JSON_CONFIG);
+    const { itinerary, error } = parseItineraryResponseDetailed(raw);
+
+    if (itinerary) {
+      const { valid, errors } = validateSchema(itinerary, itinerarySchema);
+      if (valid) return { itinerary, attempts: attempt + 1, error: null };
+      lastError = `Schema validation failed: ${errors.slice(0, 4).join('; ')}`;
+    } else {
+      lastError = error;
+    }
+
+    if (attempt === MAX_RETRIES) break;
+
+    console.warn(`WARN  Module 1 attempt ${attempt + 1} rejected (${lastError}); retrying once.`);
+    prompt =
+      `${builtPrompt.prompt}\n\n` +
+      `Error: Your output was invalid JSON. ${lastError}. ` +
+      'Rewrite your exact response as valid JSON.';
+  }
+
+  return { itinerary: null, attempts: MAX_RETRIES + 1, error: lastError };
+}
+
 async function generate(input, demo = false) {
   if (demo) return runPipeline(DEMO_ITINERARY, input, { demo: true, injectionAttempted: false });
 
-  const builtPrompt = buildModule1Prompt(buildConstraints(input));
-  const rawModule1 = await callGemini(builtPrompt.prompt, MODULE1_GENERATION_CONFIG);
-  const itinerary = parseItineraryResponse(rawModule1);
-  if (!itinerary) return { ok: false, stage: 'module1', error: 'Module 1 returned invalid or untagged JSON.', metadata: { injectionAttempted: builtPrompt.injectionAttempted, removed: builtPrompt.removed } };
+  const builtPrompt = buildModule1Prompt(buildConstraints(input), {
+    approvedDiningVenues: APPROVED_DINING_VENUES,
+    canonicalAreas: CANONICAL_AREAS
+  });
+
+  const module1 = await runModule1WithRetry(builtPrompt);
+  const itinerary = module1.itinerary;
+  if (!itinerary) {
+    return {
+      ok: false,
+      stage: 'module1',
+      error: `Module 1 returned invalid JSON after ${module1.attempts} attempt(s): ${module1.error}`,
+      metadata: {
+        injectionAttempted: builtPrompt.injectionAttempted,
+        removed: builtPrompt.removed,
+        module1Attempts: module1.attempts
+      }
+    };
+  }
 
   const validation = runPipeline(itinerary, input, { injectionAttempted: builtPrompt.injectionAttempted, removed: builtPrompt.removed });
   if (!validation.audit) return validation;

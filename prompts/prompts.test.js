@@ -49,27 +49,40 @@ test('Module 1: temperature is 0 and the config is frozen', () => {
   assert.ok(Object.isFrozen(MODULE1_GENERATION_CONFIG));
 });
 
-test('Module 1: is structurally system_rules -> constraints -> itinerary_json', () => {
-  // The system brief legitimately quotes its own tag names (Architecture.md's
-  // original does the same), so match the skeleton rather than counting tags.
+test('Module 1: is structurally system_rules -> constraints', () => {
+  // The trailing <itinerary_json> assistant marker was removed when Module 1
+  // moved to API-level JSON mode: a tag prefix is not valid JSON, so the model
+  // cannot emit one. The input delimiters - which are the actual
+  // injection-resistance mechanism - are unchanged.
   assert.match(
     MODULE1_PROMPT_TEMPLATE,
-    /^<system_rules>[\s\S]*<\/system_rules>\s*<constraints>[\s\S]*<\/constraints>\s*<itinerary_json>\s*$/
+    /^<system_rules>[\s\S]*<\/system_rules>\s*<constraints>[\s\S]*<\/constraints>\s*$/
   );
+  assert.doesNotMatch(MODULE1_PROMPT_TEMPLATE.trimEnd(), /<itinerary_json>\s*$/);
 });
 
-test('Module 1: keeps the verbatim system-brief rules from Architecture.md', () => {
-  assert.match(MODULE1_PROMPT_TEMPLATE, /You are a Japan itinerary structuring assistant\./);
-  assert.match(MODULE1_PROMPT_TEMPLATE, /Never invent a station name\./);
-  assert.match(flat(MODULE1_PROMPT_TEMPLATE), /Never guess a value you cannot support from the user's input Ã¢â‚¬â€ put it in missing_info instead\./);
-  assert.match(flat(MODULE1_PROMPT_TEMPLATE), /Nothing outside that tag is read by downstream systems\./);
+test('Module 1: keeps the system-brief guarantees from Architecture.md', () => {
+  // Updated 2026-09-07. The previous version of this test still asserted the
+  // original wording ("You are a Japan itinerary structuring assistant.",
+  // "Never invent a station name.") and had been failing since the prompt was
+  // rewritten - it was red before the JSON-mode work, not because of it. These
+  // assertions target the guarantees rather than the exact sentences, so a
+  // rewording no longer silently breaks them.
+  const f = flat(MODULE1_PROMPT_TEMPLATE);
+  assert.match(f, /You are a Japan itinerary [\w ]*assistant\./);
+  assert.match(f, /do not (invent|fabricate) a (station|place)/i);
+  assert.match(f, /missing_info/);
+  assert.match(f, /Nothing outside that object is read by downstream systems\./);
 });
 
 test('Module 1: CoT trigger is absent (reasoning-tier model, per Stage 3 model-tier note)', () => {
   // Confirmed with Rohit 2026-09-04: team is on gemini-3.8-flash.
   assert.doesNotMatch(MODULE1_PROMPT_TEMPLATE, /think step by step/i);
   assert.doesNotMatch(MODULE1_PROMPT_TEMPLATE, /First reason step by step/i);
-  assert.match(MODULE1_PROMPT_TEMPLATE, /Output ONLY valid JSON inside <itinerary_json> tags/);
+  assert.match(
+    flat(MODULE1_PROMPT_TEMPLATE),
+    /CRITICAL: Output ONLY raw, strictly valid JSON\./
+  );
 });
 
 test('Module 1: names every field of the Stage 3 output format', () => {
@@ -143,8 +156,9 @@ test('Module 1: a user cannot close the constraints block and open their own rul
   assert.doesNotMatch(block, /<\/?(system_rules|constraints|itinerary_json)\s*>/i);
   assert.ok(block.includes('[removed delimiter]'));
 
-  // The template still ends at exactly one assistant marker.
-  assert.ok(prompt.trimEnd().endsWith('<itinerary_json>'));
+  // The constraints block is the last thing in the prompt now that the
+  // assistant marker is gone; nothing follows it that a user could reach.
+  assert.ok(prompt.trimEnd().endsWith('</constraints>'));
 });
 
 test('Module 1: plain injection text without delimiters stays inside constraints as data', () => {

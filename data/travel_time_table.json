@@ -151,6 +151,214 @@
       "mode": "tram / public transit",
       "source_id": "gmaps-hiroshima-station-peace-park-2026-09-06",
       "source_date": "2026-09-06"
+    },
+    {
+      "ward_a": "Kyoto Station",
+      "ward_b": "Shin-Osaka",
+      "estimated_transit_minutes": 15,
+      "mode": "Shinkansen",
+      "source_id": "PENDING-ulfa-verification",
+      "source_date": null
+    },
+    {
+      "ward_a": "Tokyo Station",
+      "ward_b": "Kyoto Station",
+      "estimated_transit_minutes": 160,
+      "mode": "Hikari Shinkansen",
+      "source_id": "jr-tokyo-kyoto-hikari-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Asakusa",
+      "ward_b": "Sumida",
+      "estimated_transit_minutes": 5,
+      "mode": "Tobu Skytree Line",
+      "source_id": "tobu-asakusa-skytree-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Kyoto Station",
+      "ward_b": "Fushimi",
+      "estimated_transit_minutes": 5,
+      "mode": "JR Nara Line",
+      "source_id": "jr-kyoto-inari-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Dotonbori",
+      "ward_b": "Namba",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "osaka-dotonbori-namba-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Sumida",
+      "ward_b": "Sumida",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Fushimi",
+      "ward_b": "Fushimi",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Arashiyama",
+      "ward_b": "Arashiyama",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Kawaramachi",
+      "ward_b": "Kawaramachi",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Namba",
+      "ward_b": "Namba",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Shinmachi",
+      "ward_b": "Shinmachi",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "same-area-10min-methodology",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Shibuya",
+      "ward_b": "Sumida",
+      "estimated_transit_minutes": 25,
+      "mode": "Tokyo Metro Hanzomon Line",
+      "source_id": "rome2rio-shibuya-skytree-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Shinjuku",
+      "ward_b": "Sumida",
+      "estimated_transit_minutes": 40,
+      "mode": "public transit",
+      "source_id": "rome2rio-shinjuku-skytree-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Tokyo Station",
+      "ward_b": "Sumida",
+      "estimated_transit_minutes": 20,
+      "mode": "Tokyo Metro Marunouchi + Hanzomon Line",
+      "source_id": "rome2rio-tokyo-station-skytree-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Gion",
+      "ward_b": "Fushimi",
+      "estimated_transit_minutes": 10,
+      "mode": "Keihan Main Line",
+      "source_id": "rome2rio-gion-fushimi-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Gion",
+      "ward_b": "Arashiyama",
+      "estimated_transit_minutes": 25,
+      "mode": "public transit",
+      "source_id": "rome2rio-gion-arashiyama-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Gion",
+      "ward_b": "Kawaramachi",
+      "estimated_transit_minutes": 10,
+      "mode": "walking",
+      "source_id": "derived-via-hub-methodology",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Kyoto Station",
+      "ward_b": "Arashiyama",
+      "estimated_transit_minutes": 15,
+      "mode": "JR Sagano Line",
+      "source_id": "kyotostation-sagano-line-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Kyoto Station",
+      "ward_b": "Kawaramachi",
+      "estimated_transit_minutes": 10,
+      "mode": "Karasuma Line subway",
+      "source_id": "rome2rio-kyoto-station-kawaramachi-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Fushimi",
+      "ward_b": "Arashiyama",
+      "estimated_transit_minutes": 45,
+      "mode": "JR Nara Line + JR Sagano Line",
+      "source_id": "onedayaway-fushimi-arashiyama-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Fushimi",
+      "ward_b": "Kawaramachi",
+      "estimated_transit_minutes": 15,
+      "mode": "Keihan Main Line",
+      "source_id": "derived-via-hub-methodology",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Arashiyama",
+      "ward_b": "Kawaramachi",
+      "estimated_transit_minutes": 25,
+      "mode": "Hankyu Arashiyama Line",
+      "source_id": "rome2rio-gion-arashiyama-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Dotonbori",
+      "ward_b": "Shinmachi",
+      "estimated_transit_minutes": 15,
+      "mode": "walking",
+      "source_id": "derived-via-hub-methodology",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Shin-Osaka",
+      "ward_b": "Namba",
+      "estimated_transit_minutes": 15,
+      "mode": "Osaka Metro Midosuji Line",
+      "source_id": "navitime-shinosaka-namba-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Shin-Osaka",
+      "ward_b": "Shinmachi",
+      "estimated_transit_minutes": 20,
+      "mode": "Osaka Metro Midosuji Line",
+      "source_id": "derived-via-hub-methodology",
+      "source_date": "2026-09-07"
+    },
+    {
+      "ward_a": "Namba",
+      "ward_b": "Shinmachi",
+      "estimated_transit_minutes": 15,
+      "mode": "walking",
+      "source_id": "derived-via-hub-methodology",
+      "source_date": "2026-09-07"
     }
   ]
 }

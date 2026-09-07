@@ -81,6 +81,71 @@
       ],
       "source_id": "hiroshima-diverse-dining-2025",
       "source_date": "2026-09-06"
+    },
+    {
+      "venue_name": "Ain Soph. Journey Shinjuku",
+      "ward": "Shinjuku",
+      "tags": [
+        "vegan"
+      ],
+      "source_id": "PENDING-ulfa-verification",
+      "source_date": null
+    },
+    {
+      "venue_name": "The Farm Cafe",
+      "ward": "Asakusa",
+      "tags": [
+        "vegan"
+      ],
+      "source_id": "PENDING-ulfa-verification",
+      "source_date": null
+    },
+    {
+      "venue_name": "Mumokuteki Cafe",
+      "ward": "Kawaramachi",
+      "tags": [
+        "vegan"
+      ],
+      "source_id": "happycow-mumokuteki-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "venue_name": "Shigetsu",
+      "ward": "Arashiyama",
+      "tags": [
+        "vegan"
+      ],
+      "source_id": "happycow-shigetsu-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "venue_name": "Paprika Vegan Dining",
+      "ward": "Shinmachi",
+      "tags": [
+        "vegan"
+      ],
+      "source_id": "insideosaka-paprika-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "venue_name": "OKO Funky Vegan Okonomiyaki",
+      "ward": "Dotonbori",
+      "tags": [
+        "vegan"
+      ],
+      "source_id": "itravelforveganfood-oko-2026-09-07",
+      "source_date": "2026-09-07"
+    },
+    {
+      "venue_name": "ZIRAEL Vegan Restaurant",
+      "ward": "Gion",
+      "tags": [
+        "vegan",
+        "gluten-free"
+      ],
+      "address": "313-7 Gionmachi Kitagawa, Higashiyama-ku, Kyoto",
+      "source_id": "zirael-vegan-gion-2026-09-07",
+      "source_date": "2026-09-07"
     }
   ]
 }
