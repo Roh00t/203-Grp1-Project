@@ -1218,4 +1218,108 @@ Because this stage is explicitly analysis-only, none of these findings has been 
 - `calculator.js`
 - `prompts/module1_itinerary.js`
 - `data/area_vocabulary.json`
+
+---
+
+## 10. Retest Execution: TC15 Harness Fix
+
+**Executed:** 9 September 2026 · **Scope:** Variant C, TC15 only · **Command:** `node --env-file=.env scripts/evaluate-stage6.mjs C TC15`
+
+### Correction to the section-2 diagnosis (F-27)
+
+This retest **disproves the `Likely cause` recorded in F-27**, which read: *"Module 1 produced dining venues whose curated tags were only `vegan` or only `halal`; the deterministic validator correctly rejected all 9 verified dining stops because the requirement is an intersection."*
+
+That was inferred from the test-case title rather than from the run artefact. The stored Stage 6 output shows the validator never received two constraints at all:
+
+```
+required_tags : ["halal and vegan"]      <-- ONE element, not two
+missing_tags  : ["halal and vegan"]
+```
+
+The intersection semantics were never exercised. Every stop failed against a single token that no venue tag can match. F-27's `Likely cause` and `Proposed fix` rows should be superseded by this section.
+
+### The fix
+
+The defect was **not in the test harness** — it was in the application's constraint-parsing layer, `server.mjs`. A real user typing "Halal and Vegan" into the intake form would have hit the identical bug, so this is a genuine system defect, not a test artefact. The section title is retained for continuity with the retest queue.
+
+`server.mjs` wrapped the entire free-text dietary field as a single constraint:
+
+```js
+// before
+validateItinerary(itinerary, data.dietary, data.travelTimes,
+  input.dietary ? [input.dietary] : []);
+```
+
+`"Halal AND Vegan"` therefore became `["Halal AND Vegan"]`, which `normalizeKey()` folds to the single token `"halal and vegan"`. `checkDietaryCompliance()` applies intersection semantics correctly, but it can only intersect the constraints it is given — and it was given one impossible one.
+
+The fix introduces `parseDietaryConstraints()`, which splits the free-text field on `and`, comma, `+`, `&` and `/` before it reaches the validator:
+
+```js
+// after
+function parseDietaryConstraints(value) {
+  return String(value ?? '')
+    .split(/\s+and\s+|\s*[,+&/]\s*/i)
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
+validateItinerary(itinerary, data.dietary, data.travelTimes,
+  parseDietaryConstraints(input.dietary));
+```
+
+This restores the designed behaviour rather than relaxing it: a venue is compliant only when its curated tags satisfy **every** required tag. No validator logic, test case, ground truth, or curated data row was modified. `npm test` remains at 129 passing, 0 failing.
+
+### Resource constraint note
+
+> Due to API credit constraints, a full re-run of all 92 failures was not possible prior to the deadline. However, this specific high-priority retest was executed to validate the architecture's deterministic dietary evaluation.
+
+### The result
+
+| | Before fix (Stage 6 run, 7 Sept) | After fix (retest, 9 Sept) |
+|---|---|---|
+| `inputPayload.dietary` | `"Halal AND Vegan"` | `"Halal AND Vegan"` |
+| `required_tags` | `["halal and vegan"]` (1) | **`["halal","vegan"]` (2)** |
+| `missing_tags` per stop | `["halal and vegan"]` | **`["halal"]`** |
+| `dietary_summary` | `{compliant: 0, non_compliant: 9, unverified: 0}` | `{compliant: 0, non_compliant: 9, unverified: 0}` |
+| Scored dietary | FAIL | FAIL |
+| Scoring lens | `deterministic-validator` | `deterministic-validator` |
+
+Representative per-stop output after the fix:
+
+```
+non_compliant  T's Tantan Tokyo Station     tags=["vegan"]                missing=["halal"]
+non_compliant  ZIRAEL Vegan Restaurant      tags=["vegan","gluten free"]  missing=["halal"]
+non_compliant  Shigetsu                     tags=["vegan"]                missing=["halal"]
+```
+
+**The verdict did not change, and this is the correct outcome.** The retest converts a *parsing artefact* into a *diagnosable finding*:
+
+- Before, the validator reported that 9 stops failed to match an uninterpretable token. The result carried no actionable information.
+- After, it reports precisely which requirement each venue fails — `missing: ["halal"]` — and the intersection logic is demonstrably exercised.
+
+The retest also surfaces the true root cause, which the parsing bug had masked: **only 1 of the 16 curated venues carries both `halal` and `vegan` tags** (`Indian Cuisine Churyakanak`, Peace Memorial Park, Hiroshima), while TC15 is a Tokyo–Kyoto–Osaka itinerary. Against the current curated table this case is **unsatisfiable**, which is exactly what a test titled *"Halal + vegan intersection (restricted options)"* is designed to expose. The remaining failure is a curated-coverage limitation, not a logic defect.
+
+### Revised attribution for TC15 Dietary
+
+| Field | Value |
+|---|---|
+| **Likely cause (revised)** | Application-layer parsing defect in `server.mjs`: a compound free-text dietary requirement was passed to the validator as one constraint. Masked a secondary data-coverage limitation. |
+| **Fix applied** | `parseDietaryConstraints()` splits compound requirements before validation. |
+| **Attribution** | workflow design (primary) + data curation (secondary) |
+| **Retest result** | **RETESTED 9 Sept 2026.** Parsing defect resolved — `required_tags` now `["halal","vegan"]`, `missing_tags` now `["halal"]`. Dietary verdict remains FAIL on legitimate grounds: no curated venue in the itinerary's regions satisfies both tags. |
+
+### Artefacts
+
+Retest evidence is preserved in `results_retest_TC15/`. The 60-run Stage 6 artefacts in `results/` were backed up before the retest and restored afterwards — `results/` still contains the original 60 runs from 7 September, unmodified.
+
+| File | Contents |
+|---|---|
+| `results_retest_TC15/TC15_variant_c_before_fix.json` | Stage 6 output, `required_tags: ["halal and vegan"]` |
+| `results_retest_TC15/TC15_variant_c_after_fix.json` | Retest output, `required_tags: ["halal","vegan"]` |
+| `results_retest_TC15/stage6_evaluation_summary.json` | Single-run summary for the retest |
+| `results_retest_TC15/stage6_evaluation_matrix.csv` | Single-row matrix for the retest |
+
+### Remaining queue
+
+Retest priorities 2–6 in section 5 remain outstanding and unretested. This execution addresses priority 1 only.
 - `data/source_registry.json`

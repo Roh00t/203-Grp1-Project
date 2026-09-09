@@ -225,6 +225,31 @@ async function callGemini(prompt, generationConfig) {
   return text;
 }
 
+/**
+ * Split a free-text dietary requirement into individual constraints.
+ *
+ * The intake field is free text, and both the UI and the Stage 6 scenarios
+ * express a compound requirement as "Halal AND Vegan". Passing that string
+ * through as a SINGLE constraint made it a token no venue tag could ever
+ * match, so every dining stop was reported non_compliant for a parsing reason
+ * rather than a real one (Stage 6 TC15: required_tags was ["halal and vegan"]
+ * and 9 of 9 verified stops were rejected).
+ *
+ * Each requirement must reach the validator separately, because
+ * checkDietaryCompliance applies intersection semantics: a venue is compliant
+ * only when its curated tags satisfy EVERY required tag. Splitting restores
+ * that intended behaviour rather than weakening it.
+ *
+ * @param {string} value e.g. "Halal AND Vegan", "Halal, Vegan", "Vegan"
+ * @returns {string[]} e.g. ["Halal", "Vegan"]
+ */
+function parseDietaryConstraints(value) {
+  return String(value ?? '')
+    .split(/\s+and\s+|\s*[,+&/]\s*/i)
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
 function buildConstraints(input) {
   return [
     `Arrival date: ${input.start || 'not specified'}`,
@@ -256,7 +281,12 @@ function runPipeline(itinerary, input, metadata = {}) {
     return { ok: false, stage: 'schema', error: 'Module 1 output failed schema validation.', details: schemaResult.errors, metadata };
   }
 
-  const validation = validateItinerary(itinerary, data.dietary, data.travelTimes, input.dietary ? [input.dietary] : []);
+  const validation = validateItinerary(
+    itinerary,
+    data.dietary,
+    data.travelTimes,
+    parseDietaryConstraints(input.dietary)
+  );
   const failures = collectFailureLog(validation);
   const segments = itinerary.transit_segments
     .filter((segment) => !isExcludedLocalSegment(segment))

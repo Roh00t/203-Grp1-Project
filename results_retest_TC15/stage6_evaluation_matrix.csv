@@ -1,0 +1,2 @@
+Test Case,Variant,Status,Financial,Financial Method,Dietary,Dietary Method,Geography,Geography Method,Faithfulness,Faithfulness Method,Input Safety,Input Safety Method,Overall Notes
+TC15,C,SUCCESS,FAIL,deterministic-calculator,FAIL,deterministic-validator,PASS,deterministic-validator,FAIL,llm-judge,PASS,llm-judge,"The itinerary successfully navigates Tokyo, Kyoto, and Osaka, but fails to satisfy the dual Halal and Vegan dietary requirement and contradicts the expected JR Pass recommendation."
