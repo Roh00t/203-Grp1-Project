@@ -141,3 +141,29 @@ the local server.
 ## Assignment compliance note
 
 Per the brief's core rule: AI tools implement this design; they do not replace the team's design decisions. `CLAUDE.md` exists specifically to keep any AI building tool inside that boundary.
+
+## End of project speech
+
+## 日本語 (Japanese)
+「限界を決めるのは、いつも自分だ」
+皆さん、今日という日は二度と戻ってきません。今、目の前にある壁から逃げ出そうとしていませんか？「無理だ」「自分には才能がない」そうやって諦める理由を探すのは、もう終わりにしましょう。
+限界を決めているのは、環境でも他人でもありません。あなた自身の心です。
+失敗することは恥ずかしいことではありません。本当に恐れるべきなのは、失敗を恐れて一歩も動かないことです。どんなに小さくてもいい。今日、前へ進むための行動を起こしてください。
+あなたの未来を変えられるのは、他の誰でもない、今この瞬間を生きているあなただけです。泥臭くてもいい、何度倒れてもいい。立ち上がり、自分の可能性を信じ抜いてください。さあ、一歩踏み出しましょう！
+------------------------------
+## English Translation
+"You Are the One Who Sets Your Limits"
+Everyone, today will never come back again. Are you trying to run away from the wall in front of you right now? Stop looking for reasons to give up by saying "It's impossible" or "I don't have the talent."
+It is not your environment or other people that decide your limits. It is your own mind.
+Failure is nothing to be ashamed of. What you should truly fear is standing completely still out of fear of failing. It doesn't matter how small it is—take action to move forward today.
+The only person who can change your future is not anyone else, but you, living in this very moment. It's okay to be messy, and it's okay to fall down many times. Stand back up and believe in your own potential until the very end. Now, take that step forward!
+------------------------------
+## Romaji (Pronunciation Guide)
+"Genkai o kimeru no wa, itsumo jibun da"
+Minasan, kyō to iu hi wa nido to modotte kimasen. Ima, me no mae ni aru kabe kara nigedasō to shite imasen ka? "Muri da" "Jibun ni wa sainō ga nai" sō yatte akirameru riyū o sagasu no wa, mō owari ni shimashō.
+Genkai o kimete iru no wa, kankyō demo tanin demo arimasen. Anata jishin no kokoro desu.
+Shippai suru koto wa hazukashii koto dewa arimasen. Hontō ni osoreru beki na no wa, shippai o osorete ippo mo ugokanai koto desu. Donna ni chiisakute mo ii. Kyō, mae e susumu tame no kōdō o okoshite kudasai.
+Anata no mirai o kaerareru no wa, hoka no dare demo nai, ima kono shunkan o ikite iru anata dake desu. Dorokusakute mo ii, nando taarete mo ii. Tachiagari, jibun no kanōsei o shinjinuite kudasai. Sā, ippo fumidashimashō!
+------------------------------
+
+
