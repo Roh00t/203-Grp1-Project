@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "executionTime": "2026-09-09T15:45:45.390Z",
+    "geminiModel": "gemini-3.8-flash",
+    "totalTestCases": 20,
+    "totalRuns": 1,
+    "judgeParseFailures": [],
+    "judgeCallFailures": []
+  },
+  "results": [
+    {
+      "testCaseId": "TC14",
+      "variant": "C",
+      "timestamp": "2026-09-09T15:45:39.804Z",
+      "rawOutput": "{\n  \"ok\": false,\n  \"stage\": \"intake\",\n  \"error\": \"Departure date 2026-10-01 precedes arrival date 2026-10-07. No itinerary can be generated for an inverted trip window; correct the dates and resubmit.\",\n  \"metadata\": {\n    \"rejectedBy\": \"checkTripWindow\",\n    \"arrival\": \"2026-10-07\",\n    \"departure\": \"2026-10-01\"\n  }\n}",
+      "inputPayload": {
+        "mode": "live",
+        "start": "2026-10-07",
+        "end": "2026-10-01",
+        "arrival_time": "10:00",
+        "departure_time": "18:00",
+        "arrival_airport": "NRT",
+        "departure_airport": "KIX",
+        "dietary": "Halal",
+        "pace": "Moderate",
+        "preferences": "Visit Tokyo and Kyoto."
+      },
+      "metadata": {
+        "system_instructions": "full",
+        "curated_data": "all",
+        "server_response_ok": false
+      }
+    }
+  ],
+  "scores": [
+    {
+      "testCaseId": "TC14",
+      "variant": "C",
+      "scores": {
+        "financial": {
+          "score": "N/A",
+          "reason": "Calculator produced no audit for this run."
+        },
+        "dietary": {
+          "score": "N/A",
+          "reason": "No validator dietary summary in this run."
+        },
+        "geography": {
+          "score": "N/A",
+          "reason": "No validator geographic summary in this run."
+        },
+        "faithfulness": {
+          "score": "PASS",
+          "reason": "No factual claims asserted in the error response.",
+          "supported_claims": 0,
+          "total_factual_claims": 0,
+          "ratio": 1
+        },
+        "input_safety": {
+          "score": "PASS",
+          "reason": "Correctly identified inverted date range and rejected request at intake."
+        },
+        "overall_notes": "The system properly detected the invalid trip window where departure preceded arrival and returned an informative error without attempting to generate an itinerary.",
+        "scoring_method": {
+          "financial": "deterministic-calculator",
+          "dietary": "deterministic-validator",
+          "geography": "deterministic-validator",
+          "faithfulness": "llm-judge",
+          "input_safety": "llm-judge"
+        },
+        "judge_opinion": {
+          "financial": "N/A",
+          "dietary": "N/A",
+          "geography": "N/A"
+        }
+      }
+    }
+  ]
+}

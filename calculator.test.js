@@ -60,6 +60,26 @@ test('sumFares: throws on a segment the fare table does not price', () => {
   assert.throws(() => sumFares(unpriced, FARES_AS_BRIEFED), MissingFareError);
 });
 
+test('REGRESSION (TC05/TC12): a hyphenated station name matches its spaced fare row', () => {
+  const rows = [{ from: 'Namba', to: 'Kansai Airport', service_type: 'Nankai', price_yen: 1410 }];
+  assert.equal(
+    findFare({ from_station: 'Namba', to_station: 'Kansai-Airport', mode: 'Nankai' }, rows).price_yen,
+    1410
+  );
+});
+
+test('REGRESSION (TC05/TC12): hyphenated names stay distinct where they should', () => {
+  const rows = [{ from: 'Shin-Osaka', to: 'Hiroshima', service_type: 'Sakura', price_yen: 10220 }];
+  assert.equal(
+    findFare({ from_station: 'Shin Osaka', to_station: 'Hiroshima', mode: 'Sakura' }, rows).price_yen,
+    10220
+  );
+  assert.throws(
+    () => findFare({ from_station: 'Osaka', to_station: 'Hiroshima', mode: 'Sakura' }, rows),
+    MissingFareError
+  );
+});
+
 test('findFare: refuses to guess when two rows match and the segment is silent', () => {
   const twoServices = [
     { from: 'Tokyo', to: 'Kyoto', service_type: 'Hikari', price_yen: 13970 },

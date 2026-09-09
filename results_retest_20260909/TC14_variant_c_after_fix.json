@@ -1,0 +1,23 @@
+{
+  "testCaseId": "TC14",
+  "variant": "C",
+  "timestamp": "2026-09-09T15:45:39.804Z",
+  "rawOutput": "{\n  \"ok\": false,\n  \"stage\": \"intake\",\n  \"error\": \"Departure date 2026-10-01 precedes arrival date 2026-10-07. No itinerary can be generated for an inverted trip window; correct the dates and resubmit.\",\n  \"metadata\": {\n    \"rejectedBy\": \"checkTripWindow\",\n    \"arrival\": \"2026-10-07\",\n    \"departure\": \"2026-10-01\"\n  }\n}",
+  "inputPayload": {
+    "mode": "live",
+    "start": "2026-10-07",
+    "end": "2026-10-01",
+    "arrival_time": "10:00",
+    "departure_time": "18:00",
+    "arrival_airport": "NRT",
+    "departure_airport": "KIX",
+    "dietary": "Halal",
+    "pace": "Moderate",
+    "preferences": "Visit Tokyo and Kyoto."
+  },
+  "metadata": {
+    "system_instructions": "full",
+    "curated_data": "all",
+    "server_response_ok": false
+  }
+}

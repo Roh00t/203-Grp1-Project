@@ -81,6 +81,7 @@ function segmentLabel(segment) {
 function normaliseStationName(value) {
   return String(value ?? '')
     .trim()
+    .replace(/[-‐-―]/g, ' ')
     .replace(/^Monorail\s+/i, '')
     .replace(/\s+Station$/i, '')
     .replace(/\s+/g, ' ')

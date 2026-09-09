@@ -506,7 +506,33 @@ async function runModule1WithRetry(builtPrompt) {
   return { itinerary: null, attempts: MAX_RETRIES + 1, error: lastError };
 }
 
+/**
+ * Reject an impossible trip window before it reaches the model.
+ *
+ * TC14 supplies a departure date that precedes the arrival date. The old path
+ * noted the problem in missing_info and still returned ok: true with an
+ * invented itinerary. An impossible date range has no valid itinerary, so this
+ * is an error, not a recoverable gap — and catching it deterministically costs
+ * zero API calls rather than one wasted generation.
+ */
+function checkTripWindow(input) {
+  const start = Date.parse(input.start ?? '');
+  const end = Date.parse(input.end ?? '');
+  if (Number.isNaN(start) || Number.isNaN(end)) return null;
+  if (end >= start) return null;
+
+  return {
+    ok: false,
+    stage: 'intake',
+    error: `Departure date ${input.end} precedes arrival date ${input.start}. No itinerary can be generated for an inverted trip window; correct the dates and resubmit.`,
+    metadata: { rejectedBy: 'checkTripWindow', arrival: input.start, departure: input.end }
+  };
+}
+
 async function generate(input, demo = false) {
+  const invalidWindow = checkTripWindow(input);
+  if (invalidWindow) return invalidWindow;
+
   if (demo) return runPipeline(DEMO_ITINERARY, input, { demo: true, injectionAttempted: false });
 
   const constraints = buildConstraints(input);

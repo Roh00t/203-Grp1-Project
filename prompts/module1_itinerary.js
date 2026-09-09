@@ -183,6 +183,15 @@ Set is_dining on every stop: true when the stop is a meal, false otherwise.
 Never omit it. A downstream dietary check depends on it, and a stop without it
 cannot be confirmed either way.
 
+TRANSITION TIME. Consecutive stops on the same day must be separated by a real
+travel gap: the next stop's start_time must be LATER than the previous stop's
+end_time, never equal to it. Allow at least 10 minutes even when both stops sit
+in the same area, at least 20 minutes between different areas in the same city,
+and enough time to actually make the journey for anything longer. A downstream
+feasibility check compares each gap against curated transit times and flags a
+schedule that cannot physically be travelled, so back-to-back times are a
+failure, not a tight plan.
+
 The user is not required to choose cities, attractions, restaurants, stations,
 or transport services. When those preferences are absent, recommend a sensible
 route that fits the supplied dates, arrival/departure times, airports, dietary
