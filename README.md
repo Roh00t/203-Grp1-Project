@@ -29,7 +29,7 @@ Rules for any AI tool building against this repo: [`CLAUDE.md`](./CLAUDE.md)
 
 - **App builder:** Gemini Canvas (no-code/AI-assisted) — implements the UI and wiring; does not decide architecture, prompts, or evaluation, per the assignment's core rule.
 - **LLM:** current Gemini flash-tier model, temperature = 0. Verify the live model ID before building — see `CLAUDE.md`; Gemini 1.5 Pro/Flash are already retired.
-- **Retrieval:** rule-based keyword matching over 17 curated documents. No vector database.
+- **Retrieval:** rule-based keyword matching over 17 curated JSON documents, injected into Module 1's prompt. No vector database. Wired 9 Sept 2026 — **after** the Stage 6 evaluation ran, so the numbers below describe the pre-retrieval build (see `docs/Architecture.md` Stage 4).
 - **Data:** `data/fare_table.json`, `data/dietary_table.json`, `data/travel_time_table.json` (all dated, sourced) and `rag_corpus/` (entry rules, pass terms, dietary notes) — plain structured files, not a database.
 - **Calculator/validator logic:** deterministic functions inside the app — never delegated to the LLM.
 
@@ -53,7 +53,7 @@ data/                      — curated lookup tables (Ulfa)
   fare_table.json, dietary_table.json, travel_time_table.json,
   area_vocabulary.json, source_registry.json, japan_airports.json
   stage6_test_cases.json   — 20 evaluation cases across A/B/C variants (Mutya)
-rag_corpus/                — 17 dated JSON source documents (Ulfa)
+rag_corpus/                — 17 dated JSON documents (retrieval path) + 6 markdown research notes (Ulfa)
 prompts/                   — Module 1 and Module 2 prompt templates
 schema/                    — Module 1 output schema + validator
 scripts/                   — Stage 6 evaluation harness
@@ -89,6 +89,8 @@ Everything in `data/` needs to be manually pasted/uploaded into the Canvas build
 ### Stage 6 results
 
 **Executed:** 7 Sept 2026 · **Model:** `gemini-3.8-flash` · **60/60 runs, 0 errors, 0 judge failures**
+
+> **Build note.** These runs predate the RAG wiring (9 Sept). Variant C here is the full system *minus* prose retrieval. Re-running against the current build is queued, not done.
 
 Artefacts: `results/stage6_evaluation_matrix.csv`, `results/stage6_evaluation_summary.json`,
 `results/variant_{a,b,c}/TC01-TC20.json`

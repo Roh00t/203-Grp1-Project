@@ -1,6 +1,6 @@
 import { createServer } from 'node:http';
 import { readFileSync } from 'node:fs';
-import { readFile } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -72,6 +72,84 @@ const CANONICAL_AREAS = Object.values(areaVocabulary.cities ?? {}).flat();
 const APPROVED_DINING_VENUES = data.dietary.map(
   (row) => `${row.venue_name} (${row.ward}) - ${(row.tags ?? []).join(', ')}`
 );
+
+/**
+ * Prose RAG corpus, loaded once at startup.
+ *
+ * Only the JSON documents enter the retrieval path. They carry the curated
+ * `keywords`, `content`, `source_id` and `source_date` fields that retrieval and
+ * the Faithfulness metric both depend on. The `.md` files in the same directory
+ * are Ulfa's research notes: they contain team-facing hedging ("verify directly
+ * before stating it as fact in the report") that must never reach the model as
+ * reference content.
+ */
+const RAG_CORPUS = await loadRagCorpus();
+
+const RAG_MAX_DOCUMENTS = 4;
+
+async function loadRagCorpus() {
+  const directory = join(ROOT, 'rag_corpus');
+  const filenames = (await readdir(directory)).filter((name) => name.endsWith('.json')).sort();
+  const documents = await Promise.all(
+    filenames.map((name) => readFile(join(directory, name), 'utf8').then(JSON.parse))
+  );
+  return documents.filter((document) => document?.content);
+}
+
+/**
+ * Rule-based keyword retrieval — lexical, not embedding-based, per
+ * Architecture.md Stage 4. The corpus is exact-match jargon (station names, pass
+ * names, "Visit Japan Web"), which substring matching handles well at this
+ * corpus size without the latency and infrastructure of a vector store.
+ *
+ * Ties break on corpus order so the same request always retrieves the same
+ * documents — the A/B/C comparison runs at temperature 0 and a non-deterministic
+ * retrieval step would undo that.
+ */
+function retrieveRagDocuments(queryText, corpus = RAG_CORPUS, limit = RAG_MAX_DOCUMENTS) {
+  const haystack = String(queryText ?? '').toLowerCase();
+  if (!haystack) return [];
+
+  return corpus
+    .map((document, order) => {
+      const terms = [...(document.keywords ?? []), document.title].filter(Boolean);
+      const score = terms.filter((term) => haystack.includes(String(term).toLowerCase())).length;
+      return { document, score, order };
+    })
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score || a.order - b.order)
+    .slice(0, limit)
+    .map((entry) => entry.document);
+}
+
+/**
+ * The text retrieval matches against: the values the user supplied, never the
+ * intake form's field labels. Matching the whole labelled constraint block would
+ * retrieve the entry-procedure documents on every single request, because the
+ * label "Arrival airport:" contains the keyword "arrival" whatever the user
+ * typed — retrieval that always returns the same documents is not retrieval.
+ */
+function buildRetrievalQuery(input) {
+  return [
+    input.arrival_airport,
+    input.departure_airport,
+    input.dietary,
+    input.pace,
+    input.preferences
+  ]
+    .filter(Boolean)
+    .join(' \n');
+}
+
+function formatRagContext(documents) {
+  return documents
+    .map(
+      (document) =>
+        `  - [${document.source_id ?? 'unsourced'} | ${document.source_date ?? 'undated'}] ` +
+        `${document.title}: ${document.content}`
+    )
+    .join('\n');
+}
 
 /**
  * Bounded at 1 by design. A second Module 1 call is the entire cost exposure of
@@ -431,9 +509,12 @@ async function runModule1WithRetry(builtPrompt) {
 async function generate(input, demo = false) {
   if (demo) return runPipeline(DEMO_ITINERARY, input, { demo: true, injectionAttempted: false });
 
-  const builtPrompt = buildModule1Prompt(buildConstraints(input), {
+  const constraints = buildConstraints(input);
+  const retrieved = retrieveRagDocuments(buildRetrievalQuery(input));
+  const builtPrompt = buildModule1Prompt(constraints, {
     approvedDiningVenues: APPROVED_DINING_VENUES,
-    canonicalAreas: CANONICAL_AREAS
+    canonicalAreas: CANONICAL_AREAS,
+    ragContext: formatRagContext(retrieved)
   });
 
   const module1 = await runModule1WithRetry(builtPrompt);
@@ -451,11 +532,18 @@ async function generate(input, demo = false) {
     };
   }
 
-  const validation = runPipeline(itinerary, input, { injectionAttempted: builtPrompt.injectionAttempted, removed: builtPrompt.removed });
+  const retrievedDocuments = retrieved.map((document) => ({
+    document_id: document.document_id ?? null,
+    title: document.title ?? null,
+    source_id: document.source_id ?? null,
+    source_date: document.source_date ?? null
+  }));
+
+  const validation = runPipeline(itinerary, input, { injectionAttempted: builtPrompt.injectionAttempted, removed: builtPrompt.removed, retrievedDocuments });
   if (!validation.audit) return validation;
 
   const module2Text = await callGemini(buildModule2Prompt(validation.audit), MODULE2_GENERATION_CONFIG);
-  return runPipeline(itinerary, input, { injectionAttempted: builtPrompt.injectionAttempted, removed: builtPrompt.removed, module2Text });
+  return runPipeline(itinerary, input, { injectionAttempted: builtPrompt.injectionAttempted, removed: builtPrompt.removed, retrievedDocuments, module2Text });
 }
 
 async function serveStatic(request, response) {
