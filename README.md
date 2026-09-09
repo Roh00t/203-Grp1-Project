@@ -5,7 +5,7 @@ Presentation: 10 Sept 2026 · Report due: 18 Sept 2026
 
 ## What this is
 
-A Japan travel planning tool built around one verifiable claim a general-purpose chatbot can't make: whether a transit pass is worth it for *your specific route*, calculated against real fares — not a guess. Full design and rationale: [`Architecture.md`](./Architecture.md).
+A Japan travel planning tool built around one verifiable claim a general-purpose chatbot can't make: whether a transit pass is worth it for *your specific route*, calculated against real fares — not a guess. Full design and rationale: [`Architecture.md`](./docs/Architecture.md).
 
 ## Why this isn't just an AI wrapper
 
@@ -22,7 +22,7 @@ ChatGPT can suggest a Japan itinerary in one message. It has no mechanism to gua
 | Constraint Validator | Non-LLM | Dietary and geographic/time feasibility checks against curated lookup tables |
 | **Pass ROI Auditor** (flagship) | LLM + calculator | Sums real per-segment fares and verdicts on transit passes, math shown |
 
-Full specs, prompts, and design rationale: [`Architecture.md`](./Architecture.md)
+Full specs, prompts, and design rationale: [`Architecture.md`](./docs/Architecture.md)
 Rules for any AI tool building against this repo: [`CLAUDE.md`](./CLAUDE.md)
 
 ## Tech stack
@@ -36,12 +36,30 @@ Rules for any AI tool building against this repo: [`CLAUDE.md`](./CLAUDE.md)
 ## Repo contents
 
 ```
-architecture.md      — full system design, Stages 1-7 of the assignment brief
-CLAUDE.md             — locked decisions for any AI coding/building tool
-README.md             — this file
-fare_table.json        — curated fare data (Ulfa)
-rag_corpus/            — 17 dated source documents (Ulfa)
-test_cases.json        — 20 evaluation cases across A/B/C variants (Mutya)
+README.md                  — this file
+CLAUDE.md                  — locked decisions for any AI coding/building tool
+
+docs/                      — all project documentation
+  Architecture.md          — full system design, Stages 1-7 of the assignment brief
+  Guardrails.md            — runtime safety boundaries and refusal behaviours
+  STAGE7_FAILURE_ANALYSIS.md — Stage 7 failure analysis and TC15 retest
+  EVALUATION_PIPELINE.md   — Stage 6 harness guide
+  QUICK_REFERENCE.md       — quick commands & team status
+  STAGE_COMPLETION_CHECKLIST.md, DELIVERY_SUMMARY.md, progress.md
+  CURATION_NOTES.md        — data curation and sourcing notes (Ulfa)
+  slides_notes.md          — PE6203 lecture notes (reference only)
+
+data/                      — curated lookup tables (Ulfa)
+  fare_table.json, dietary_table.json, travel_time_table.json,
+  area_vocabulary.json, source_registry.json, japan_airports.json
+  stage6_test_cases.json   — 20 evaluation cases across A/B/C variants (Mutya)
+rag_corpus/                — 17 dated JSON source documents (Ulfa)
+prompts/                   — Module 1 and Module 2 prompt templates
+schema/                    — Module 1 output schema + validator
+scripts/                   — Stage 6 evaluation harness
+results/                   — Stage 6 run artefacts (60 runs)
+results_retest_TC15/       — TC15 retest evidence (before/after)
+server.mjs, calculator.js, validator.js — application and deterministic modules
 ```
 
 Everything in `data/` needs to be manually pasted/uploaded into the Canvas build session — Canvas does not pull live from this repo. **This repo is the single source of truth.** Only Ulfa edits these files directly; everyone else pulls the latest copy before pasting into Canvas rather than hand-editing a local version.
@@ -103,7 +121,7 @@ Artefacts: `results/stage6_evaluation_matrix.csv`, `results/stage6_evaluation_su
    the error is not serialised, so the cause is unreadable. TC12 is a Nozomi supplement
    test, so that flagship check remains unexercised.
 
-**Latest:** See [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) for team action items.
+**Latest:** See [QUICK_REFERENCE.md](./docs/QUICK_REFERENCE.md) for team action items.
 
 ## Stage 6 Evaluation
 
@@ -119,9 +137,9 @@ npm run evaluate:stage6:variant-a    # Minimal LLM only
 ```
 
 **Documentation:**
-- [EVALUATION_PIPELINE.md](./EVALUATION_PIPELINE.md) — Full guide (20 test cases, scoring criteria, integration)
-- [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) — Quick commands & status
-- [STAGE_COMPLETION_CHECKLIST.md](./STAGE_COMPLETION_CHECKLIST.md) — Team checklist & blockers
+- [EVALUATION_PIPELINE.md](./docs/EVALUATION_PIPELINE.md) — Full guide (20 test cases, scoring criteria, integration)
+- [QUICK_REFERENCE.md](./docs/QUICK_REFERENCE.md) — Quick commands & status
+- [STAGE_COMPLETION_CHECKLIST.md](./docs/STAGE_COMPLETION_CHECKLIST.md) — Team checklist & blockers
 
 **Output:** `results/` folder with raw proof (60 JSON files) + CSV summary ready for report integration.
 

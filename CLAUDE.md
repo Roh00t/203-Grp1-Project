@@ -1,10 +1,10 @@
 # CLAUDE.md — Project Context for AI Assistants
 
-This file is for any AI tool (Claude Code, Gemini Canvas, or otherwise) implementing this project. Read `architecture.md` first for full detail — this file states what's locked and what you're allowed to touch.
+This file is for any AI tool (Claude Code, Gemini Canvas, or otherwise) implementing this project. Read `docs/Architecture.md` first for full detail — this file states what's locked and what you're allowed to touch.
 
 ## What this project is
 
-A Japan travel itinerary planner for PE6203 Group Project 1 ("Design Your Own Generative AI Application"). Full design lives in `architecture.md`. The flagship feature is the Pass ROI Auditor — a real fare-calculator (Program-of-Thoughts pattern) that verifies whether a transit pass is worth it for a specific itinerary, using real prices rather than an LLM's guess, with every factual claim traceable to a dated source (Faithfulness).
+A Japan travel itinerary planner for PE6203 Group Project 1 ("Design Your Own Generative AI Application"). Full design lives in `docs/Architecture.md`. The flagship feature is the Pass ROI Auditor — a real fare-calculator (Program-of-Thoughts pattern) that verifies whether a transit pass is worth it for a specific itinerary, using real prices rather than an LLM's guess, with every factual claim traceable to a dated source (Faithfulness).
 
 ## Hard rule from the assignment brief
 
@@ -26,7 +26,7 @@ AI tools may **implement** this design. They may **not** redesign the architectu
 - **Constraint Validator: unmatched venue or ward pair always resolves to `"unverified"`, never a silent pass or fail.** This is the rule that keeps the 100%/90% dietary and geographic claims honest given incomplete curated coverage. Do not let an unmatched lookup default to "compliant" for convenience.
 - **Constraint Validator never uses itinerary-derived strings as anything but plain lookup keys** — no `eval`, no dynamic code construction from venue/ward names, regardless of what the upstream neutralizer catches or misses.
 - **`is_dining` is a required field on every Module 1 stop**, not optional. A missing value is a schema error, not a silently-unverified dietary check. Any Stage 6 test output generated before this was added needs regenerating — tell Mutya.
-- **Before starting any Claude Code session on this repo, confirm your local `architecture.md` and `CLAUDE.md` match the latest versions given to you — diff them if unsure.** A stale local copy, not a data or communication problem, is what caused the `ward` vs `ward_or_city` churn in the Constraint Validator build. This step is now mandatory before every session, not just this one.
+- **Before starting any Claude Code session on this repo, confirm your local `docs/Architecture.md` and `CLAUDE.md` match the latest versions given to you — diff them if unsure.** A stale local copy, not a data or communication problem, is what caused the `ward` vs `ward_or_city` churn in the Constraint Validator build. This step is now mandatory before every session, not just this one.
 
 ## Explicitly rejected — do not add these mid-build even if they seem like an improvement
 
@@ -41,7 +41,7 @@ AI tools may **implement** this design. They may **not** redesign the architectu
 
 ## Resolved decisions
 
-- **Model tier:** reasoning-tier model confirmed. Module 1's explicit CoT trigger is dropped by design — this is documented in `architecture.md` as a decision, not an omission.
+- **Model tier:** reasoning-tier model confirmed. Module 1's explicit CoT trigger is dropped by design — this is documented in `docs/Architecture.md` as a decision, not an omission.
 - **Model ID:** `gemini-3.8-flash` confirmed live as of 4 Sept 2026 (released 2 Sept 2026). Still read from an environment variable, never hardcoded — no replacement is announced yet, but this space has moved roughly every 3-10 weeks this year.
 - **Delimiter neutralizer implemented.** User input is sanitized to strip any `<system_rules>`, `<constraints>`, or `<itinerary_json>` sequence before insertion, with attempts logged as `injectionAttempted` for Stage 7. Verify it catches case variants, whitespace-split tags, and Unicode lookalikes before treating this as fully closed — an exact-string-only filter has a known bypass.
 
@@ -50,7 +50,7 @@ AI tools may **implement** this design. They may **not** redesign the architectu
 - Presentation: **10 September 2026.** Report due: **18 September 2026.**
 - **Stage 6 is complete.** Executed 7 Sept 2026 on `gemini-3.8-flash`: 60/60 runs (20 cases x 3 variants), 0 errors, 0 judge failures. Results in `results/`. Variant C met the Geographic Plausibility target (95%); Financial Accuracy (57.1%), Dietary Adherence (95%) and Faithfulness (15.8% of cases / 65.6% of claims) missed theirs, each with a documented cause carried into Stage 7. Headline A/B/C result: A and B carry **zero** evidence pointers across 1,166 factual claims; C backs 410 of 625.
 - **Stage 7 is unblocked** and owned by Karthik — analysis only, no retests (API credits reserved for the demo).
-- Architecture is decided as of this file (see `architecture.md`). Building starts now.
+- Architecture is decided as of this file (see `docs/Architecture.md`). Building starts now.
 - Report needs a cover page (team names, emails, per-member contribution) — doesn't count toward the 10-page limit, but don't forget it late.
 
 ## When in doubt

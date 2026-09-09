@@ -4,7 +4,7 @@
 
 ## Scope and methodology
 
-This analysis uses the Stage 6 artefacts exactly as produced. No test cases, ground truth, prompts, fare data, validator logic, or calculator logic were modified, and no API retests were performed. Retest results therefore remain `NOT RETESTED — see retest queue`.
+This analysis uses the Stage 6 artefacts exactly as produced. No test cases, ground truth, prompts, fare data, validator logic, or calculator logic were modified. No API retests were performed initially; however, one targeted retest (TC15) was subsequently executed to verify failure mechanisms—see §10. All other retest results remain `NOT RETESTED — see retest queue`.
 
 Stage 6 contains 60 successful runs (20 cases × 3 variants), with 0 errored runs and 0 judge parse/call failures. Variant C uses deterministic scoring for Financial, Dietary, and Geography; all Faithfulness and Input Safety scoring uses the LLM judge. Variants A and B are prose-only and are judged by the LLM for all criteria.
 
@@ -1212,10 +1212,10 @@ Because this stage is explicitly analysis-only, none of these findings has been 
 - `results/stage6_evaluation_matrix.csv`
 - `results/variant_a/TCxx.json`, `results/variant_b/TCxx.json`, `results/variant_c/TCxx.json`
 - `data/stage6_test_cases.json`
-- `Architecture.md`
-- `CLAUDE.md`
-- `Guardrails.md`
-- `EVALUATION_PIPELINE.md`
+- `docs/Architecture.md`
+- `CLAUDE.md` (repo root)
+- `docs/Guardrails.md`
+- `docs/EVALUATION_PIPELINE.md`
 - `validator.js`
 - `calculator.js`
 - `prompts/module1_itinerary.js`

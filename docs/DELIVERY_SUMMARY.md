@@ -270,7 +270,7 @@ cp Architecture.md report_template.md
 2. **[EVALUATION_PIPELINE.md](./EVALUATION_PIPELINE.md)** — 15 min read, complete guide
 3. **[STAGE_COMPLETION_CHECKLIST.md](./STAGE_COMPLETION_CHECKLIST.md)** — 10 min read, status + blockers
 4. **[Architecture.md](./Architecture.md)** — Design (reference for report)
-5. **[CLAUDE.md](./CLAUDE.md)** — Locked decisions (reference)
+5. **[CLAUDE.md](../CLAUDE.md)** — Locked decisions (reference)
 
 ---
 
