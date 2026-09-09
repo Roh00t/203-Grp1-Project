@@ -1,0 +1,5 @@
+.DS_Store
+.env
+.gitattributes
+results_backup_*/
+node_modules/

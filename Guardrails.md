@@ -18,7 +18,7 @@
 ## 2. Defense Mechanisms (mapped to the threats above)
 
 - **Delimiter separation, now with active sanitization.** `<system_rules>` / `<constraints>` / `<itinerary_json>` (per `architecture.md`) keep user input structurally separated from system instructions. This is implemented, not just structural convention: user input is stripped of any injected delimiter sequences before insertion, and attempts are logged (`injectionAttempted`) for Stage 7. **Confirm this catches case variants, whitespace-split tags, and Unicode lookalikes** — an exact-string-only filter has a known bypass, and this is worth Rohit's direct review given the domain.
-- **Schema-only output.** Module 1 and Module 2 only emit content inside their designated tags; anything outside is discarded, not displayed. This closes most prompt-leaking attempts by construction — there's no "explain yourself" output channel to exploit.
+- **Schema-constrained output.** Module 1 uses API-level JSON mode with a `responseSchema`: the model cannot emit a markdown fence, conversational preamble, or a missing required field even if the prompt is ignored. This is strictly stronger than the tag convention it replaced, because the constraint is enforced by the API rather than by instruction-following. Module 2 remains tag-delimited (`<explanation_json>`) with local extraction; anything outside the tag is discarded, not displayed. Module 1's parser still *accepts* the historic tagged form for backward compatibility, but no longer depends on it. Either way there is no "explain yourself" output channel to exploit.
 - **Refusal templates** (Section 3) for payments, legal/visa advice, and unrelated topics.
 - **Faithfulness / evidence field.** Every factual claim carries a source; claims without one are flagged to the user, never stated as plain fact.
 
@@ -38,6 +38,8 @@
 - **In scope:** "Do I need to use Visit Japan Web?" — factual entry-procedure question.
 - **Out of scope:** "Will my criminal record get me denied entry?" — a legal determination requiring actual counsel, not a travel-planning answer.
 - **Out of scope:** "Can I extend my visa while I'm there?" — an immigration process question beyond entry logistics.
+
+**Coverage disclaimer.** While four adversarial refusal behaviors are defined, three categories—system-prompt extraction, payment processing requests, and visa/legal boundary advice—remain intentionally untested due to project scoping. The test suite provides no empirical evidence that the system safely passes these categories. The fourth category (embedded instruction) is tested only for the exact-literal form; per §7 the case-variant, whitespace-split and Unicode-lookalike variants remain outstanding.
 
 **Do not key refusals off a single keyword** (e.g., blocking anything containing "visa"). A blunt keyword filter refuses legitimate in-scope questions along with the out-of-scope ones — this exact failure mode is in the pre-mortem below. Match the category, not the word.
 

@@ -30,6 +30,8 @@ Per the Stage 7 plan, `FAIL` means the check ran and the system got it wrong. `N
 | C | Faithfulness | 19 | 3 | 16 | 1 | 15.8% | ≥90% |
 | C | Input Safety | 20 | 19 | 1 | 0 | 95.0% | — |
 
+*Variant C Dietary re-executed 9 Sept 2026 for TC15 only; verdict unchanged (FAIL) with a corrected diagnosis — see §10. Counts above are unchanged by the retest.*
+
 **Important scoring-lens note.** Variant C's Financial/Dietary/Geography results are deterministic outputs from the calculator/validator; A and B are prose outputs and therefore use the LLM judge for those criteria. Variant C's `judge_opinion` is retained separately but is not the deterministic headline score.
 
 ### Stage 6 headline interpretation
@@ -362,10 +364,10 @@ Failures are ordered by the requested priority: Financial → Dietary → Geogra
 | **Input** | `TC15` — exact `user_scenario` is the ground-truth input in `data/stage6_test_cases.json`. Title: **Halal + vegan intersection (restricted options)**. |
 | **Expected behaviour** | Halal + Vegan - very restricted |
 | **Actual behaviour** | 9 of 9 verified dining stops violate the dietary constraint. |
-| **Likely cause** | Module 1 produced dining venues whose curated tags were only `vegan` or only `halal`; the deterministic validator correctly rejected all 9 verified dining stops because the requirement is an intersection (`halal` AND `vegan`). |
-| **Proposed fix** | Strengthen Module 1's dietary instruction to treat multiple requirements as a hard intersection, and preferably constrain restaurant selection to venues whose curated tags contain every required tag before emitting the itinerary. |
-| **Attribution** | better prompt + retrieval/data curation |
-| **Retest result** | `NOT RETESTED — see retest queue` |
+| **Likely cause** | **Superseded by §10 — see the retest.** The original entry attributed this to correct intersection rejection. The stored artefact disproves that: `required_tags` was `["halal and vegan"]`, a single unparsed token, so the intersection logic was never exercised. Root cause was an application-level parsing defect in `server.mjs`, which passed the whole free-text dietary field as one constraint. |
+| **Proposed fix** | Applied. `parseDietaryConstraints()` splits compound requirements on `and`, `,`, `+`, `&`, `/` before validation. See §10. |
+| **Attribution** | workflow design (primary) + data curation (secondary) |
+| **Retest result** | **RETESTED 9 Sept 2026 — see §10.** Parsing defect resolved; dietary verdict remains FAIL on legitimate grounds (no curated venue in the itinerary's regions carries both tags). |
 
 ### F-28 · TC06 · Variant A · Geography
 
@@ -1157,8 +1159,8 @@ These results must not be counted as Stage 7 failures.
 | Source of improvement / limitation | Count of failure instances primarily attributable | Representative cases |
 |---|---:|---|
 | Better prompts | 22 | A/B Financial failures; A/TC06 Dietary; A/TC06 Geography; A/TC06 Input Safety |
-| Better few-shot examples / retrieval | 1 | C/TC15 Dietary; the curated venue set does not contain a venue satisfying both tags |
-| Better workflow design | 5 | TC14 invalid-date handling across A/B/C; B/TC14 Geography; C/TC16 scheduling |
+| Better few-shot examples / retrieval | 0 | — (C/TC15 Dietary reattributed to workflow design after the 9 Sept retest; see §10) |
+| Better workflow design | 6 | TC14 invalid-date handling across A/B/C; B/TC14 Geography; C/TC16 scheduling; C/TC15 Dietary (application-level parsing defect, retested 9 Sept — see §10) |
 | Other — data curation / ground truth / evidence provenance | 62 | A/B Faithfulness baseline; C Faithfulness source-date gaps; C Financial expectation conflicts |
 
 **Interpretation:** these counts are counts of failure instances, not claims that every instance was caused by a unique defect. The dominant finding is that A/B lack the evidence-producing architecture entirely, while Variant C exposes much stronger deterministic controls but still depends on curated data and correctly specified ground truth.
@@ -1167,7 +1169,7 @@ These results must not be counted as Stage 7 failures.
 
 | Priority | Case(s) | Fix to apply first | Command | Est. API calls |
 |---:|---|---|---|---:|
-| 1 | TC15 | Fix dietary intersection handling / venue selection; verify every dining stop has both required tags. | `node scripts/evaluate-stage6.mjs C TC15` | ~2 |
+| 1 | TC15 | **EXECUTED 9 Sept 2026 — see §10.** Original fix description ("dietary intersection handling / venue selection") was superseded: the actual defect was `server.mjs` passing the free-text dietary field as one unparsed constraint. Fixed via `parseDietaryConstraints()`. Verdict remains FAIL on legitimate grounds. | `node scripts/evaluate-stage6.mjs C TC15` (already run) | 2 (spent) |
 | 2 | TC16 | Enforce ≥10-minute same-day transition buffers and regenerate. | `node scripts/evaluate-stage6.mjs C TC16` | ~2 |
 | 3 | TC14 | Add deterministic invalid-date rejection before itinerary generation. | `node scripts/evaluate-stage6.mjs C TC14` | ~2 |
 | 4 | TC05, TC08, TC10, TC12 | Repair/complete fare-table coverage for the missing airport/ferry segments, then rerun calculator cases. | `node scripts/evaluate-stage6.mjs C TC05` / `TC08` / `TC10` / `TC12` | ~2 each |

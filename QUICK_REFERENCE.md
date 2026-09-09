@@ -133,7 +133,7 @@ PORT=4000 npm start                  # Custom port
 - `data/fare_table.json` — Real fares + supplements
 - `data/dietary_table.json` — Halal/Vegan venues
 - `data/travel_time_table.json` — Transit feasibility
-- `rag_corpus/` — 15–20 source documents
+- `rag_corpus/` — 17 source documents
 
 ### Code (Rohit owns)
 - `prompts/module1_itinerary.js` — LLM prompt

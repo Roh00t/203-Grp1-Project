@@ -67,7 +67,7 @@ This is the core deliverable. A production-ready testing harness for all 60 test
 
 #### 🤖 **Evaluation Infrastructure**
 
-- **LLM Judge:** Automatic scoring against rubric (4 criteria)
+- **LLM Judge:** Automatic scoring against rubric (5 criteria)
 - **Proof Storage:** All raw outputs preserved in `results/variant_X/`
 - **CSV Export:** Scored results in Excel-ready format
 - **JSON Summary:** Consolidated metadata for report integration

@@ -13,7 +13,7 @@ This document is structured to match the assignment brief's own stage numbering 
 
 **Target user:** First-time and returning international travelers planning a multi-city Japan trip, with dietary constraints, deciding between regional transit passes and point-to-point tickets.
 
-**Success criteria — the 4 fixed evaluation criteria (applied identically to Variants A, B, and C in Stage 6):**
+**Success criteria — the 4 targeted evaluation criteria, plus a reported 5th (input safety):**
 
 | # | Criterion | Target | Why this target, not a different one |
 |---|---|---|---|
@@ -21,6 +21,7 @@ This document is structured to match the assignment brief's own stage numbering 
 | 2 | Constraint adherence (dietary) | 100% of recommended venues pass the dietary hard-filter | Honest 100% because it's a lookup against a curated list, not an LLM asked to remember dietary rules |
 | 3 | Geographic plausibility | ≥90% of stop-to-stop transitions pass the feasibility check; failures are flagged to the user, never silently shown as fine | We claim high accuracy plus honest flagging — defensible under direct questioning, unlike a zero-failure claim |
 | 4 | Faithfulness (grounding) | ≥90% of factual/numeric claims carry a verifiable evidence pointer to a dated source | See Stage 6 — this is the course's own Faithfulness metric, not an invented one |
+| 5 | Input safety (reported) | No numeric target | Added deliberately beyond the brief's four criteria to measure resilience against prompt-injection attempts. Reported rather than targeted: no threshold was set before the run, and setting one afterwards would be post-hoc target-fitting. |
 
 **Why this beats "just ask ChatGPT":** A chat session can suggest a trip and *estimate* whether a pass is worth it. It has no mechanism to guarantee that estimate reflects this week's real fares — it's pattern-matching on training data. This system's flagship claim, and the line to open the demo with: **"ChatGPT can suggest a trip. It can't audit it — and it can't show you which of its claims are actually backed by a source."** Both halves of that claim (verified math, verified sourcing) come from mechanisms below, not from a bigger model.
 
@@ -115,9 +116,9 @@ Validator        (Program-of-Thoughts: calculator + LLM explainer)
 ## Stage 4 — RAG / In-Context Learning
 
 - **Fare data:** a structured table (CSV/JSON) — station-pair → yen amount, dated, sourced from official JR fare pages. Looked up directly by the calculator, not retrieved via embeddings. **Required fields per row, confirmed during implementation:** `service_type` (Nozomi/Hikari/Kodama/Sakura — needed for the pass-supplement rule), `supplement_yen` (Nozomi/Mizuho rows only — the fee varies by distance, so this can't be a single constant), `source_id`, `source_date`. A missing `supplement_yen` on a Nozomi/Mizuho row is a hard error (`MissingSupplementDataError`), not a silent guess — the calculator refuses to produce a verdict on incomplete data rather than invent a number. This is the correct behavior; do not change it to a fallback default.
-- **Initial dataset delivered** (`data/fare_table.json`, `data/dietary_table.json`, `data/travel_time_table.json`, `rag_corpus/`): covers the Tokyo–Kyoto–Osaka–Hiroshima golden route, 9 real halal/vegan venues, 6 sourced RAG documents. Stated gaps, not hidden ones: Shin-Osaka↔Hiroshima's Nozomi supplement is left `null` on purpose (throws rather than guesses); dietary coverage is Asakusa/Shibuya/Shinjuku only (Shin-Okubo named as a gap); same-ward travel times are reasonable defaults, not researched facts.
-- **Prose RAG (15–20 documents):** Visit Japan Web / entry procedures, regional pass terms, dietary venue lists.
-- **Retrieval method: rule-based keyword matching, not a vector database.** This is a reasoned choice, not just a time-saver: the course material frames lexical/TF-IDF-style retrieval as the correct tool specifically for "exact-string matching for unique identifiers... and specialized jargon" — station names, pass names, and terms like "Visit Japan Web" are exactly that category of exact-match jargon. A dense/embedding retriever would add latency and infrastructure risk to solve a matching problem lexical search already solves well at this corpus size (15–20 docs).
+- **Initial dataset delivered** (`data/fare_table.json`, `data/dietary_table.json`, `data/travel_time_table.json`, `rag_corpus/`): covers the Tokyo–Kyoto–Osaka–Hiroshima golden route, 16 real halal/vegan venues (14 carrying a dated source; 2 pending Ulfa's verification and correctly counted as unsourced by the Faithfulness metric), 17 sourced RAG documents. Stated gaps, not hidden ones: Shin-Osaka↔Hiroshima's Nozomi supplement is left `null` on purpose (throws rather than guesses); dietary coverage spans 11 areas across 4 cities (Arashiyama, Asakusa, Dotonbori, Gion, Hiroshima Station, Kawaramachi, Kyoto Station, Peace Memorial Park, Shinjuku, Shinmachi, Tokyo Station), with Shin-Okubo named as a gap; same-ward travel times are reasonable defaults, not researched facts.
+- **Prose RAG (17 curated documents):** Visit Japan Web / entry procedures, regional pass terms, dietary venue lists.
+- **Retrieval method: rule-based keyword matching, not a vector database.** This is a reasoned choice, not just a time-saver: the course material frames lexical/TF-IDF-style retrieval as the correct tool specifically for "exact-string matching for unique identifiers... and specialized jargon" — station names, pass names, and terms like "Visit Japan Web" are exactly that category of exact-match jargon. A dense/embedding retriever would add latency and infrastructure risk to solve a matching problem lexical search already solves well at this corpus size (17 docs).
 - **Every document carries a retrieval date.** Numeric claims from a stale document trigger a "verify before travel" flag rather than being stated as current fact — e.g., the JR Pass price hike applies to overseas-agency purchases only, not the official online site; that caveat lives in the snippet, not lost in generation.
 
 ---
@@ -134,10 +135,14 @@ Validator        (Program-of-Thoughts: calculator + LLM explainer)
 
 **20 test cases**, covering: normal (golden-route itineraries), ambiguous ("snow and beaches in 4 days"), missing-information (no departure airport), conflicting-constraint (vegan diet + a request for authentic Kobe beef), adversarial (a request to process an actual payment or a fake credit-card string).
 
-**3 variants, same 20 cases, same 4 criteria — never a different evaluation lens per variant:**
+**3 variants, same 20 cases, same criteria — the scoring lens is dictated by what each variant can emit, never chosen per variant for convenience:**
 - **A** — bare LLM: no system prompt, no RAG, no validator.
 - **B** — structured prompts only: no RAG, no validator.
 - **C** — full system as specified in this document.
+
+Comparing Variant C (deterministic scoring) against Variants A and B (LLM-judged scoring) was a controlled design choice. Variants A and B produce unstructured prose, requiring an LLM-judge. Variant C's architecture enforces structured output, enabling superior deterministic scoring. This asymmetry is also what exposed defects in the ground-truth benchmark: the calculator refuses to guess where a judge might defer to the stated expectation.
+
+Concretely: Variant C's deterministic scorer reports Financial as `N/A` — not a guessed PASS — on 6 of 20 cases (TC05, TC08, TC10, TC12, TC13, TC14) where a fare-table coverage gap or a non-binary expected value made a verdict impossible to compute, which is why Financial Accuracy is honestly reported over a 14-case denominator (57.1%, 8/14) rather than inflated over 20. It also produced 6 genuine `FAIL` verdicts (TC01, TC04, TC11, TC15, TC17, TC18) with large margins — e.g. TC04 compares ¥17,640 of tickets against a ¥53,990 pass — that Stage 7 attributes to likely ground-truth labelling errors rather than calculator defects, a finding only possible because the scorer does not defer to the stated expectation the way a judge would. Enforcing structured output on A and B was rejected deliberately: Variant A is defined as a bare LLM with no system prompt, so adding a response schema would convert it into Variant B and collapse the comparison.
 
 **Faithfulness — formalized:**
 ```

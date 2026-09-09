@@ -29,7 +29,7 @@ Rules for any AI tool building against this repo: [`CLAUDE.md`](./CLAUDE.md)
 
 - **App builder:** Gemini Canvas (no-code/AI-assisted) — implements the UI and wiring; does not decide architecture, prompts, or evaluation, per the assignment's core rule.
 - **LLM:** current Gemini flash-tier model, temperature = 0. Verify the live model ID before building — see `CLAUDE.md`; Gemini 1.5 Pro/Flash are already retired.
-- **Retrieval:** rule-based keyword matching over ~15–20 curated documents. No vector database.
+- **Retrieval:** rule-based keyword matching over 17 curated documents. No vector database.
 - **Data:** `data/fare_table.json`, `data/dietary_table.json`, `data/travel_time_table.json` (all dated, sourced) and `rag_corpus/` (entry rules, pass terms, dietary notes) — plain structured files, not a database.
 - **Calculator/validator logic:** deterministic functions inside the app — never delegated to the LLM.
 
@@ -40,7 +40,7 @@ architecture.md      — full system design, Stages 1-7 of the assignment brief
 CLAUDE.md             — locked decisions for any AI coding/building tool
 README.md             — this file
 fare_table.json        — curated fare data (Ulfa)
-rag_corpus/            — 15-20 dated source documents (Ulfa)
+rag_corpus/            — 17 dated source documents (Ulfa)
 test_cases.json        — 20 evaluation cases across A/B/C variants (Mutya)
 ```
 

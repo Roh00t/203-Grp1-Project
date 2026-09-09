@@ -89,7 +89,7 @@ node scripts/evaluate-stage6.mjs --judge-only
 
 ---
 
-## Evaluation Criteria (4 Fixed Metrics)
+## Evaluation Criteria (5 Metrics — 4 Targeted + 1 Reported)
 
 ### 1. Financial Accuracy (≥90% PASS)
 - Pass vs. ticket verdict matches manually-verified real fares
