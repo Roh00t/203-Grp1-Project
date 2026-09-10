@@ -1,0 +1,97 @@
+[
+  {
+    "id": "tc01",
+    "name": "Classic Multi-City: Tokyo → Kyoto → Hiroshima → Osaka",
+    "description": "7-day halal-friendly journey through Japan's cultural heartland",
+    "badge": "Most Popular",
+    "highlights": [
+      "7 days across 4 major cities",
+      "Halal dining verified",
+      "Shinkansen & local transit",
+      "Verdict: DO NOT BUY pass"
+    ],
+    "stats": {
+      "days": 7,
+      "cities": 4,
+      "dietary": "Halal",
+      "verdict": "DO NOT BUY",
+      "savings": "¥13,240 cheaper without pass"
+    }
+  },
+  {
+    "id": "tc02",
+    "name": "Vegan Speed Tour: 6 Cities in 6 Days",
+    "description": "Fast-paced vegan adventure across Japan",
+    "badge": "Fast-Paced",
+    "highlights": [
+      "6 days, maximum city coverage",
+      "Vegan-verified restaurants",
+      "Major attractions only",
+      "Verdict: DO NOT BUY pass"
+    ],
+    "stats": {
+      "days": 6,
+      "cities": 6,
+      "dietary": "Vegan",
+      "verdict": "DO NOT BUY",
+      "savings": "Tickets more economical"
+    }
+  },
+  {
+    "id": "tc07",
+    "name": "Tokyo Weekend: Vegan Food & Culture",
+    "description": "3-day deep dive into Tokyo's neighborhoods",
+    "badge": "Short Stay",
+    "highlights": [
+      "3 days in Tokyo only",
+      "Vegan dining focus",
+      "Local trains & subway",
+      "Verdict: DO NOT BUY pass"
+    ],
+    "stats": {
+      "days": 3,
+      "cities": 1,
+      "dietary": "Vegan",
+      "verdict": "DO NOT BUY",
+      "savings": "Pass unnecessary for city-only"
+    }
+  },
+  {
+    "id": "tc15",
+    "name": "Strict Dietary: Halal + Vegan Combined",
+    "description": "6-day trip with dual dietary requirements",
+    "badge": "Special Needs",
+    "highlights": [
+      "6 days in Tokyo, Kyoto, Osaka",
+      "Both Halal AND Vegan verified",
+      "Demonstrates strict constraints",
+      "Verdict: DO NOT BUY pass"
+    ],
+    "stats": {
+      "days": 6,
+      "cities": 3,
+      "dietary": "Halal + Vegan",
+      "verdict": "DO NOT BUY",
+      "savings": "Individual tickets recommended"
+    }
+  },
+  {
+    "id": "tc18",
+    "name": "Grand Tour: 8 Days Across Major Cities",
+    "description": "Comprehensive halal-friendly Japan experience",
+    "badge": "Extended",
+    "highlights": [
+      "8 days with relaxed pacing",
+      "Tokyo, Kyoto, Osaka, Hiroshima",
+      "Halal dining at every stop",
+      "Verdict: DO NOT BUY pass"
+    ],
+    "stats": {
+      "days": 8,
+      "cities": 4,
+      "dietary": "Halal",
+      "verdict": "DO NOT BUY",
+      "savings": "Pass + supplements too expensive"
+    }
+  }
+]

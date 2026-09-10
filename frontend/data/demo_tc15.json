@@ -1,0 +1,1056 @@
+{
+  "ok": true,
+  "mode": "live",
+  "itinerary": {
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "name": "Senso-ji",
+            "ward_or_city": "Asakusa",
+            "start_time": "13:00",
+            "end_time": "14:30",
+            "is_dining": false
+          },
+          {
+            "name": "The Farm Cafe",
+            "ward_or_city": "Asakusa",
+            "start_time": "14:45",
+            "end_time": "15:45",
+            "is_dining": true
+          },
+          {
+            "name": "Tokyo Skytree",
+            "ward_or_city": "Sumida",
+            "start_time": "16:30",
+            "end_time": "18:30",
+            "is_dining": false
+          },
+          {
+            "name": "T's Tantan Tokyo Station",
+            "ward_or_city": "Tokyo Station",
+            "start_time": "19:30",
+            "end_time": "20:45",
+            "is_dining": true
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "name": "Meiji Jingu",
+            "ward_or_city": "Shibuya",
+            "start_time": "09:30",
+            "end_time": "11:00",
+            "is_dining": false
+          },
+          {
+            "name": "Shibuya Crossing",
+            "ward_or_city": "Shibuya",
+            "start_time": "11:30",
+            "end_time": "12:30",
+            "is_dining": false
+          },
+          {
+            "name": "Ain Soph. Journey Shinjuku",
+            "ward_or_city": "Shinjuku",
+            "start_time": "13:00",
+            "end_time": "14:15",
+            "is_dining": true
+          },
+          {
+            "name": "Shinjuku Gyoen National Garden",
+            "ward_or_city": "Shinjuku",
+            "start_time": "14:45",
+            "end_time": "16:30",
+            "is_dining": false
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "stops": [
+          {
+            "name": "Fushimi Inari Taisha",
+            "ward_or_city": "Fushimi",
+            "start_time": "13:30",
+            "end_time": "15:30",
+            "is_dining": false
+          },
+          {
+            "name": "Kiyomizu-dera",
+            "ward_or_city": "Gion",
+            "start_time": "16:15",
+            "end_time": "17:45",
+            "is_dining": false
+          },
+          {
+            "name": "ZIRAEL Vegan Restaurant",
+            "ward_or_city": "Gion",
+            "start_time": "18:00",
+            "end_time": "19:30",
+            "is_dining": true
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "stops": [
+          {
+            "name": "Arashiyama Bamboo Grove",
+            "ward_or_city": "Arashiyama",
+            "start_time": "09:00",
+            "end_time": "10:30",
+            "is_dining": false
+          },
+          {
+            "name": "Tenryu-ji",
+            "ward_or_city": "Arashiyama",
+            "start_time": "10:45",
+            "end_time": "12:00",
+            "is_dining": false
+          },
+          {
+            "name": "Shigetsu",
+            "ward_or_city": "Arashiyama",
+            "start_time": "12:15",
+            "end_time": "13:30",
+            "is_dining": true
+          },
+          {
+            "name": "Nishiki Market",
+            "ward_or_city": "Kawaramachi",
+            "start_time": "15:00",
+            "end_time": "17:00",
+            "is_dining": false
+          },
+          {
+            "name": "Mumokuteki Cafe",
+            "ward_or_city": "Kawaramachi",
+            "start_time": "17:30",
+            "end_time": "19:00",
+            "is_dining": true
+          }
+        ]
+      },
+      {
+        "day": 5,
+        "stops": [
+          {
+            "name": "Paprika Vegan Dining",
+            "ward_or_city": "Shinmachi",
+            "start_time": "12:30",
+            "end_time": "13:45",
+            "is_dining": true
+          },
+          {
+            "name": "Dotonbori Canal Walk",
+            "ward_or_city": "Dotonbori",
+            "start_time": "14:30",
+            "end_time": "17:00",
+            "is_dining": false
+          },
+          {
+            "name": "OKO Funky Vegan Okonomiyaki",
+            "ward_or_city": "Dotonbori",
+            "start_time": "17:30",
+            "end_time": "19:00",
+            "is_dining": true
+          }
+        ]
+      },
+      {
+        "day": 6,
+        "stops": [
+          {
+            "name": "Namba Yasaka Shrine",
+            "ward_or_city": "Namba",
+            "start_time": "10:00",
+            "end_time": "11:00",
+            "is_dining": false
+          },
+          {
+            "name": "Kuromon Ichiba Market",
+            "ward_or_city": "Namba",
+            "start_time": "11:30",
+            "end_time": "12:45",
+            "is_dining": false
+          },
+          {
+            "name": "PHO ME HALAL RESTAURANT",
+            "ward_or_city": "Dotonbori",
+            "start_time": "13:00",
+            "end_time": "14:15",
+            "is_dining": true
+          }
+        ]
+      }
+    ],
+    "transit_segments": [
+      {
+        "from_station": "Narita Airport Terminal 1",
+        "to_station": "Keisei-Ueno",
+        "mode": "Keisei Skyliner",
+        "day": 1,
+        "order": 1
+      },
+      {
+        "from_station": "Ueno",
+        "to_station": "Asakusa",
+        "mode": "Local subway - Tokyo Metro Ginza Line",
+        "day": 1,
+        "order": 2
+      },
+      {
+        "from_station": "Asakusa",
+        "to_station": "Tokyo Skytree",
+        "mode": "Local train - Tobu Skytree Line",
+        "day": 1,
+        "order": 3
+      },
+      {
+        "from_station": "Oshiage",
+        "to_station": "Asakusa",
+        "mode": "Local subway - Toei Asakusa Line",
+        "day": 1,
+        "order": 4
+      },
+      {
+        "from_station": "Asakusa",
+        "to_station": "Kanda",
+        "mode": "Local subway - Tokyo Metro Ginza Line",
+        "day": 1,
+        "order": 5
+      },
+      {
+        "from_station": "Kanda",
+        "to_station": "Tokyo",
+        "mode": "Local train - JR Yamanote Line",
+        "day": 1,
+        "order": 6
+      },
+      {
+        "from_station": "Tokyo",
+        "to_station": "Harajuku",
+        "mode": "Local train - JR Yamanote Line",
+        "day": 2,
+        "order": 1
+      },
+      {
+        "from_station": "Harajuku",
+        "to_station": "Shibuya",
+        "mode": "Local train - JR Yamanote Line",
+        "day": 2,
+        "order": 2
+      },
+      {
+        "from_station": "Shibuya",
+        "to_station": "Shinjuku-sanchome",
+        "mode": "Local subway - Tokyo Metro Fukutoshin Line",
+        "day": 2,
+        "order": 3
+      },
+      {
+        "from_station": "Shinjuku-sanchome",
+        "to_station": "Shinjuku-gyoemmae",
+        "mode": "Local subway - Tokyo Metro Marunouchi Line",
+        "day": 2,
+        "order": 4
+      },
+      {
+        "from_station": "Tokyo",
+        "to_station": "Kyoto",
+        "mode": "Hikari Shinkansen",
+        "day": 3,
+        "order": 1
+      },
+      {
+        "from_station": "Kyoto",
+        "to_station": "Inari",
+        "mode": "Local train - JR Nara Line",
+        "day": 3,
+        "order": 2
+      },
+      {
+        "from_station": "Fushimi-Inari",
+        "to_station": "Gion-Shijo",
+        "mode": "Local train - Keihan Main Line",
+        "day": 3,
+        "order": 3
+      },
+      {
+        "from_station": "Gion-Shijo",
+        "to_station": "Kawaramachi",
+        "mode": "Walking",
+        "day": 4,
+        "order": 1
+      },
+      {
+        "from_station": "Kyoto-Kawaramachi",
+        "to_station": "Katsura",
+        "mode": "Local train - Hankyu Kyoto Line",
+        "day": 4,
+        "order": 2
+      },
+      {
+        "from_station": "Katsura",
+        "to_station": "Arashiyama",
+        "mode": "Local train - Hankyu Arashiyama Line",
+        "day": 4,
+        "order": 3
+      },
+      {
+        "from_station": "Arashiyama",
+        "to_station": "Katsura",
+        "mode": "Local train - Hankyu Arashiyama Line",
+        "day": 4,
+        "order": 4
+      },
+      {
+        "from_station": "Katsura",
+        "to_station": "Kyoto-Kawaramachi",
+        "mode": "Local train - Hankyu Kyoto Line",
+        "day": 4,
+        "order": 5
+      },
+      {
+        "from_station": "Kyoto-Kawaramachi",
+        "to_station": "Osaka-Umeda",
+        "mode": "Local train - Hankyu Kyoto Line",
+        "day": 5,
+        "order": 1
+      },
+      {
+        "from_station": "Umeda",
+        "to_station": "Hommachi",
+        "mode": "Local subway - Osaka Metro Midosuji Line",
+        "day": 5,
+        "order": 2
+      },
+      {
+        "from_station": "Hommachi",
+        "to_station": "Nishiohashi",
+        "mode": "Local subway - Osaka Metro Nagahori Tsurumi-ryokuchi Line",
+        "day": 5,
+        "order": 3
+      },
+      {
+        "from_station": "Nishiohashi",
+        "to_station": "Shinsaibashi",
+        "mode": "Local subway - Osaka Metro Nagahori Tsurumi-ryokuchi Line",
+        "day": 5,
+        "order": 4
+      },
+      {
+        "from_station": "Shinsaibashi",
+        "to_station": "Namba",
+        "mode": "Local subway - Osaka Metro Midosuji Line",
+        "day": 6,
+        "order": 1
+      },
+      {
+        "from_station": "Namba",
+        "to_station": "Kansai Airport",
+        "mode": "Nankai Rapi:t",
+        "day": 6,
+        "order": 2
+      }
+    ],
+    "missing_info": []
+  },
+  "validation": {
+    "dietary_results": [
+      {
+        "stop_name": "The Farm Cafe",
+        "ward_or_city": "Asakusa",
+        "day": 1,
+        "required_tags": [
+          "halal and vegan"
+        ],
+        "status": "non_compliant",
+        "lookup_key": "the farm cafe | asakusa",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [
+          "halal and vegan"
+        ],
+        "source_id": "PENDING-ulfa-verification",
+        "source_date": null,
+        "reason": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+      },
+      {
+        "stop_name": "T's Tantan Tokyo Station",
+        "ward_or_city": "Tokyo Station",
+        "day": 1,
+        "required_tags": [
+          "halal and vegan"
+        ],
+        "status": "non_compliant",
+        "lookup_key": "t s tantan tokyo station | tokyo station",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [
+          "halal and vegan"
+        ],
+        "source_id": "gotokyo-tokyo-station",
+        "source_date": "2026-09-06",
+        "reason": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+      },
+      {
+        "stop_name": "Ain Soph. Journey Shinjuku",
+        "ward_or_city": "Shinjuku",
+        "day": 2,
+        "required_tags": [
+          "halal and vegan"
+        ],
+        "status": "non_compliant",
+        "lookup_key": "ain soph journey shinjuku | shinjuku",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [
+          "halal and vegan"
+        ],
+        "source_id": "PENDING-ulfa-verification",
+        "source_date": null,
+        "reason": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+      },
+      {
+        "stop_name": "ZIRAEL Vegan Restaurant",
+        "ward_or_city": "Gion",
+        "day": 3,
+        "required_tags": [
+          "halal and vegan"
+        ],
+        "status": "non_compliant",
+        "lookup_key": "zirael vegan restaurant | gion",
+        "venue_tags": [
+          "vegan",
+          "gluten free"
+        ],
+        "missing_tags": [
+          "halal and vegan"
+        ],
+        "source_id": "zirael-vegan-gion-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Venue tags [vegan, gluten free] do not satisfy required tag(s) [halal and vegan]."
+      },
+      {
+        "stop_name": "Shigetsu",
+        "ward_or_city": "Arashiyama",
+        "day": 4,
+        "required_tags": [
+          "halal and vegan"
+        ],
+        "status": "non_compliant",
+        "lookup_key": "shigetsu | arashiyama",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [
+          "halal and vegan"
+        ],
+        "source_id": "happycow-shigetsu-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+      },
+      {
+        "stop_name": "Mumokuteki Cafe",
+        "ward_or_city": "Kawaramachi",
+        "day": 4,
+        "required_tags": [
+          "halal and vegan"
+        ],
+        "status": "non_compliant",
+        "lookup_key": "mumokuteki cafe | kawaramachi",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [
+          "halal and vegan"
+        ],
+        "source_id": "happycow-mumokuteki-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+      },
+      {
+        "stop_name": "Paprika Vegan Dining",
+        "ward_or_city": "Shinmachi",
+        "day": 5,
+        "required_tags": [
+          "halal and vegan"
+        ],
+        "status": "non_compliant",
+        "lookup_key": "paprika vegan dining | shinmachi",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [
+          "halal and vegan"
+        ],
+        "source_id": "insideosaka-paprika-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+      },
+      {
+        "stop_name": "OKO Funky Vegan Okonomiyaki",
+        "ward_or_city": "Dotonbori",
+        "day": 5,
+        "required_tags": [
+          "halal and vegan"
+        ],
+        "status": "non_compliant",
+        "lookup_key": "oko funky vegan okonomiyaki | dotonbori",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [
+          "halal and vegan"
+        ],
+        "source_id": "itravelforveganfood-oko-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+      },
+      {
+        "stop_name": "PHO ME HALAL RESTAURANT",
+        "ward_or_city": "Dotonbori",
+        "day": 6,
+        "required_tags": [
+          "halal and vegan"
+        ],
+        "status": "non_compliant",
+        "lookup_key": "pho me halal restaurant | dotonbori",
+        "venue_tags": [
+          "halal"
+        ],
+        "missing_tags": [
+          "halal and vegan"
+        ],
+        "source_id": "dotonbori-phome-halal",
+        "source_date": "2026-09-06",
+        "reason": "Venue tags [halal] do not satisfy required tag(s) [halal and vegan]."
+      }
+    ],
+    "geographic_results": [
+      {
+        "day": 1,
+        "from_stop": "Senso-ji",
+        "to_stop": "The Farm Cafe",
+        "from_ward_or_city": "Asakusa",
+        "to_ward_or_city": "Asakusa",
+        "itinerary_mode": "Keisei Skyliner",
+        "status": "compliant",
+        "scheduled_gap_minutes": 15,
+        "required_minutes": 10,
+        "lookup_key": "asakusa | asakusa",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 15 min meets the required 10 min. Itinerary declares mode \"Keisei Skyliner\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 1,
+        "from_stop": "The Farm Cafe",
+        "to_stop": "Tokyo Skytree",
+        "from_ward_or_city": "Asakusa",
+        "to_ward_or_city": "Sumida",
+        "itinerary_mode": "Local subway - Tokyo Metro Ginza Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 45,
+        "required_minutes": 5,
+        "lookup_key": "asakusa | sumida",
+        "table_mode": "Tobu Skytree Line",
+        "source_id": "tobu-asakusa-skytree-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 45 min meets the required 5 min. Itinerary declares mode \"Local subway - Tokyo Metro Ginza Line\" but the table row is \"Tobu Skytree Line\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 1,
+        "from_stop": "Tokyo Skytree",
+        "to_stop": "T's Tantan Tokyo Station",
+        "from_ward_or_city": "Sumida",
+        "to_ward_or_city": "Tokyo Station",
+        "itinerary_mode": "Local train - Tobu Skytree Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 60,
+        "required_minutes": 20,
+        "lookup_key": "sumida | tokyo station",
+        "table_mode": "Tokyo Metro Marunouchi + Hanzomon Line",
+        "source_id": "rome2rio-tokyo-station-skytree-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 60 min meets the required 20 min. Itinerary declares mode \"Local train - Tobu Skytree Line\" but the table row is \"Tokyo Metro Marunouchi + Hanzomon Line\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 2,
+        "from_stop": "Meiji Jingu",
+        "to_stop": "Shibuya Crossing",
+        "from_ward_or_city": "Shibuya",
+        "to_ward_or_city": "Shibuya",
+        "itinerary_mode": "Local train - JR Yamanote Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 30,
+        "required_minutes": 10,
+        "lookup_key": "shibuya | shibuya",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 30 min meets the required 10 min. Itinerary declares mode \"Local train - JR Yamanote Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 2,
+        "from_stop": "Shibuya Crossing",
+        "to_stop": "Ain Soph. Journey Shinjuku",
+        "from_ward_or_city": "Shibuya",
+        "to_ward_or_city": "Shinjuku",
+        "itinerary_mode": "Local train - JR Yamanote Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 30,
+        "required_minutes": 7,
+        "lookup_key": "shibuya | shinjuku",
+        "table_mode": "JR / rail",
+        "source_id": "gmaps-shibuya-shinjuku-2026-09-06",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 30 min meets the required 7 min. Itinerary declares mode \"Local train - JR Yamanote Line\" but the table row is \"JR / rail\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 2,
+        "from_stop": "Ain Soph. Journey Shinjuku",
+        "to_stop": "Shinjuku Gyoen National Garden",
+        "from_ward_or_city": "Shinjuku",
+        "to_ward_or_city": "Shinjuku",
+        "itinerary_mode": "Local subway - Tokyo Metro Fukutoshin Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 30,
+        "required_minutes": 10,
+        "lookup_key": "shinjuku | shinjuku",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 30 min meets the required 10 min. Itinerary declares mode \"Local subway - Tokyo Metro Fukutoshin Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 3,
+        "from_stop": "Fushimi Inari Taisha",
+        "to_stop": "Kiyomizu-dera",
+        "from_ward_or_city": "Fushimi",
+        "to_ward_or_city": "Gion",
+        "itinerary_mode": "Hikari Shinkansen",
+        "status": "compliant",
+        "scheduled_gap_minutes": 45,
+        "required_minutes": 10,
+        "lookup_key": "fushimi | gion",
+        "table_mode": "Keihan Main Line",
+        "source_id": "rome2rio-gion-fushimi-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 45 min meets the required 10 min. Itinerary declares mode \"Hikari Shinkansen\" but the table row is \"Keihan Main Line\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 3,
+        "from_stop": "Kiyomizu-dera",
+        "to_stop": "ZIRAEL Vegan Restaurant",
+        "from_ward_or_city": "Gion",
+        "to_ward_or_city": "Gion",
+        "itinerary_mode": "Local train - JR Nara Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 15,
+        "required_minutes": 10,
+        "lookup_key": "gion | gion",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 15 min meets the required 10 min. Itinerary declares mode \"Local train - JR Nara Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 4,
+        "from_stop": "Arashiyama Bamboo Grove",
+        "to_stop": "Tenryu-ji",
+        "from_ward_or_city": "Arashiyama",
+        "to_ward_or_city": "Arashiyama",
+        "itinerary_mode": "Walking",
+        "status": "compliant",
+        "scheduled_gap_minutes": 15,
+        "required_minutes": 10,
+        "lookup_key": "arashiyama | arashiyama",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 15 min meets the required 10 min."
+      },
+      {
+        "day": 4,
+        "from_stop": "Tenryu-ji",
+        "to_stop": "Shigetsu",
+        "from_ward_or_city": "Arashiyama",
+        "to_ward_or_city": "Arashiyama",
+        "itinerary_mode": "Local train - Hankyu Kyoto Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 15,
+        "required_minutes": 10,
+        "lookup_key": "arashiyama | arashiyama",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 15 min meets the required 10 min. Itinerary declares mode \"Local train - Hankyu Kyoto Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 4,
+        "from_stop": "Shigetsu",
+        "to_stop": "Nishiki Market",
+        "from_ward_or_city": "Arashiyama",
+        "to_ward_or_city": "Kawaramachi",
+        "itinerary_mode": "Local train - Hankyu Arashiyama Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 90,
+        "required_minutes": 25,
+        "lookup_key": "arashiyama | kawaramachi",
+        "table_mode": "Hankyu Arashiyama Line",
+        "source_id": "rome2rio-gion-arashiyama-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 90 min meets the required 25 min. Itinerary declares mode \"Local train - Hankyu Arashiyama Line\" but the table row is \"Hankyu Arashiyama Line\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 4,
+        "from_stop": "Nishiki Market",
+        "to_stop": "Mumokuteki Cafe",
+        "from_ward_or_city": "Kawaramachi",
+        "to_ward_or_city": "Kawaramachi",
+        "itinerary_mode": "Local train - Hankyu Arashiyama Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 30,
+        "required_minutes": 10,
+        "lookup_key": "kawaramachi | kawaramachi",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 30 min meets the required 10 min. Itinerary declares mode \"Local train - Hankyu Arashiyama Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 5,
+        "from_stop": "Paprika Vegan Dining",
+        "to_stop": "Dotonbori Canal Walk",
+        "from_ward_or_city": "Shinmachi",
+        "to_ward_or_city": "Dotonbori",
+        "itinerary_mode": "Local train - Hankyu Kyoto Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 45,
+        "required_minutes": 15,
+        "lookup_key": "dotonbori | shinmachi",
+        "table_mode": "walking",
+        "source_id": "derived-via-hub-methodology",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 45 min meets the required 15 min. Itinerary declares mode \"Local train - Hankyu Kyoto Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 5,
+        "from_stop": "Dotonbori Canal Walk",
+        "to_stop": "OKO Funky Vegan Okonomiyaki",
+        "from_ward_or_city": "Dotonbori",
+        "to_ward_or_city": "Dotonbori",
+        "itinerary_mode": "Local subway - Osaka Metro Midosuji Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 30,
+        "required_minutes": 10,
+        "lookup_key": "dotonbori | dotonbori",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 30 min meets the required 10 min. Itinerary declares mode \"Local subway - Osaka Metro Midosuji Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 6,
+        "from_stop": "Namba Yasaka Shrine",
+        "to_stop": "Kuromon Ichiba Market",
+        "from_ward_or_city": "Namba",
+        "to_ward_or_city": "Namba",
+        "itinerary_mode": "Local subway - Osaka Metro Midosuji Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 30,
+        "required_minutes": 10,
+        "lookup_key": "namba | namba",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 30 min meets the required 10 min. Itinerary declares mode \"Local subway - Osaka Metro Midosuji Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 6,
+        "from_stop": "Kuromon Ichiba Market",
+        "to_stop": "PHO ME HALAL RESTAURANT",
+        "from_ward_or_city": "Namba",
+        "to_ward_or_city": "Dotonbori",
+        "itinerary_mode": "Nankai Rapi:t",
+        "status": "compliant",
+        "scheduled_gap_minutes": 15,
+        "required_minutes": 10,
+        "lookup_key": "dotonbori | namba",
+        "table_mode": "walking",
+        "source_id": "osaka-dotonbori-namba-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 15 min meets the required 10 min. Itinerary declares mode \"Nankai Rapi:t\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      }
+    ],
+    "summary": {
+      "compliant": 16,
+      "non_compliant": 9,
+      "unverified": 0
+    },
+    "dietary_summary": {
+      "compliant": 0,
+      "non_compliant": 9,
+      "unverified": 0
+    },
+    "geographic_summary": {
+      "compliant": 16,
+      "non_compliant": 0,
+      "unverified": 0
+    }
+  },
+  "failures": [
+    {
+      "check": "dietary",
+      "status": "non_compliant",
+      "day": 1,
+      "subject": "The Farm Cafe (Asakusa)",
+      "lookup_key": "the farm cafe | asakusa",
+      "expected": "tags including [halal and vegan]",
+      "actual": "tags [vegan]",
+      "source_id": "PENDING-ulfa-verification",
+      "source_date": null,
+      "cause": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+    },
+    {
+      "check": "dietary",
+      "status": "non_compliant",
+      "day": 1,
+      "subject": "T's Tantan Tokyo Station (Tokyo Station)",
+      "lookup_key": "t s tantan tokyo station | tokyo station",
+      "expected": "tags including [halal and vegan]",
+      "actual": "tags [vegan]",
+      "source_id": "gotokyo-tokyo-station",
+      "source_date": "2026-09-06",
+      "cause": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+    },
+    {
+      "check": "dietary",
+      "status": "non_compliant",
+      "day": 2,
+      "subject": "Ain Soph. Journey Shinjuku (Shinjuku)",
+      "lookup_key": "ain soph journey shinjuku | shinjuku",
+      "expected": "tags including [halal and vegan]",
+      "actual": "tags [vegan]",
+      "source_id": "PENDING-ulfa-verification",
+      "source_date": null,
+      "cause": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+    },
+    {
+      "check": "dietary",
+      "status": "non_compliant",
+      "day": 3,
+      "subject": "ZIRAEL Vegan Restaurant (Gion)",
+      "lookup_key": "zirael vegan restaurant | gion",
+      "expected": "tags including [halal and vegan]",
+      "actual": "tags [vegan, gluten free]",
+      "source_id": "zirael-vegan-gion-2026-09-07",
+      "source_date": "2026-09-07",
+      "cause": "Venue tags [vegan, gluten free] do not satisfy required tag(s) [halal and vegan]."
+    },
+    {
+      "check": "dietary",
+      "status": "non_compliant",
+      "day": 4,
+      "subject": "Shigetsu (Arashiyama)",
+      "lookup_key": "shigetsu | arashiyama",
+      "expected": "tags including [halal and vegan]",
+      "actual": "tags [vegan]",
+      "source_id": "happycow-shigetsu-2026-09-07",
+      "source_date": "2026-09-07",
+      "cause": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+    },
+    {
+      "check": "dietary",
+      "status": "non_compliant",
+      "day": 4,
+      "subject": "Mumokuteki Cafe (Kawaramachi)",
+      "lookup_key": "mumokuteki cafe | kawaramachi",
+      "expected": "tags including [halal and vegan]",
+      "actual": "tags [vegan]",
+      "source_id": "happycow-mumokuteki-2026-09-07",
+      "source_date": "2026-09-07",
+      "cause": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+    },
+    {
+      "check": "dietary",
+      "status": "non_compliant",
+      "day": 5,
+      "subject": "Paprika Vegan Dining (Shinmachi)",
+      "lookup_key": "paprika vegan dining | shinmachi",
+      "expected": "tags including [halal and vegan]",
+      "actual": "tags [vegan]",
+      "source_id": "insideosaka-paprika-2026-09-07",
+      "source_date": "2026-09-07",
+      "cause": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+    },
+    {
+      "check": "dietary",
+      "status": "non_compliant",
+      "day": 5,
+      "subject": "OKO Funky Vegan Okonomiyaki (Dotonbori)",
+      "lookup_key": "oko funky vegan okonomiyaki | dotonbori",
+      "expected": "tags including [halal and vegan]",
+      "actual": "tags [vegan]",
+      "source_id": "itravelforveganfood-oko-2026-09-07",
+      "source_date": "2026-09-07",
+      "cause": "Venue tags [vegan] do not satisfy required tag(s) [halal and vegan]."
+    },
+    {
+      "check": "dietary",
+      "status": "non_compliant",
+      "day": 6,
+      "subject": "PHO ME HALAL RESTAURANT (Dotonbori)",
+      "lookup_key": "pho me halal restaurant | dotonbori",
+      "expected": "tags including [halal and vegan]",
+      "actual": "tags [halal]",
+      "source_id": "dotonbori-phome-halal",
+      "source_date": "2026-09-06",
+      "cause": "Venue tags [halal] do not satisfy required tag(s) [halal and vegan]."
+    }
+  ],
+  "audit": {
+    "recommendation": "DO NOT BUY",
+    "pass_price": 53990,
+    "ticket_total": 17640,
+    "difference": 36350,
+    "per_segment_breakdown": [
+      {
+        "from_station": "Narita Airport Terminal 1",
+        "to_station": "Keisei-Ueno",
+        "service_type": "Keisei Skyliner",
+        "day": 1,
+        "order": 1,
+        "ticket_price_yen": 2580,
+        "pass_supplement_yen": 0,
+        "pass_extra_yen": 2580,
+        "pass_extra_reason": "not_covered"
+      },
+      {
+        "from_station": "Tokyo",
+        "to_station": "Kyoto",
+        "service_type": "Hikari",
+        "day": 3,
+        "order": 1,
+        "ticket_price_yen": 13650,
+        "pass_supplement_yen": 0,
+        "pass_extra_yen": 0,
+        "pass_extra_reason": "covered"
+      },
+      {
+        "from_station": "Namba",
+        "to_station": "Kansai Airport",
+        "service_type": "Nankai Rapi:t Digital Ticket",
+        "day": 6,
+        "order": 2,
+        "ticket_price_yen": 1410,
+        "pass_supplement_yen": 0,
+        "pass_extra_yen": 1410,
+        "pass_extra_reason": "not_covered"
+      }
+    ],
+    "evidence": [
+      {
+        "claim": "Point-to-point ticket total for this itinerary is 17640 yen.",
+        "source_id": "calculator:sumFares",
+        "source_date": null
+      },
+      {
+        "claim": "Base price of \"JR Pass 7-day Ordinary\" is 50000 yen.",
+        "source_id": "jrpass-price-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Narita Airport Terminal 1 to Keisei-Ueno by Keisei Skyliner costs 2580 yen.",
+        "source_id": "keisei-skyliner-fares-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Tokyo to Kyoto by Hikari costs 13650 yen.",
+        "source_id": "smartex-reserved-fares-2025",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Namba to Kansai Airport by Nankai Rapi:t Digital Ticket costs 1410 yen.",
+        "source_id": "nankai-rapit-digital-ticket-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Narita Airport Terminal 1 to Keisei-Ueno by Keisei Skyliner is not covered by \"JR Pass 7-day Ordinary\" and adds 2580 yen.",
+        "source_id": "keisei-skyliner-fares-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Namba to Kansai Airport by Nankai Rapi:t Digital Ticket is not covered by \"JR Pass 7-day Ordinary\" and adds 1410 yen.",
+        "source_id": "nankai-rapit-digital-ticket-2026",
+        "source_date": "2026-09-06"
+      }
+    ]
+  },
+  "calculatorError": null,
+  "explanation": {
+    "verdict": "DO NOT BUY",
+    "headline": "The recommendation is DO NOT BUY, as buying individual tickets saves 36350 yen over the pass option.",
+    "explanation": "The point-to-point ticket total for this itinerary is 17640 yen, which is far below the base price of 50000 yen for the JR Pass 7-day Ordinary. In addition, non-JR services such as the Keisei Skyliner from Narita Airport Terminal 1 to Keisei-Ueno and the Nankai Rapi:t Digital Ticket from Namba to Kansai Airport are not covered by the pass, requiring 2580 yen and 1410 yen in extra out-of-pocket costs respectively. As a result, purchasing regular individual tickets is significantly cheaper than buying the pass.",
+    "caveats": [
+      "The Keisei Skyliner and Nankai Rapi:t segments are operated by private railway companies and are not covered by the JR Pass.",
+      "The point-to-point ticket total calculation relies on calculator:sumFares, which has a null source date."
+    ],
+    "evidence": [
+      {
+        "claim": "Point-to-point ticket total for this itinerary is 17640 yen.",
+        "source_id": "calculator:sumFares",
+        "source_date": null
+      },
+      {
+        "claim": "Base price of \"JR Pass 7-day Ordinary\" is 50000 yen.",
+        "source_id": "jrpass-price-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Narita Airport Terminal 1 to Keisei-Ueno by Keisei Skyliner is not covered by \"JR Pass 7-day Ordinary\" and adds 2580 yen.",
+        "source_id": "keisei-skyliner-fares-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Namba to Kansai Airport by Nankai Rapi:t Digital Ticket is not covered by \"JR Pass 7-day Ordinary\" and adds 1410 yen.",
+        "source_id": "nankai-rapit-digital-ticket-2026",
+        "source_date": "2026-09-06"
+      }
+    ]
+  },
+  "module2Error": null,
+  "metadata": {
+    "injectionAttempted": false,
+    "removed": [],
+    "module2Text": "{\n  \"verdict\": \"DO NOT BUY\",\n  \"headline\": \"The recommendation is DO NOT BUY, as buying individual tickets saves 36350 yen over the pass option.\",\n  \"explanation\": \"The point-to-point ticket total for this itinerary is 17640 yen, which is far below the base price of 50000 yen for the JR Pass 7-day Ordinary. In addition, non-JR services such as the Keisei Skyliner from Narita Airport Terminal 1 to Keisei-Ueno and the Nankai Rapi:t Digital Ticket from Namba to Kansai Airport are not covered by the pass, requiring 2580 yen and 1410 yen in extra out-of-pocket costs respectively. As a result, purchasing regular individual tickets is significantly cheaper than buying the pass.\",\n  \"caveats\": [\n    \"The Keisei Skyliner and Nankai Rapi:t segments are operated by private railway companies and are not covered by the JR Pass.\",\n    \"The point-to-point ticket total calculation relies on calculator:sumFares, which has a null source date.\"\n  ],\n  \"evidence\": [\n    {\n      \"claim\": \"Point-to-point ticket total for this itinerary is 17640 yen.\",\n      \"source_id\": \"calculator:sumFares\",\n      \"source_date\": null\n    },\n    {\n      \"claim\": \"Base price of \\\"JR Pass 7-day Ordinary\\\" is 50000 yen.\",\n      \"source_id\": \"jrpass-price-2026\",\n      \"source_date\": \"2026-09-06\"\n    },\n    {\n      \"claim\": \"Narita Airport Terminal 1 to Keisei-Ueno by Keisei Skyliner is not covered by \\\"JR Pass 7-day Ordinary\\\" and adds 2580 yen.\",\n      \"source_id\": \"keisei-skyliner-fares-2026\",\n      \"source_date\": \"2026-09-06\"\n    },\n    {\n      \"claim\": \"Namba to Kansai Airport by Nankai Rapi:t Digital Ticket is not covered by \\\"JR Pass 7-day Ordinary\\\" and adds 1410 yen.\",\n      \"source_id\": \"nankai-rapit-digital-ticket-2026\",\n      \"source_date\": \"2026-09-06\"\n    }\n  ]\n}",
+    "model": "gemini-3.8-flash"
+  },
+  "_demo_metadata": {
+    "id": "tc15",
+    "testCaseId": "TC15",
+    "description": "",
+    "inputPayload": {
+      "mode": "live",
+      "start": "2026-10-01",
+      "end": "2026-10-06",
+      "arrival_time": "10:00",
+      "departure_time": "18:00",
+      "arrival_airport": "NRT",
+      "departure_airport": "KIX",
+      "dietary": "Halal AND Vegan",
+      "pace": "Moderate",
+      "preferences": "Visit Tokyo, Kyoto, and Osaka."
+    }
+  }
+}

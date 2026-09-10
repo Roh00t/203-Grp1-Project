@@ -1,0 +1,835 @@
+{
+  "ok": true,
+  "mode": "live",
+  "itinerary": {
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "name": "Shibuya Crossing",
+            "ward_or_city": "Shibuya",
+            "start_time": "16:30",
+            "end_time": "18:00",
+            "is_dining": false
+          },
+          {
+            "name": "Ain Soph. Journey Shinjuku",
+            "ward_or_city": "Shinjuku",
+            "start_time": "19:00",
+            "end_time": "20:30",
+            "is_dining": true
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "name": "Senso-ji",
+            "ward_or_city": "Asakusa",
+            "start_time": "09:00",
+            "end_time": "11:00",
+            "is_dining": false
+          },
+          {
+            "name": "The Farm Cafe",
+            "ward_or_city": "Asakusa",
+            "start_time": "11:30",
+            "end_time": "12:30",
+            "is_dining": true
+          },
+          {
+            "name": "Tokyo Skytree",
+            "ward_or_city": "Sumida",
+            "start_time": "13:30",
+            "end_time": "15:30",
+            "is_dining": false
+          },
+          {
+            "name": "T's Tantan Tokyo Station",
+            "ward_or_city": "Tokyo Station",
+            "start_time": "18:00",
+            "end_time": "19:30",
+            "is_dining": true
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "stops": [
+          {
+            "name": "Hiroshima Peace Memorial Museum",
+            "ward_or_city": "Peace Memorial Park",
+            "start_time": "12:30",
+            "end_time": "14:30",
+            "is_dining": false
+          },
+          {
+            "name": "Atomic Bomb Dome",
+            "ward_or_city": "Peace Memorial Park",
+            "start_time": "14:45",
+            "end_time": "15:45",
+            "is_dining": false
+          },
+          {
+            "name": "Indian Cuisine Churyakanak",
+            "ward_or_city": "Peace Memorial Park",
+            "start_time": "17:30",
+            "end_time": "19:00",
+            "is_dining": true
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "stops": [
+          {
+            "name": "Fushimi Inari Taisha",
+            "ward_or_city": "Fushimi",
+            "start_time": "10:30",
+            "end_time": "13:00",
+            "is_dining": false
+          },
+          {
+            "name": "Kiyomizu-dera",
+            "ward_or_city": "Gion",
+            "start_time": "14:30",
+            "end_time": "16:30",
+            "is_dining": false
+          },
+          {
+            "name": "Mumokuteki Cafe",
+            "ward_or_city": "Kawaramachi",
+            "start_time": "18:00",
+            "end_time": "19:30",
+            "is_dining": true
+          }
+        ]
+      },
+      {
+        "day": 5,
+        "stops": [
+          {
+            "name": "Osaka Castle",
+            "ward_or_city": "Osaka",
+            "start_time": "10:00",
+            "end_time": "12:30",
+            "is_dining": false
+          },
+          {
+            "name": "Paprika Vegan Dining",
+            "ward_or_city": "Shinmachi",
+            "start_time": "13:15",
+            "end_time": "14:30",
+            "is_dining": true
+          },
+          {
+            "name": "Dotonbori Glico Sign",
+            "ward_or_city": "Dotonbori",
+            "start_time": "16:00",
+            "end_time": "18:00",
+            "is_dining": false
+          },
+          {
+            "name": "OKO Funky Vegan Okonomiyaki",
+            "ward_or_city": "Dotonbori",
+            "start_time": "18:30",
+            "end_time": "20:00",
+            "is_dining": true
+          }
+        ]
+      },
+      {
+        "day": 6,
+        "stops": [
+          {
+            "name": "Kansai International Airport Terminal 1",
+            "ward_or_city": "Izumisano",
+            "start_time": "07:30",
+            "end_time": "09:30",
+            "is_dining": false
+          }
+        ]
+      }
+    ],
+    "transit_segments": [
+      {
+        "from_station": "Haneda Airport Terminal 3",
+        "to_station": "Hamamatsucho",
+        "mode": "Tokyo Monorail",
+        "day": 1,
+        "order": 1
+      },
+      {
+        "from_station": "Hamamatsucho",
+        "to_station": "Shibuya",
+        "mode": "Local train - JR Yamanote Line",
+        "day": 1,
+        "order": 2
+      },
+      {
+        "from_station": "Shibuya",
+        "to_station": "Shinjuku-sanchome",
+        "mode": "Local subway - Tokyo Metro Fukutoshin Line",
+        "day": 1,
+        "order": 3
+      },
+      {
+        "from_station": "Shinjuku-sanchome",
+        "to_station": "Shinjuku",
+        "mode": "Walking",
+        "day": 2,
+        "order": 1
+      },
+      {
+        "from_station": "Shinjuku",
+        "to_station": "Kanda",
+        "mode": "Local train - JR Chuo Line",
+        "day": 2,
+        "order": 2
+      },
+      {
+        "from_station": "Kanda",
+        "to_station": "Asakusa",
+        "mode": "Local subway - Tokyo Metro Ginza Line",
+        "day": 2,
+        "order": 3
+      },
+      {
+        "from_station": "Asakusa",
+        "to_station": "Oshiage",
+        "mode": "Local subway - Toei Asakusa Line",
+        "day": 2,
+        "order": 4
+      },
+      {
+        "from_station": "Oshiage",
+        "to_station": "Otemachi",
+        "mode": "Local subway - Tokyo Metro Hanzomon Line",
+        "day": 2,
+        "order": 5
+      },
+      {
+        "from_station": "Otemachi",
+        "to_station": "Tokyo",
+        "mode": "Walking",
+        "day": 2,
+        "order": 6
+      },
+      {
+        "from_station": "Tokyo",
+        "to_station": "Shin-Osaka",
+        "mode": "Hikari Shinkansen",
+        "day": 3,
+        "order": 1
+      },
+      {
+        "from_station": "Shin-Osaka",
+        "to_station": "Hiroshima",
+        "mode": "Sakura Shinkansen",
+        "day": 3,
+        "order": 2
+      },
+      {
+        "from_station": "Hiroshima Station",
+        "to_station": "Genbaku-Dome-Mae",
+        "mode": "Local tram - Hiroshima Electric Railway Main Line",
+        "day": 3,
+        "order": 3
+      },
+      {
+        "from_station": "Genbaku-Dome-Mae",
+        "to_station": "Hiroshima Station",
+        "mode": "Local tram - Hiroshima Electric Railway Main Line",
+        "day": 4,
+        "order": 1
+      },
+      {
+        "from_station": "Hiroshima",
+        "to_station": "Shin-Osaka",
+        "mode": "Sakura Shinkansen",
+        "day": 4,
+        "order": 2
+      },
+      {
+        "from_station": "Shin-Osaka",
+        "to_station": "Kyoto",
+        "mode": "Hikari Shinkansen",
+        "day": 4,
+        "order": 3
+      },
+      {
+        "from_station": "Kyoto",
+        "to_station": "Inari",
+        "mode": "Local train - JR Nara Line",
+        "day": 4,
+        "order": 4
+      },
+      {
+        "from_station": "Fushimi-Inari",
+        "to_station": "Kiyomizu-Gojo",
+        "mode": "Local train - Keihan Main Line",
+        "day": 4,
+        "order": 5
+      },
+      {
+        "from_station": "Gion-Shijo",
+        "to_station": "Kyoto-Kawaramachi",
+        "mode": "Walking",
+        "day": 4,
+        "order": 6
+      },
+      {
+        "from_station": "Kyoto-Kawaramachi",
+        "to_station": "Osaka-Umeda",
+        "mode": "Local train - Hankyu Kyoto Main Line",
+        "day": 5,
+        "order": 1
+      },
+      {
+        "from_station": "Osaka",
+        "to_station": "Osakajokoen",
+        "mode": "Local train - JR Osaka Loop Line",
+        "day": 5,
+        "order": 2
+      },
+      {
+        "from_station": "Morinomiya",
+        "to_station": "Nishi-Ohashi",
+        "mode": "Local subway - Osaka Metro Nagahori Tsurumi-ryokuchi Line",
+        "day": 5,
+        "order": 3
+      },
+      {
+        "from_station": "Yotsubashi",
+        "to_station": "Namba",
+        "mode": "Local subway - Osaka Metro Yotsubashi Line",
+        "day": 5,
+        "order": 4
+      },
+      {
+        "from_station": "Namba",
+        "to_station": "Kansai Airport",
+        "mode": "Nankai Rapi:t",
+        "day": 6,
+        "order": 1
+      }
+    ],
+    "missing_info": []
+  },
+  "validation": {
+    "dietary_results": [
+      {
+        "stop_name": "Ain Soph. Journey Shinjuku",
+        "ward_or_city": "Shinjuku",
+        "day": 1,
+        "required_tags": [
+          "vegan"
+        ],
+        "status": "compliant",
+        "lookup_key": "ain soph journey shinjuku | shinjuku",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [],
+        "source_id": "PENDING-ulfa-verification",
+        "source_date": null,
+        "reason": "Venue tags [vegan] satisfy all required tags [vegan]."
+      },
+      {
+        "stop_name": "The Farm Cafe",
+        "ward_or_city": "Asakusa",
+        "day": 2,
+        "required_tags": [
+          "vegan"
+        ],
+        "status": "compliant",
+        "lookup_key": "the farm cafe | asakusa",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [],
+        "source_id": "PENDING-ulfa-verification",
+        "source_date": null,
+        "reason": "Venue tags [vegan] satisfy all required tags [vegan]."
+      },
+      {
+        "stop_name": "T's Tantan Tokyo Station",
+        "ward_or_city": "Tokyo Station",
+        "day": 2,
+        "required_tags": [
+          "vegan"
+        ],
+        "status": "compliant",
+        "lookup_key": "t s tantan tokyo station | tokyo station",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [],
+        "source_id": "gotokyo-tokyo-station",
+        "source_date": "2026-09-06",
+        "reason": "Venue tags [vegan] satisfy all required tags [vegan]."
+      },
+      {
+        "stop_name": "Indian Cuisine Churyakanak",
+        "ward_or_city": "Peace Memorial Park",
+        "day": 3,
+        "required_tags": [
+          "vegan"
+        ],
+        "status": "compliant",
+        "lookup_key": "indian cuisine churyakanak | peace memorial park",
+        "venue_tags": [
+          "halal",
+          "vegan"
+        ],
+        "missing_tags": [],
+        "source_id": "hiroshima-diverse-dining-2025",
+        "source_date": "2026-09-06",
+        "reason": "Venue tags [halal, vegan] satisfy all required tags [vegan]."
+      },
+      {
+        "stop_name": "Mumokuteki Cafe",
+        "ward_or_city": "Kawaramachi",
+        "day": 4,
+        "required_tags": [
+          "vegan"
+        ],
+        "status": "compliant",
+        "lookup_key": "mumokuteki cafe | kawaramachi",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [],
+        "source_id": "happycow-mumokuteki-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Venue tags [vegan] satisfy all required tags [vegan]."
+      },
+      {
+        "stop_name": "Paprika Vegan Dining",
+        "ward_or_city": "Shinmachi",
+        "day": 5,
+        "required_tags": [
+          "vegan"
+        ],
+        "status": "compliant",
+        "lookup_key": "paprika vegan dining | shinmachi",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [],
+        "source_id": "insideosaka-paprika-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Venue tags [vegan] satisfy all required tags [vegan]."
+      },
+      {
+        "stop_name": "OKO Funky Vegan Okonomiyaki",
+        "ward_or_city": "Dotonbori",
+        "day": 5,
+        "required_tags": [
+          "vegan"
+        ],
+        "status": "compliant",
+        "lookup_key": "oko funky vegan okonomiyaki | dotonbori",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [],
+        "source_id": "itravelforveganfood-oko-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Venue tags [vegan] satisfy all required tags [vegan]."
+      }
+    ],
+    "geographic_results": [
+      {
+        "day": 1,
+        "from_stop": "Shibuya Crossing",
+        "to_stop": "Ain Soph. Journey Shinjuku",
+        "from_ward_or_city": "Shibuya",
+        "to_ward_or_city": "Shinjuku",
+        "itinerary_mode": "Tokyo Monorail",
+        "status": "compliant",
+        "scheduled_gap_minutes": 60,
+        "required_minutes": 7,
+        "lookup_key": "shibuya | shinjuku",
+        "table_mode": "JR / rail",
+        "source_id": "gmaps-shibuya-shinjuku-2026-09-06",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 60 min meets the required 7 min. Itinerary declares mode \"Tokyo Monorail\" but the table row is \"JR / rail\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 2,
+        "from_stop": "Senso-ji",
+        "to_stop": "The Farm Cafe",
+        "from_ward_or_city": "Asakusa",
+        "to_ward_or_city": "Asakusa",
+        "itinerary_mode": "Walking",
+        "status": "compliant",
+        "scheduled_gap_minutes": 30,
+        "required_minutes": 10,
+        "lookup_key": "asakusa | asakusa",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 30 min meets the required 10 min."
+      },
+      {
+        "day": 2,
+        "from_stop": "The Farm Cafe",
+        "to_stop": "Tokyo Skytree",
+        "from_ward_or_city": "Asakusa",
+        "to_ward_or_city": "Sumida",
+        "itinerary_mode": "Local train - JR Chuo Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 60,
+        "required_minutes": 5,
+        "lookup_key": "asakusa | sumida",
+        "table_mode": "Tobu Skytree Line",
+        "source_id": "tobu-asakusa-skytree-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 60 min meets the required 5 min. Itinerary declares mode \"Local train - JR Chuo Line\" but the table row is \"Tobu Skytree Line\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 2,
+        "from_stop": "Tokyo Skytree",
+        "to_stop": "T's Tantan Tokyo Station",
+        "from_ward_or_city": "Sumida",
+        "to_ward_or_city": "Tokyo Station",
+        "itinerary_mode": "Local subway - Tokyo Metro Ginza Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 150,
+        "required_minutes": 20,
+        "lookup_key": "sumida | tokyo station",
+        "table_mode": "Tokyo Metro Marunouchi + Hanzomon Line",
+        "source_id": "rome2rio-tokyo-station-skytree-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 150 min meets the required 20 min. Itinerary declares mode \"Local subway - Tokyo Metro Ginza Line\" but the table row is \"Tokyo Metro Marunouchi + Hanzomon Line\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 3,
+        "from_stop": "Hiroshima Peace Memorial Museum",
+        "to_stop": "Atomic Bomb Dome",
+        "from_ward_or_city": "Peace Memorial Park",
+        "to_ward_or_city": "Peace Memorial Park",
+        "itinerary_mode": "Hikari Shinkansen",
+        "status": "compliant",
+        "scheduled_gap_minutes": 15,
+        "required_minutes": 10,
+        "lookup_key": "peace memorial park | peace memorial park",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 15 min meets the required 10 min. Itinerary declares mode \"Hikari Shinkansen\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 3,
+        "from_stop": "Atomic Bomb Dome",
+        "to_stop": "Indian Cuisine Churyakanak",
+        "from_ward_or_city": "Peace Memorial Park",
+        "to_ward_or_city": "Peace Memorial Park",
+        "itinerary_mode": "Sakura Shinkansen",
+        "status": "compliant",
+        "scheduled_gap_minutes": 105,
+        "required_minutes": 10,
+        "lookup_key": "peace memorial park | peace memorial park",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 105 min meets the required 10 min. Itinerary declares mode \"Sakura Shinkansen\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 4,
+        "from_stop": "Fushimi Inari Taisha",
+        "to_stop": "Kiyomizu-dera",
+        "from_ward_or_city": "Fushimi",
+        "to_ward_or_city": "Gion",
+        "itinerary_mode": "Local tram - Hiroshima Electric Railway Main Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 90,
+        "required_minutes": 10,
+        "lookup_key": "fushimi | gion",
+        "table_mode": "Keihan Main Line",
+        "source_id": "rome2rio-gion-fushimi-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 90 min meets the required 10 min. Itinerary declares mode \"Local tram - Hiroshima Electric Railway Main Line\" but the table row is \"Keihan Main Line\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 4,
+        "from_stop": "Kiyomizu-dera",
+        "to_stop": "Mumokuteki Cafe",
+        "from_ward_or_city": "Gion",
+        "to_ward_or_city": "Kawaramachi",
+        "itinerary_mode": "Sakura Shinkansen",
+        "status": "compliant",
+        "scheduled_gap_minutes": 90,
+        "required_minutes": 10,
+        "lookup_key": "gion | kawaramachi",
+        "table_mode": "walking",
+        "source_id": "derived-via-hub-methodology",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 90 min meets the required 10 min. Itinerary declares mode \"Sakura Shinkansen\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 5,
+        "from_stop": "Osaka Castle",
+        "to_stop": "Paprika Vegan Dining",
+        "from_ward_or_city": "Osaka",
+        "to_ward_or_city": "Shinmachi",
+        "itinerary_mode": "Local train - Hankyu Kyoto Main Line",
+        "status": "unverified",
+        "scheduled_gap_minutes": null,
+        "required_minutes": null,
+        "lookup_key": "osaka | shinmachi",
+        "table_mode": null,
+        "source_id": null,
+        "source_date": null,
+        "reason": "No travel-time entry for the ward pair \"Osaka\" <-> \"Shinmachi\" after normalization. Not treated as feasible — the curated table does not cover this pair yet."
+      },
+      {
+        "day": 5,
+        "from_stop": "Paprika Vegan Dining",
+        "to_stop": "Dotonbori Glico Sign",
+        "from_ward_or_city": "Shinmachi",
+        "to_ward_or_city": "Dotonbori",
+        "itinerary_mode": "Local train - JR Osaka Loop Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 90,
+        "required_minutes": 15,
+        "lookup_key": "dotonbori | shinmachi",
+        "table_mode": "walking",
+        "source_id": "derived-via-hub-methodology",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 90 min meets the required 15 min. Itinerary declares mode \"Local train - JR Osaka Loop Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 5,
+        "from_stop": "Dotonbori Glico Sign",
+        "to_stop": "OKO Funky Vegan Okonomiyaki",
+        "from_ward_or_city": "Dotonbori",
+        "to_ward_or_city": "Dotonbori",
+        "itinerary_mode": "Local subway - Osaka Metro Nagahori Tsurumi-ryokuchi Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 30,
+        "required_minutes": 10,
+        "lookup_key": "dotonbori | dotonbori",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 30 min meets the required 10 min. Itinerary declares mode \"Local subway - Osaka Metro Nagahori Tsurumi-ryokuchi Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      }
+    ],
+    "summary": {
+      "compliant": 17,
+      "non_compliant": 0,
+      "unverified": 1
+    },
+    "dietary_summary": {
+      "compliant": 7,
+      "non_compliant": 0,
+      "unverified": 0
+    },
+    "geographic_summary": {
+      "compliant": 10,
+      "non_compliant": 0,
+      "unverified": 1
+    }
+  },
+  "failures": [
+    {
+      "check": "geographic",
+      "status": "unverified",
+      "day": 5,
+      "subject": "Osaka Castle (Osaka) -> Paprika Vegan Dining (Shinmachi)",
+      "lookup_key": "osaka | shinmachi",
+      "expected": "a matching ward pair in the curated travel-time table",
+      "actual": "gap not computable",
+      "source_id": null,
+      "source_date": null,
+      "cause": "No travel-time entry for the ward pair \"Osaka\" <-> \"Shinmachi\" after normalization. Not treated as feasible — the curated table does not cover this pair yet."
+    }
+  ],
+  "audit": {
+    "recommendation": "DO NOT BUY",
+    "pass_price": 51930,
+    "ticket_total": 39240,
+    "difference": 12690,
+    "per_segment_breakdown": [
+      {
+        "from_station": "Haneda Airport Terminal 3",
+        "to_station": "Hamamatsucho",
+        "service_type": "Tokyo Monorail",
+        "day": 1,
+        "order": 1,
+        "ticket_price_yen": 520,
+        "pass_supplement_yen": 0,
+        "pass_extra_yen": 520,
+        "pass_extra_reason": "not_covered"
+      },
+      {
+        "from_station": "Tokyo",
+        "to_station": "Shin-Osaka",
+        "service_type": "Hikari",
+        "day": 3,
+        "order": 1,
+        "ticket_price_yen": 14200,
+        "pass_supplement_yen": 0,
+        "pass_extra_yen": 0,
+        "pass_extra_reason": "covered"
+      },
+      {
+        "from_station": "Shin-Osaka",
+        "to_station": "Hiroshima",
+        "service_type": "Sakura",
+        "day": 3,
+        "order": 2,
+        "ticket_price_yen": 10220,
+        "pass_supplement_yen": 0,
+        "pass_extra_yen": 0,
+        "pass_extra_reason": "covered"
+      },
+      {
+        "from_station": "Hiroshima",
+        "to_station": "Shin-Osaka",
+        "service_type": "Sakura",
+        "day": 4,
+        "order": 2,
+        "ticket_price_yen": 10220,
+        "pass_supplement_yen": 0,
+        "pass_extra_yen": 0,
+        "pass_extra_reason": "covered"
+      },
+      {
+        "from_station": "Shin-Osaka",
+        "to_station": "Kyoto",
+        "service_type": "Hikari",
+        "day": 4,
+        "order": 3,
+        "ticket_price_yen": 2670,
+        "pass_supplement_yen": 0,
+        "pass_extra_yen": 0,
+        "pass_extra_reason": "covered"
+      },
+      {
+        "from_station": "Namba",
+        "to_station": "Kansai Airport",
+        "service_type": "Nankai Rapi:t Digital Ticket",
+        "day": 6,
+        "order": 1,
+        "ticket_price_yen": 1410,
+        "pass_supplement_yen": 0,
+        "pass_extra_yen": 1410,
+        "pass_extra_reason": "not_covered"
+      }
+    ],
+    "evidence": [
+      {
+        "claim": "Point-to-point ticket total for this itinerary is 39240 yen.",
+        "source_id": "calculator:sumFares",
+        "source_date": null
+      },
+      {
+        "claim": "Base price of \"JR Pass 7-day Ordinary\" is 50000 yen.",
+        "source_id": "jrpass-price-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail costs 520 yen.",
+        "source_id": "tokyo-monorail-fares-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Tokyo to Shin-Osaka by Hikari costs 14200 yen.",
+        "source_id": "smartex-reserved-fares-2025",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Shin-Osaka to Hiroshima by Sakura costs 10220 yen.",
+        "source_id": "smartex-reserved-fares-2025",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Hiroshima to Shin-Osaka by Sakura costs 10220 yen.",
+        "source_id": "smartex-reserved-fares-2025",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Shin-Osaka to Kyoto by Hikari costs 2670 yen.",
+        "source_id": "smartex-reserved-fares-2025",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Namba to Kansai Airport by Nankai Rapi:t Digital Ticket costs 1410 yen.",
+        "source_id": "nankai-rapit-digital-ticket-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail is not covered by \"JR Pass 7-day Ordinary\" and adds 520 yen.",
+        "source_id": "tokyo-monorail-fares-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Namba to Kansai Airport by Nankai Rapi:t Digital Ticket is not covered by \"JR Pass 7-day Ordinary\" and adds 1410 yen.",
+        "source_id": "nankai-rapit-digital-ticket-2026",
+        "source_date": "2026-09-06"
+      }
+    ]
+  },
+  "calculatorError": null,
+  "explanation": {
+    "verdict": "DO NOT BUY",
+    "headline": "DO NOT BUY: buying individual tickets saves 12690 yen compared to the pass option.",
+    "explanation": "Point-to-point ticket total for this itinerary is 39240 yen. In comparison, the base price of \"JR Pass 7-day Ordinary\" is 50000 yen. Furthermore, Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail is not covered by \"JR Pass 7-day Ordinary\" and adds 520 yen, and Namba to Kansai Airport by Nankai Rapi:t Digital Ticket is not covered by \"JR Pass 7-day Ordinary\" and adds 1410 yen.",
+    "caveats": [
+      "The point-to-point ticket total of 39240 yen has a null source date.",
+      "Tokyo Monorail between Haneda Airport Terminal 3 and Hamamatsucho is listed as not covered (adding 520 yen), though Tokyo Monorail is typically valid on the nationwide JR Pass.",
+      "The Nankai Rapi:t service from Namba to Kansai Airport is not covered by the JR Pass and requires an extra 1410 yen ticket."
+    ],
+    "evidence": [
+      {
+        "claim": "Point-to-point ticket total for this itinerary is 39240 yen.",
+        "source_id": "calculator:sumFares",
+        "source_date": null
+      },
+      {
+        "claim": "Base price of \"JR Pass 7-day Ordinary\" is 50000 yen.",
+        "source_id": "jrpass-price-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail is not covered by \"JR Pass 7-day Ordinary\" and adds 520 yen.",
+        "source_id": "tokyo-monorail-fares-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Namba to Kansai Airport by Nankai Rapi:t Digital Ticket is not covered by \"JR Pass 7-day Ordinary\" and adds 1410 yen.",
+        "source_id": "nankai-rapit-digital-ticket-2026",
+        "source_date": "2026-09-06"
+      }
+    ]
+  },
+  "module2Error": null,
+  "metadata": {
+    "injectionAttempted": false,
+    "removed": [],
+    "module2Text": "<explanation_json>\n{\n  \"verdict\": \"DO NOT BUY\",\n  \"headline\": \"DO NOT BUY: buying individual tickets saves 12690 yen compared to the pass option.\",\n  \"explanation\": \"Point-to-point ticket total for this itinerary is 39240 yen. In comparison, the base price of \\\"JR Pass 7-day Ordinary\\\" is 50000 yen. Furthermore, Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail is not covered by \\\"JR Pass 7-day Ordinary\\\" and adds 520 yen, and Namba to Kansai Airport by Nankai Rapi:t Digital Ticket is not covered by \\\"JR Pass 7-day Ordinary\\\" and adds 1410 yen.\",\n  \"caveats\": [\n    \"The point-to-point ticket total of 39240 yen has a null source date.\",\n    \"Tokyo Monorail between Haneda Airport Terminal 3 and Hamamatsucho is listed as not covered (adding 520 yen), though Tokyo Monorail is typically valid on the nationwide JR Pass.\",\n    \"The Nankai Rapi:t service from Namba to Kansai Airport is not covered by the JR Pass and requires an extra 1410 yen ticket.\"\n  ],\n  \"evidence\": [\n    {\n      \"claim\": \"Point-to-point ticket total for this itinerary is 39240 yen.\",\n      \"source_id\": \"calculator:sumFares\",\n      \"source_date\": null\n    },\n    {\n      \"claim\": \"Base price of \\\"JR Pass 7-day Ordinary\\\" is 50000 yen.\",\n      \"source_id\": \"jrpass-price-2026\",\n      \"source_date\": \"2026-09-06\"\n    },\n    {\n      \"claim\": \"Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail is not covered by \\\"JR Pass 7-day Ordinary\\\" and adds 520 yen.\",\n      \"source_id\": \"tokyo-monorail-fares-2026\",\n      \"source_date\": \"2026-09-06\"\n    },\n    {\n      \"claim\": \"Namba to Kansai Airport by Nankai Rapi:t Digital Ticket is not covered by \\\"JR Pass 7-day Ordinary\\\" and adds 1410 yen.\",\n      \"source_id\": \"nankai-rapit-digital-ticket-2026\",\n      \"source_date\": \"2026-09-06\"\n    }\n  ]\n}\n</explanation_json>",
+    "model": "gemini-3.8-flash"
+  },
+  "_demo_metadata": {
+    "id": "tc02",
+    "testCaseId": "TC02",
+    "description": "",
+    "inputPayload": {
+      "mode": "live",
+      "start": "2026-10-15",
+      "end": "2026-10-20",
+      "arrival_time": "14:00",
+      "departure_time": "10:00",
+      "arrival_airport": "HND",
+      "departure_airport": "KIX",
+      "dietary": "Vegan",
+      "pace": "Fast-paced",
+      "preferences": "Visit as many cities as possible. Focus on major attractions only."
+    }
+  }
+}

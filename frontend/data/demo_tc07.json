@@ -1,0 +1,432 @@
+{
+  "ok": true,
+  "mode": "live",
+  "itinerary": {
+    "days": [
+      {
+        "day": 1,
+        "stops": [
+          {
+            "name": "Tokyo Metropolitan Government Building Observatories",
+            "ward_or_city": "Shinjuku",
+            "start_time": "17:30",
+            "end_time": "18:45",
+            "is_dining": false
+          },
+          {
+            "name": "Ain Soph. Journey Shinjuku",
+            "ward_or_city": "Shinjuku",
+            "start_time": "19:00",
+            "end_time": "20:30",
+            "is_dining": true
+          }
+        ]
+      },
+      {
+        "day": 2,
+        "stops": [
+          {
+            "name": "Senso-ji",
+            "ward_or_city": "Asakusa",
+            "start_time": "09:30",
+            "end_time": "11:30",
+            "is_dining": false
+          },
+          {
+            "name": "The Farm Cafe",
+            "ward_or_city": "Asakusa",
+            "start_time": "12:00",
+            "end_time": "13:15",
+            "is_dining": true
+          },
+          {
+            "name": "Tokyo Skytree",
+            "ward_or_city": "Sumida",
+            "start_time": "14:00",
+            "end_time": "16:00",
+            "is_dining": false
+          },
+          {
+            "name": "Imperial Palace East Gardens",
+            "ward_or_city": "Tokyo Station",
+            "start_time": "16:45",
+            "end_time": "17:45",
+            "is_dining": false
+          },
+          {
+            "name": "T's Tantan Tokyo Station",
+            "ward_or_city": "Tokyo Station",
+            "start_time": "18:15",
+            "end_time": "19:30",
+            "is_dining": true
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "stops": [
+          {
+            "name": "Shibuya Crossing",
+            "ward_or_city": "Shibuya",
+            "start_time": "09:00",
+            "end_time": "10:00",
+            "is_dining": false
+          },
+          {
+            "name": "Shibuya Sky",
+            "ward_or_city": "Shibuya",
+            "start_time": "10:15",
+            "end_time": "11:30",
+            "is_dining": false
+          }
+        ]
+      }
+    ],
+    "transit_segments": [
+      {
+        "from_station": "Haneda Airport Terminal 3",
+        "to_station": "Hamamatsucho",
+        "mode": "Tokyo Monorail",
+        "day": 1,
+        "order": 1
+      },
+      {
+        "from_station": "Hamamatsucho",
+        "to_station": "Shinjuku",
+        "mode": "Local train - JR Yamanote Line",
+        "day": 1,
+        "order": 2
+      },
+      {
+        "from_station": "Shinjuku",
+        "to_station": "Kanda",
+        "mode": "Local train - JR Chuo Line",
+        "day": 2,
+        "order": 1
+      },
+      {
+        "from_station": "Kanda",
+        "to_station": "Asakusa",
+        "mode": "Local subway - Tokyo Metro Ginza Line",
+        "day": 2,
+        "order": 2
+      },
+      {
+        "from_station": "Asakusa",
+        "to_station": "Oshiage",
+        "mode": "Local subway - Toei Asakusa Line",
+        "day": 2,
+        "order": 3
+      },
+      {
+        "from_station": "Oshiage",
+        "to_station": "Otemachi",
+        "mode": "Local subway - Tokyo Metro Hanzomon Line",
+        "day": 2,
+        "order": 4
+      },
+      {
+        "from_station": "Otemachi",
+        "to_station": "Tokyo",
+        "mode": "Walking",
+        "day": 2,
+        "order": 5
+      },
+      {
+        "from_station": "Tokyo",
+        "to_station": "Shinjuku",
+        "mode": "Local train - JR Chuo Line",
+        "day": 2,
+        "order": 6
+      },
+      {
+        "from_station": "Shinjuku",
+        "to_station": "Shibuya",
+        "mode": "Local train - JR Yamanote Line",
+        "day": 3,
+        "order": 1
+      },
+      {
+        "from_station": "Shibuya",
+        "to_station": "Shinagawa",
+        "mode": "Local train - JR Yamanote Line",
+        "day": 3,
+        "order": 2
+      },
+      {
+        "from_station": "Shinagawa",
+        "to_station": "Haneda Airport Terminal 3",
+        "mode": "Local train - Keikyu Airport Line",
+        "day": 3,
+        "order": 3
+      }
+    ],
+    "missing_info": []
+  },
+  "validation": {
+    "dietary_results": [
+      {
+        "stop_name": "Ain Soph. Journey Shinjuku",
+        "ward_or_city": "Shinjuku",
+        "day": 1,
+        "required_tags": [
+          "vegan"
+        ],
+        "status": "compliant",
+        "lookup_key": "ain soph journey shinjuku | shinjuku",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [],
+        "source_id": "PENDING-ulfa-verification",
+        "source_date": null,
+        "reason": "Venue tags [vegan] satisfy all required tags [vegan]."
+      },
+      {
+        "stop_name": "The Farm Cafe",
+        "ward_or_city": "Asakusa",
+        "day": 2,
+        "required_tags": [
+          "vegan"
+        ],
+        "status": "compliant",
+        "lookup_key": "the farm cafe | asakusa",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [],
+        "source_id": "PENDING-ulfa-verification",
+        "source_date": null,
+        "reason": "Venue tags [vegan] satisfy all required tags [vegan]."
+      },
+      {
+        "stop_name": "T's Tantan Tokyo Station",
+        "ward_or_city": "Tokyo Station",
+        "day": 2,
+        "required_tags": [
+          "vegan"
+        ],
+        "status": "compliant",
+        "lookup_key": "t s tantan tokyo station | tokyo station",
+        "venue_tags": [
+          "vegan"
+        ],
+        "missing_tags": [],
+        "source_id": "gotokyo-tokyo-station",
+        "source_date": "2026-09-06",
+        "reason": "Venue tags [vegan] satisfy all required tags [vegan]."
+      }
+    ],
+    "geographic_results": [
+      {
+        "day": 1,
+        "from_stop": "Tokyo Metropolitan Government Building Observatories",
+        "to_stop": "Ain Soph. Journey Shinjuku",
+        "from_ward_or_city": "Shinjuku",
+        "to_ward_or_city": "Shinjuku",
+        "itinerary_mode": "Tokyo Monorail",
+        "status": "compliant",
+        "scheduled_gap_minutes": 15,
+        "required_minutes": 10,
+        "lookup_key": "shinjuku | shinjuku",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 15 min meets the required 10 min. Itinerary declares mode \"Tokyo Monorail\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 2,
+        "from_stop": "Senso-ji",
+        "to_stop": "The Farm Cafe",
+        "from_ward_or_city": "Asakusa",
+        "to_ward_or_city": "Asakusa",
+        "itinerary_mode": "Local train - JR Chuo Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 30,
+        "required_minutes": 10,
+        "lookup_key": "asakusa | asakusa",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 30 min meets the required 10 min. Itinerary declares mode \"Local train - JR Chuo Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 2,
+        "from_stop": "The Farm Cafe",
+        "to_stop": "Tokyo Skytree",
+        "from_ward_or_city": "Asakusa",
+        "to_ward_or_city": "Sumida",
+        "itinerary_mode": "Local subway - Tokyo Metro Ginza Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 45,
+        "required_minutes": 5,
+        "lookup_key": "asakusa | sumida",
+        "table_mode": "Tobu Skytree Line",
+        "source_id": "tobu-asakusa-skytree-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 45 min meets the required 5 min. Itinerary declares mode \"Local subway - Tokyo Metro Ginza Line\" but the table row is \"Tobu Skytree Line\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 2,
+        "from_stop": "Tokyo Skytree",
+        "to_stop": "Imperial Palace East Gardens",
+        "from_ward_or_city": "Sumida",
+        "to_ward_or_city": "Tokyo Station",
+        "itinerary_mode": "Local subway - Toei Asakusa Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 45,
+        "required_minutes": 20,
+        "lookup_key": "sumida | tokyo station",
+        "table_mode": "Tokyo Metro Marunouchi + Hanzomon Line",
+        "source_id": "rome2rio-tokyo-station-skytree-2026-09-07",
+        "source_date": "2026-09-07",
+        "reason": "Scheduled gap 45 min meets the required 20 min. Itinerary declares mode \"Local subway - Toei Asakusa Line\" but the table row is \"Tokyo Metro Marunouchi + Hanzomon Line\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 2,
+        "from_stop": "Imperial Palace East Gardens",
+        "to_stop": "T's Tantan Tokyo Station",
+        "from_ward_or_city": "Tokyo Station",
+        "to_ward_or_city": "Tokyo Station",
+        "itinerary_mode": "Local subway - Tokyo Metro Hanzomon Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 30,
+        "required_minutes": 10,
+        "lookup_key": "tokyo station | tokyo station",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 30 min meets the required 10 min. Itinerary declares mode \"Local subway - Tokyo Metro Hanzomon Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      },
+      {
+        "day": 3,
+        "from_stop": "Shibuya Crossing",
+        "to_stop": "Shibuya Sky",
+        "from_ward_or_city": "Shibuya",
+        "to_ward_or_city": "Shibuya",
+        "itinerary_mode": "Local train - JR Yamanote Line",
+        "status": "compliant",
+        "scheduled_gap_minutes": 15,
+        "required_minutes": 10,
+        "lookup_key": "shibuya | shibuya",
+        "table_mode": "walking",
+        "source_id": "same-area-10min-methodology",
+        "source_date": "2026-09-06",
+        "reason": "Scheduled gap 15 min meets the required 10 min. Itinerary declares mode \"Local train - JR Yamanote Line\" but the table row is \"walking\"; the table is keyed by ward pair only, so this did not affect the verdict."
+      }
+    ],
+    "summary": {
+      "compliant": 9,
+      "non_compliant": 0,
+      "unverified": 0
+    },
+    "dietary_summary": {
+      "compliant": 3,
+      "non_compliant": 0,
+      "unverified": 0
+    },
+    "geographic_summary": {
+      "compliant": 6,
+      "non_compliant": 0,
+      "unverified": 0
+    }
+  },
+  "failures": [],
+  "audit": {
+    "recommendation": "DO NOT BUY",
+    "pass_price": 50520,
+    "ticket_total": 520,
+    "difference": 50000,
+    "per_segment_breakdown": [
+      {
+        "from_station": "Haneda Airport Terminal 3",
+        "to_station": "Hamamatsucho",
+        "service_type": "Tokyo Monorail",
+        "day": 1,
+        "order": 1,
+        "ticket_price_yen": 520,
+        "pass_supplement_yen": 0,
+        "pass_extra_yen": 520,
+        "pass_extra_reason": "not_covered"
+      }
+    ],
+    "evidence": [
+      {
+        "claim": "Point-to-point ticket total for this itinerary is 520 yen.",
+        "source_id": "calculator:sumFares",
+        "source_date": null
+      },
+      {
+        "claim": "Base price of \"JR Pass 7-day Ordinary\" is 50000 yen.",
+        "source_id": "jrpass-price-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail costs 520 yen.",
+        "source_id": "tokyo-monorail-fares-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail is not covered by \"JR Pass 7-day Ordinary\" and adds 520 yen.",
+        "source_id": "tokyo-monorail-fares-2026",
+        "source_date": "2026-09-06"
+      }
+    ]
+  },
+  "calculatorError": null,
+  "explanation": {
+    "verdict": "DO NOT BUY",
+    "headline": "DO NOT BUY: Individual tickets save 50000 yen compared to purchasing the pass.",
+    "explanation": "Point-to-point ticket total for this itinerary is 520 yen. In contrast, the base price of \"JR Pass 7-day Ordinary\" is 50000 yen. Furthermore, Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail is not covered by \"JR Pass 7-day Ordinary\" and adds 520 yen, bringing the total cost of using the pass to 50520 yen.",
+    "caveats": [
+      "The Tokyo Monorail segment is marked as not covered by the JR Pass 7-day Ordinary, incurring an additional 520 yen out-of-pocket expense.",
+      "The evidence entry for the point-to-point ticket total has a null source date."
+    ],
+    "evidence": [
+      {
+        "claim": "Point-to-point ticket total for this itinerary is 520 yen.",
+        "source_id": "calculator:sumFares",
+        "source_date": null
+      },
+      {
+        "claim": "Base price of \"JR Pass 7-day Ordinary\" is 50000 yen.",
+        "source_id": "jrpass-price-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail costs 520 yen.",
+        "source_id": "tokyo-monorail-fares-2026",
+        "source_date": "2026-09-06"
+      },
+      {
+        "claim": "Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail is not covered by \"JR Pass 7-day Ordinary\" and adds 520 yen.",
+        "source_id": "tokyo-monorail-fares-2026",
+        "source_date": "2026-09-06"
+      }
+    ]
+  },
+  "module2Error": null,
+  "metadata": {
+    "injectionAttempted": false,
+    "removed": [],
+    "module2Text": "<explanation_json>\n{\n  \"verdict\": \"DO NOT BUY\",\n  \"headline\": \"DO NOT BUY: Individual tickets save 50000 yen compared to purchasing the pass.\",\n  \"explanation\": \"Point-to-point ticket total for this itinerary is 520 yen. In contrast, the base price of \\\"JR Pass 7-day Ordinary\\\" is 50000 yen. Furthermore, Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail is not covered by \\\"JR Pass 7-day Ordinary\\\" and adds 520 yen, bringing the total cost of using the pass to 50520 yen.\",\n  \"caveats\": [\n    \"The Tokyo Monorail segment is marked as not covered by the JR Pass 7-day Ordinary, incurring an additional 520 yen out-of-pocket expense.\",\n    \"The evidence entry for the point-to-point ticket total has a null source date.\"\n  ],\n  \"evidence\": [\n    {\n      \"claim\": \"Point-to-point ticket total for this itinerary is 520 yen.\",\n      \"source_id\": \"calculator:sumFares\",\n      \"source_date\": null\n    },\n    {\n      \"claim\": \"Base price of \\\"JR Pass 7-day Ordinary\\\" is 50000 yen.\",\n      \"source_id\": \"jrpass-price-2026\",\n      \"source_date\": \"2026-09-06\"\n    },\n    {\n      \"claim\": \"Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail costs 520 yen.\",\n      \"source_id\": \"tokyo-monorail-fares-2026\",\n      \"source_date\": \"2026-09-06\"\n    },\n    {\n      \"claim\": \"Haneda Airport Terminal 3 to Hamamatsucho by Tokyo Monorail is not covered by \\\"JR Pass 7-day Ordinary\\\" and adds 520 yen.\",\n      \"source_id\": \"tokyo-monorail-fares-2026\",\n      \"source_date\": \"2026-09-06\"\n    }\n  ]\n}\n</explanation_json>",
+    "model": "gemini-3.8-flash"
+  },
+  "_demo_metadata": {
+    "id": "tc07",
+    "testCaseId": "TC07",
+    "description": "",
+    "inputPayload": {
+      "mode": "live",
+      "start": "2026-10-20",
+      "end": "2026-10-22",
+      "arrival_time": "15:00",
+      "departure_time": "14:00",
+      "arrival_airport": "HND",
+      "departure_airport": "HND",
+      "dietary": "Vegan",
+      "pace": "Moderate",
+      "preferences": "Focus on Tokyo only."
+    }
+  }
+}

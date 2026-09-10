@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f5f">
+  <title>Wayfinder Japan | Generate & verify itinerary planning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Wayfinder Japan home">
+        <span class="brand-mark">W</span>
+        <span>
+          <strong>Wayfinder Japan</strong>
+          <small>Plan with confidence</small>
+        </span>
+      </a>
+      <span class="status">Evidence-led planning</span>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <h1 id="page-title">A better route through Japan.</h1>
+          <p>Shape the trip you want, then see the parts that hold up: fares, timing, dietary stops, and the evidence behind the answer.</p>
+        </div>
+
+        <div class="route-note">
+          <b>Built for the decisions that matter</b>
+          Suggestions come from the itinerary model. Cost and feasibility are checked separately, so a fluent answer never gets to mark its own homework.
+        </div>
+      </section>
+
+      <section class="intake" aria-labelledby="intake-title">
+        <div class="full-width">
+          <h2 id="intake-title">Start with your trip</h2>
+          <p class="section-intro">Enter your travel details. Add optional cities and preferences if you already know what you want, or leave them blank for a recommended route.</p>
+
+          <div class="fields">
+            <div>
+              <label for="start-date">Arrival date</label>
+              <input id="start-date" name="arrival_date" type="date" value="2026-10-01" required>
+            </div>
+
+            <div>
+              <label for="end-date">Departure date</label>
+              <input id="end-date" name="departure_date" type="date" value="2026-10-07" required>
+            </div>
+
+            <div>
+              <label for="arrival-time">Arrival time</label>
+              <input id="arrival-time" name="arrival_time" type="time" value="10:00" required>
+            </div>
+
+            <div>
+              <label for="departure-time">Departure time</label>
+              <input id="departure-time" name="departure_time" type="time" value="18:00" required>
+            </div>
+
+            <div>
+              <label for="arrival-airport">Arrival airport</label>
+              <select id="arrival-airport">
+                <option value="">Loading Japanese airports...</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="departure-airport">Departure airport</label>
+              <select id="departure-airport">
+                <option value="">Loading Japanese airports...</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="dietary">Dietary requirement</label>
+              <select id="dietary">
+                <option value="">None</option>
+                <option value="halal" selected>Halal</option>
+                <option value="vegan">Vegan</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="pace">Trip pace</label>
+              <select id="pace">
+                <option value="relaxed">Relaxed</option>
+                <option value="moderate" selected>Moderate</option>
+                <option value="fast-paced">Fast-paced</option>
+              </select>
+            </div>
+
+            <div class="full-width">
+              <label for="preferences">Cities and preferences (optional)</label>
+              <textarea id="preferences" placeholder="For example: Visit Tokyo and Kyoto, focus on historical areas, avoid nightlife, and travel mainly by train."></textarea>
+              <p class="field-hint">Leave this blank if you want the planner to recommend the cities and complete route.</p>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="primary" id="generate" type="button">Generate &amp; verify plan</button>
+            <button class="secondary" id="demo" type="button">Load demo scenario</button>
+            <span class="loading" id="loading">Working through the route...</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-selector" id="demo-selector" style="display:none;">
+        <div class="shell">
+          <div class="demo-header">
+            <h2>Choose a Demo Scenario</h2>
+            <p>Select from pre-generated itineraries to see different trip types, dietary requirements, and pass verdicts.</p>
+            <button class="close-demos" id="close-demos">&times;</button>
+          </div>
+          <div class="demo-grid" id="demo-grid">
+            <!-- Demo cards populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <div class="message" id="message" role="alert"></div>
+      <section class="results" id="results" aria-live="polite"></section>
+    </main>
+
+    <footer>Wayfinder Japan · A PE6203 Group Project 1 prototype · Live results use the repository's dated tables and deterministic checks.</footer>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>

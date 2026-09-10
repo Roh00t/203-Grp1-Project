@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Test - Wayfinder Japan</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; max-width: 800px; margin: 0 auto; }
+    h1 { color: #173f5f; }
+    .test { padding: 10px; margin: 10px 0; border-radius: 5px; }
+    .success { background: #dcefe5; border-left: 4px solid #4f9b77; }
+    .error { background: #fae0da; border-left: 4px solid #d96c52; }
+    .pending { background: #fff8e8; border-left: 4px solid #f3d795; }
+    button { background: #173f5f; color: white; border: 0; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+    button:hover { background: #0f314a; }
+    pre { background: #f6f4ee; padding: 10px; border-radius: 5px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>🧪 Wayfinder Japan - File Test</h1>
+  <p>Use this page to verify all files are uploaded correctly before testing the main app.</p>
+
+  <button onclick="testAllFiles()">Run All Tests</button>
+  <button onclick="location.href='index.html'">Go to Main App</button>
+
+  <div id="results"></div>
+
+  <script>
+    const files = [
+      { path: './css/styles.css', name: 'CSS Stylesheet', type: 'text' },
+      { path: './js/app.js', name: 'JavaScript App', type: 'text' },
+      { path: './data/japan_airports.json', name: 'Airport Data', type: 'json' },
+      { path: './data/demo_catalog.json', name: 'Demo Catalog', type: 'json' },
+      { path: './data/demo_tc01.json', name: 'Demo TC01', type: 'json' },
+      { path: './data/demo_tc02.json', name: 'Demo TC02', type: 'json' },
+      { path: './data/demo_tc07.json', name: 'Demo TC07', type: 'json' },
+      { path: './data/demo_tc15.json', name: 'Demo TC15', type: 'json' },
+      { path: './data/demo_tc18.json', name: 'Demo TC18', type: 'json' }
+    ];
+
+    async function testFile(file) {
+      const resultDiv = document.getElementById('results');
+      const testDiv = document.createElement('div');
+      testDiv.className = 'test pending';
+      testDiv.innerHTML = `Testing ${file.name}...`;
+      resultDiv.appendChild(testDiv);
+
+      try {
+        const response = await fetch(file.path);
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: File not found`);
+        }
+
+        const text = await response.text();
+
+        // Check if it's valid JSON
+        if (file.type === 'json') {
+          try {
+            const data = JSON.parse(text);
+            const preview = JSON.stringify(data, null, 2).substring(0, 100);
+            testDiv.className = 'test success';
+            testDiv.innerHTML = `
+              ✅ <strong>${file.name}</strong> - Loaded successfully<br>
+              <small>File: ${file.path} (${text.length} bytes)</small><br>
+              <small>Preview: ${preview}${text.length > 100 ? '...' : ''}</small>
+            `;
+          } catch (jsonError) {
+            throw new Error(`Invalid JSON: ${jsonError.message}`);
+          }
+        } else {
+          testDiv.className = 'test success';
+          testDiv.innerHTML = `
+            ✅ <strong>${file.name}</strong> - Loaded successfully<br>
+            <small>File: ${file.path} (${text.length} bytes)</small>
+          `;
+        }
+
+      } catch (error) {
+        testDiv.className = 'test error';
+        testDiv.innerHTML = `
+          ❌ <strong>${file.name}</strong> - FAILED<br>
+          <small>File: ${file.path}</small><br>
+          <small>Error: ${error.message}</small><br>
+          <strong>Fix:</strong> Upload this file to the correct location
+        `;
+      }
+    }
+
+    async function testAllFiles() {
+      const resultDiv = document.getElementById('results');
+      resultDiv.innerHTML = '<h2>Test Results</h2>';
+
+      for (const file of files) {
+        await testFile(file);
+      }
+
+      // Summary
+      const successCount = document.querySelectorAll('.test.success').length;
+      const totalCount = files.length;
+      const summaryDiv = document.createElement('div');
+      summaryDiv.className = successCount === totalCount ? 'test success' : 'test error';
+      summaryDiv.innerHTML = `
+        <h3>Summary: ${successCount}/${totalCount} files loaded successfully</h3>
+        ${successCount === totalCount
+          ? '🎉 All files are ready! You can now test the main app.'
+          : '⚠️ Some files are missing. Upload them and run this test again.'}
+      `;
+      resultDiv.appendChild(summaryDiv);
+    }
+
+    // Auto-run on load
+    window.addEventListener('load', testAllFiles);
+  </script>
+</body>
+</html>
