@@ -131,6 +131,46 @@ Validator        (Program-of-Thoughts: calculator + LLM explainer)
 - Fare table and dietary list ship as plain structured files the builder can read directly, kept outside the LLM's prompt context where possible, so a price update doesn't require re-tuning a prompt.
 - **Verify the exact Gemini model ID against Google's live deprecations page before wiring any API call.** Gemini 1.5 Pro and Gemini 1.5 Flash were already retired (Sept 2025) — don't copy a model string from an old draft without checking it's still live.
 
+### Deployment
+
+Live at **<https://hellobird.io/PE6203/index.html>** (verified 10 Sept 2026). The
+deployed build is static, so demo mode and the deterministic checks run in the
+browser against pre-built fixtures, while live Gemini generation (`/api/generate`)
+requires the Node server and is available on a local run only. See `README.md`
+for the capability matrix.
+
+### UI/UX remediation (9 Sept 2026)
+
+The output UI renders itinerary, verdicts, flags and evidence together — but the
+first build surfaced the validator's internal reasoning verbatim, which buried the
+itinerary under audit prose. Three changes, none of which remove information:
+
+- **Evidence presentation — cognitive load.** Raw deterministic check output
+  (transition reasons, gap-versus-required arithmetic, declared transit mode,
+  source id and date) is no longer printed inline in the timeline. Each transition
+  is now a native `<details>`/`<summary>` accordion: the summary carries only the
+  route and its status badge, and the full audit trail sits one click away. This
+  keeps the Faithfulness evidence chain intact and auditable — a grader can still
+  reach every claim's source — while the default view stays readable. Nothing is
+  discarded; it is relocated.
+- **Missing-fare fallback — ROI Auditor.** A segment outside the curated
+  19-station fare matrix (for example `Mishima -> Kyoto`, a Kodama stop off the
+  golden route) previously rendered as a bare "Paused". The UI now extracts the
+  offending segment from the calculator's error and states plainly that exact
+  pricing is unavailable for that leg, that a verdict cannot be produced without
+  guessing a price, and that the itinerary and the dietary and geographic checks
+  are unaffected. The calculator's refusal to estimate is presented as a
+  deliberate property, not a breakage.
+- **Unverified-state clarification.** `unverified` now renders as an amber warning
+  badge, visually distinct from the red `non_compliant` badge. The two mean
+  different things — insufficient curated evidence versus a genuine constraint
+  violation — and colouring them alike overstated the failure rate to the reader.
+  `missing_info` is rendered as a headed list rather than a comma-joined
+  paragraph, framed as items deliberately left open rather than guessed.
+
+**Not yet deployed.** These changes exist in the repository prototype; the live
+build predates them. Redeploy before relying on the live URL to demonstrate them.
+
 ---
 
 ## Stage 6 — Evaluation

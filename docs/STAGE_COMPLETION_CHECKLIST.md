@@ -207,7 +207,7 @@ Karthik fills in `proposed fix` fully and hands back a prioritised retest queue;
 ### Deliverables
 - [ ] Report PDF (~10 pages + cover)
 - [ ] Presentation slides (6–8 slides, ~2min per slide for 10-min presentation)
-- [ ] Working deployment link (tested externally)
+- [x] Working deployment link (tested externally) — https://hellobird.io/PE6203/index.html, verified 10 Sept 2026; demo mode functional, live generation requires the local server
 
 ### Recommended Timeline
 - **Today (Sept 7):** Draft architecture + methodology sections
@@ -328,7 +328,7 @@ npm test 2>&1 | grep -q "test suites passed" && echo "✓ All unit tests pass" |
 ### Report ⏳
 - [ ] 10 pages + cover submitted by Sept 18
 - [ ] Slides ready for Sept 10 presentation
-- [ ] Deployment link working externally
+- [x] Deployment link working externally — https://hellobird.io/PE6203/index.html (HTTP 200, verified 10 Sept 2026)
 
 ---
 

@@ -109,7 +109,8 @@ curl http://localhost:3000/api/health # Check server health
 
 ### Start Server (Manual)
 ```bash
-npm start                            # Default (port 3000)
+npm start                            # Default (port 3000) — required for live generation
+# Deployed (demo mode only): https://hellobird.io/PE6203/index.html
 PORT=4000 npm start                  # Custom port
 ```
 
@@ -218,7 +219,8 @@ TC01,C,SUCCESS,PASS,PASS,PASS,PASS,PASS
 
 **Ulfa:**
 ```bash
-# Verify airport dropdown loads
+# Live build (interface + demo mode only):  https://hellobird.io/PE6203/index.html
+# Live generation needs the local server:
 npm start
 # Open http://localhost:3000 in browser
 # Check console for errors (should be none)

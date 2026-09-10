@@ -137,4 +137,4 @@ visa/legal in-scope + out-of-scope pair. Flag to Mutya; record as a documented l
    - Build slides from the draft report structure
    - Fill in actual test results when Stage 6 finishes
 
-5. **Deployment link:** Confirm `server.mjs` is ready for deployment. The `.env` pattern (GEMINI_API_KEY, GEMINI_MODEL_ID) is set up, and the app runs on `localhost:3000` via `npm start`. Verify the live model ID is current (CLAUDE.md warns Gemini 1.5 Pro/Flash are already retired).
+5. **Deployment link:** **Done** — live at https://hellobird.io/PE6203/index.html (verified 10 Sept 2026). Static hosting, so demo mode and the deterministic checks work in the browser while `/api/generate` returns 404; live generation still needs `npm start`. The deployed build also predates the 9 Sept UI remediation. Original note follows: Confirm `server.mjs` is ready for deployment. The `.env` pattern (GEMINI_API_KEY, GEMINI_MODEL_ID) is set up, and the app runs on `localhost:3000` via `npm start`. Verify the live model ID is current (CLAUDE.md warns Gemini 1.5 Pro/Flash are already retired).

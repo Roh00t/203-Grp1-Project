@@ -3,6 +3,30 @@
 **PE6203 (Generative AI and Agentic AI) — Group Project 1**
 Presentation: 10 Sept 2026 · Report due: 18 Sept 2026
 
+## Live Demo / Deployment
+
+**<https://hellobird.io/PE6203/index.html>**
+
+Verified 10 Sept 2026. What works where:
+
+| Capability | Live URL | Local (`npm start`) |
+|---|---|---|
+| Browse the interface, demo itineraries | ✅ | ✅ |
+| Deterministic validation + fare audit on demo data | ✅ | ✅ |
+| **Live generation** (Module 1 → validator → Module 2 via Gemini) | ❌ | ✅ |
+| Stage 6 evaluation harness | ❌ | ✅ |
+
+The deployed build is **static hosting**, so the browser's call to `/api/generate`
+returns 404 there — live Gemini generation requires the Node server. Demo mode is
+fully functional on the live URL because it reads pre-built fixtures from
+`data/demo_*.json`. Use the live link to show the interface and verification
+output; use a local run to demonstrate live generation.
+
+> **Deployment is behind the repo.** The live build predates the 9 Sept UI
+> remediation (see *UI/UX remediation* below) — it still renders transition audit
+> strings inline rather than in `<details>` accordions. Redeploy before the demo
+> if you want the cleaned-up timeline on the live URL.
+
 ## What this is
 
 A Japan travel planning tool built around one verifiable claim a general-purpose chatbot can't make: whether a transit pass is worth it for *your specific route*, calculated against real fares — not a guess. Full design and rationale: [`Architecture.md`](./docs/Architecture.md).
@@ -151,12 +175,18 @@ npm run evaluate:stage6:variant-a    # Minimal LLM only
 2. Confirm `GEMINI_MODEL_ID` is set to the currently verified model.
 3. Run `npm start` and open `http://localhost:3000`.
 
+A local run is still required for **live generation** and for the Stage 6
+evaluation harness — the deployed static build cannot serve `/api/generate`. For
+interface review only, the live URL above is sufficient.
+
 The browser never receives the API key. Use the prototype's demo mode to review
 the interface without making a Gemini request; live mode runs Module 1,
 deterministic validation and fare calculation, then Module 2 narration through
 the local server.
 
-**Live app link:** *add here once deployed — the brief requires the link to work on submission, so test it externally (not just from a logged-in Canvas session) before the report goes in.*
+**Live app link:** <https://hellobird.io/PE6203/index.html> — verified reachable
+10 Sept 2026 (demo mode functional; live generation requires the local server, see
+*Live Demo / Deployment* above).
 
 ## Assignment compliance note
 

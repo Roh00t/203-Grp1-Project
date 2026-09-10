@@ -236,6 +236,9 @@ npm run evaluate:stage6:variant-c    # Full pipeline (requires server)
 npm start
 # Then open http://localhost:3000 in browser
 # Verify: Airport dropdown loads, form submission works, results display
+#
+# Deployed build (interface + demo mode): https://hellobird.io/PE6203/index.html
+# Live generation is NOT available there — /api/generate is unserved on static hosting.
 ```
 
 ### For Mutya (Stage 6 Execution)
